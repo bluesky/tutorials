@@ -1,7 +1,7 @@
 # Copyright (c) Jupyter Development Team.
 FROM jupyter/minimal-notebook
 
-MAINTAINER Jupyter Project <jupyter@googlegroups.com>
+MAINTAINER NSLS-II <https://nsls-ii.github.io>
 
 USER jovyan
 
