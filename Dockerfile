@@ -16,6 +16,7 @@ USER jovyan
 
 # Install Python 3 packages
 RUN conda install --yes \
+    'python=3.4*' \
     'ipywidgets=4.0*' \
     'pandas=0.16*' \
     'matplotlib=1.4*' \
