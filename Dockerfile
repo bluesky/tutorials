@@ -34,4 +34,24 @@ RUN conda install --yes \
     'bokeh=0.9*' \
     && conda clean -yt
 
+RUN conda install -c lightsource2 --yes \
+    'metadatastore' \
+    'databroker' \
+    && conda clean -yt
+
+# pip install things not yet on lightsource2 channel.
+RUN conda install --yes pip
+RUN pip install https://github.com/Nikea/history/zipball/master#egg=history
+RUN pip install https://github.com/NSLS-II/bluesky/zipball/master#egg=bluesky
+RUN pip install https://github.com/soft-matter/pims/zipball/master#egg=pims
+
+# Configure MDS and FS connection parameters.
+ENV MDS_HOST localhost
+ENV MDS_DATABASE test
+ENV MDS_TIMEZONE US/Eastern
+ENV MDS_PORT 27017
+ENV FS_HOST localhost
+ENV FS_DATABASE test
+ENV FS_PORT 27017
+
 USER root
