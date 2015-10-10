@@ -56,3 +56,11 @@ ENV FS_DATABASE test
 ENV FS_PORT 27017
 
 USER root
+# COPY start-mongo-and-notebook.sh /usr/local/bin/
+# CMD ["start-mongo-and-notebook.sh"]
+RUN apt-get update && apt-get install -y supervisor
+RUN mkdir -p /var/log/supervisor
+# imitating https://github.com/justone/docker-mongodb
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+EXPOSE 27017 8000
+CMD ["/usr/bin/supervisord", "-n"]
