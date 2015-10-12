@@ -1,0 +1,29 @@
+FROM debian:jessie
+
+MAINTAINER NSLS-II <https://nsls-ii.github.io>
+
+USER root
+
+RUN apt-get update
+RUN apt-get install -yq wget
+RUN wget --quiet http://epics.nsls2.bnl.gov/debian/repo-key.pub -O - | apt-key add -
+RUN echo "deb http://epics.nsls2.bnl.gov/debian/ jessie/staging main contrib" | tee /etc/apt/sources.list.d/nsls2.list
+RUN apt-get update
+RUN apt-get install -yq build-essential git epics-dev epics-synapps-dev epics-iocstats-dev 
+RUN apt-get install -yq procserv telnet
+# get areadetector dependencies
+RUN apt-get install -yq libx11-dev libxext-dev libxml2-dev libpng12-dev libbz2-dev libfreetype6-dev 
+
+RUN mkdir /epics && mkdir /epics/iocs
+RUN git clone --single-branch -b docker https://github.com/dchabot/motorsim.git /epics/iocs/motorsim
+RUN cd /epics/iocs/motorsim && make -s all
+
+ 
+RUN mkdir /epics/src
+RUN git clone https://github.com/dchabot/areadetector-1-9-1.git /epics/src/areadetector-1-9-1
+RUN cd /epics/src/areadetector-1-9-1 && make -s all
+
+RUN git clone https://github.com/dchabot/adsim.git /epics/iocs/adsim
+
+#RUN procServ -q -n ‘motorsim’ -i ^C^D^] -c /epics/iocs/motorsim 2048 ./st.cmd
+#RUN procServ -q -n ‘adsim’ -i ^C^D^] -c /epics/iocs/adsim 2049 ./st.cmd
