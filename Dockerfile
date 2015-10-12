@@ -55,9 +55,11 @@ ENV FS_HOST 127.0.0.1
 ENV FS_DATABASE test
 ENV FS_PORT 27017
 
+# Install Jupyter server extensions.
 RUN mkdir extensions
 COPY extensions .
 RUN cd extensions
 RUN pip install .
 
+# Be root so that we can start system processes in server extensions.
 USER root
