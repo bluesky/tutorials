@@ -62,6 +62,21 @@ RUN cd extensions
 RUN pip install .
 RUN cd ..
 
-# Be root so that we can start system processes in server extensions.
+RUN pwd
+
+USER root
+# Start mongo in order to load data.
+COPY data_generator.py data_generator.py
+RUN mongod --smallfiles
+#--fork --logpath /dev/null
+# && /opt/conda/bin/python data_generator.py
+# old way:
+# RUN mkdir dump
+# COPY dump dump
+# RUN mongod --fork --logpath /dev/null && \ 
+#     mongorestore dump && \
+#     rm -rf dump
+
+# Stay root so that we can start system processes in server extensions.
 USER root
 RUN rm -rf extensions setup.py
