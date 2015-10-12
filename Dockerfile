@@ -60,6 +60,8 @@ RUN mkdir extensions
 COPY extensions .
 RUN cd extensions
 RUN pip install .
+RUN cd ..
 
 # Be root so that we can start system processes in server extensions.
 USER root
+RUN rm -rf extensions setup.py
