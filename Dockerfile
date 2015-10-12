@@ -48,11 +48,11 @@ RUN pip install https://github.com/soft-matter/pims/zipball/master#egg=pims
 
 # Configure MDS and FS connection parameters.
 ENV MDS_HOST 127.0.0.1
-ENV MDS_DATABASE test
+ENV MDS_DATABASE demo-mds
 ENV MDS_TIMEZONE US/Eastern
 ENV MDS_PORT 27017
 ENV FS_HOST 127.0.0.1
-ENV FS_DATABASE test
+ENV FS_DATABASE demo-fs
 ENV FS_PORT 27017
 
 # Install Jupyter server extensions.
