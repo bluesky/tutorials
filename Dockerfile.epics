@@ -23,7 +23,8 @@ RUN mkdir /epics/src
 RUN git clone https://github.com/dchabot/areadetector-1-9-1.git /epics/src/areadetector-1-9-1
 RUN cd /epics/src/areadetector-1-9-1 && make -s all
 
-RUN git clone https://github.com/dchabot/adsim.git /epics/iocs/adsim
+RUN git clone --single-branch -b docker https://github.com/dchabot/adsim.git /epics/iocs/adsim
 
-#RUN procServ -q -n ‘motorsim’ -i ^C^D^] -c /epics/iocs/motorsim 2048 ./st.cmd
-#RUN procServ -q -n ‘adsim’ -i ^C^D^] -c /epics/iocs/adsim 2049 ./st.cmd
+# Use these commands to start the demo iocs (interactively or programmatically): 
+#   procServ -q -n ‘motorsim’ -i ^C^D^] -c /epics/iocs/motorsim 2048 ./st.cmd
+#   procServ -q -n ‘adsim’ -i ^C^D^] -c /epics/iocs/adsim 2049 ./st.cmd
