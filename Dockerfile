@@ -55,4 +55,9 @@ ENV FS_HOST 127.0.0.1
 ENV FS_DATABASE test
 ENV FS_PORT 27017
 
+RUN mkdir extensions
+COPY extensions .
+RUN cd extensions
+RUN pip install .
+
 USER root
