@@ -75,6 +75,7 @@ RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python .dat
 #     rm -rf dump
 
 # Copy content
+COPY matplotlibrc /opt/conda/lib/python3.4/site-packages/matplotlib/mpl-data/
 RUN mkdir notebooks
 COPY notebooks notebooks
 RUN mv notebooks/Welcome* .
