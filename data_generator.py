@@ -1,8 +1,11 @@
 from bluesky.examples import motor, det
-from bluesky.standard_config import gs
+# Note: importing from standard_config raises a qt/mpl-related error.
+from bluesky.global_state import gs
+from bluesky.register_mds import register_mds
 from bluesky.scans import AbsScan
 
 
+register_mds(gs.RE)
 gs.RE.md['owner'] = 'demo'
 gs.RE.md['group'] = 'demo'
 gs.RE.md['config'] = {}
