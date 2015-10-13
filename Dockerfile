@@ -11,7 +11,6 @@ RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | 
 RUN apt-get update
 RUN apt-get install -y mongodb-org
 RUN mkdir -p /data/db
-RUN service mongod start
 
 USER jovyan
 
@@ -67,9 +66,7 @@ RUN pwd
 USER root
 # Start mongo in order to load data.
 COPY data_generator.py data_generator.py
-RUN mongod --smallfiles
-#--fork --logpath /dev/null
-# && /opt/conda/bin/python data_generator.py
+RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python data_generator.py
 # old way:
 # RUN mkdir dump
 # COPY dump dump
