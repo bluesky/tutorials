@@ -79,7 +79,7 @@ RUN mkdir notebooks
 COPY notebooks notebooks
 RUN mv notebooks/Welcome* .
 RUN mkdir datasets
-COPY notebooks datasets
+COPY datasets datasets
 RUN mkdir .data-cache
 COPY .data-cache .data-cache
 
