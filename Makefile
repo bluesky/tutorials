@@ -24,7 +24,7 @@ proxy: proxy-image
 		jupyter/configurable-http-proxy \
 		--default-target http://127.0.0.1:9999
 
-tmpnb: minimal-image tmpnb-image
+tmpnb: minimal-image tmpnb-image tutorial-image
 	docker run --net=host -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
 		--name=tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
@@ -55,3 +55,14 @@ help:
 upload:
 	docker push nsls2/tutorial
 
+# If the first argument is "cpnbs"...
+ifeq (cpnbs,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "cpnbs"
+  CPNBS_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(CPNBS_ARGS):;@:)
+endif
+
+cpnbs:
+	docker cp $(CPNBS_ARGS):/home/jovyan/work/notebooks .
+	docker cp $(CPNBS_ARGS):"/home/jovyan/work/Welcome to the NSLS-II Data Acquisition and Analysis Sandbox.ipynb" notebooks

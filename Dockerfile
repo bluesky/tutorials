@@ -64,7 +64,7 @@ RUN cd ..
 RUN pwd
 
 USER root
-# Start mongo in order to load data.
+# Run mongo while generating data.
 COPY data_generator.py data_generator.py
 RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python data_generator.py
 # old way:
@@ -73,6 +73,15 @@ RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python data
 # RUN mongod --fork --logpath /dev/null && \ 
 #     mongorestore dump && \
 #     rm -rf dump
+
+# Copy content
+RUN mkdir notebooks
+COPY notebooks notebooks
+RUN mv notebooks/Welcome* .
+RUN mkdir datasets
+COPY notebooks datasets
+RUN mkdir .data-cache
+COPY .data-cache .data-cache
 
 # Stay root so that we can start system processes in server extensions.
 USER root

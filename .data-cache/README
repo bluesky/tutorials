@@ -1,0 +1,2 @@
+In this directory we store files that are registered in filestore. These
+files should generally not be directly accessed by the user.
