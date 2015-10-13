@@ -65,8 +65,8 @@ RUN pwd
 
 USER root
 # Run mongo while generating data.
-COPY data_generator.py data_generator.py
-RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python data_generator.py
+COPY data_generator.py .data_generator.py
+RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python .data_generator.py
 # old way:
 # RUN mkdir dump
 # COPY dump dump
