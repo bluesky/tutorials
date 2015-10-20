@@ -89,6 +89,9 @@ RUN mkdir datasets
 COPY datasets datasets
 RUN mkdir .data-cache
 COPY .data-cache .data-cache
+RUN git clone https://github.com/jupyter/notebook
+RUN mv notebook/docs/source/examples/Notebook jupyter-examples
+RUN rm -rf notebook
 
 # Stay root so that we can start system processes in server extensions.
 USER root
