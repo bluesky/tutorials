@@ -45,6 +45,12 @@ RUN pip install https://github.com/Nikea/history/zipball/master#egg=history
 RUN pip install https://github.com/NSLS-II/bluesky/zipball/master#egg=bluesky
 RUN pip install https://github.com/soft-matter/pims/zipball/master#egg=pims
 
+# mpl release candidate
+RUN conda install -c conda-forge --yes \
+    'matplotlib' \
+    'numpy < 1.10' \
+    && conda clean -yt
+
 # Configure MDS and FS connection parameters.
 ENV MDS_HOST 127.0.0.1
 ENV MDS_DATABASE demo-mds
