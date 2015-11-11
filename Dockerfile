@@ -11,6 +11,15 @@ RUN echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main" | 
 RUN apt-get update
 RUN apt-get install -y mongodb-org
 RUN mkdir -p /data/db
+# Install the EPICS stack
+RUN apt-get install -yq wget
+RUN wget --quiet http://epics.nsls2.bnl.gov/debian/repo-key.pub -O - | apt-key add -
+RUN echo "deb http://epics.nsls2.bnl.gov/debian/ jessie/staging main contrib" | tee /etc/apt/sources.list.d/nsls2.list
+RUN apt-get update
+RUN apt-get install -yq build-essential git epics-dev epics-synapps-dev epics-iocstats-dev 
+RUN apt-get install -yq procserv telnet
+# get areadetector dependencies
+RUN apt-get install -yq libhdf5-dev libx11-dev libxext-dev libxml2-dev libpng12-dev libbz2-dev libfreetype6-dev
 
 USER jovyan
 
@@ -60,7 +69,22 @@ ENV FS_HOST 127.0.0.1
 ENV FS_DATABASE demo-fs
 ENV FS_PORT 27017
 
+# clone and build EPICS device simulation code
+USER root
+
+RUN mkdir /epics && mkdir /epics/iocs
+RUN git clone --single-branch -b docker https://github.com/dchabot/motorsim.git /epics/iocs/motorsim
+RUN cd /epics/iocs/motorsim && make -s all
+
+RUN mkdir /epics/src
+RUN git clone https://github.com/dchabot/areadetector-1-9-1.git /epics/src/areadetector-1-9-1
+RUN cd /epics/src/areadetector-1-9-1 && make -s all
+
+RUN git clone --single-branch -b docker https://github.com/dchabot/adsim.git /epics/iocs/adsim
+
 # Install Jupyter server extensions.
+USER jovyan
+
 RUN mkdir extensions
 COPY extensions .
 RUN cd extensions
