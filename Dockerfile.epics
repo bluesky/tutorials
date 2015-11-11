@@ -12,7 +12,7 @@ RUN apt-get update
 RUN apt-get install -yq build-essential git epics-dev epics-synapps-dev epics-iocstats-dev 
 RUN apt-get install -yq procserv telnet
 # get areadetector dependencies
-RUN apt-get install -yq libx11-dev libxext-dev libxml2-dev libpng12-dev libbz2-dev libfreetype6-dev 
+RUN apt-get install -yq libhdf5-dev libx11-dev libxext-dev libxml2-dev libpng12-dev libbz2-dev libfreetype6-dev 
 
 RUN mkdir /epics && mkdir /epics/iocs
 RUN git clone --single-branch -b docker https://github.com/dchabot/motorsim.git /epics/iocs/motorsim
