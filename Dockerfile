@@ -46,6 +46,9 @@ RUN conda install --yes \
 RUN conda install -c lightsource2 --yes \
     'metadatastore' \
     'databroker' \
+    'pyepics' \
+    'pcaspy' \
+    'ophyd' \
     && conda clean -yt
 
 # pip install things not yet on lightsource2 channel.
