@@ -21,7 +21,7 @@ RUN cd /epics/iocs/motorsim && make -s all
  
 RUN mkdir /epics/src
 RUN git clone https://github.com/dchabot/areadetector-1-9-1.git /epics/src/areadetector-1-9-1
-RUN cd /epics/src/areadetector-1-9-1 && make -s all
+RUN cd /epics/src/areadetector-1-9-1 && make -s -j4 all
 
 RUN git clone --single-branch -b docker https://github.com/dchabot/adsim.git /epics/iocs/adsim
 
