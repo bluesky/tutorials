@@ -46,9 +46,6 @@ RUN conda install --yes \
 RUN conda install -c lightsource2 --yes \
     'metadatastore' \
     'databroker' \
-    'pyepics' \
-    'pcaspy' \
-    'ophyd' \
     && conda clean -yt
 
 # pip install things not yet on lightsource2 channel.
@@ -56,6 +53,10 @@ RUN conda install --yes pip
 RUN pip install https://github.com/Nikea/history/zipball/master#egg=history
 RUN pip install https://github.com/NSLS-II/bluesky/zipball/master#egg=bluesky
 RUN pip install https://github.com/soft-matter/pims/zipball/master#egg=pims
+RUN pip install https://github.com/nsls-ii/pyepics/zipball/master#egg=pyepics
+# TODO: figure out what to do with pcaspy
+#RUN pip install https://github.com/nsls-ii/pcaspy/zipball/master#egg=pcaspy
+RUN pip install https://github.com/nsls-ii/ophyd/zipball/master#egg=ophyd
 
 # mpl release candidate
 RUN conda install -c conda-forge --yes \
