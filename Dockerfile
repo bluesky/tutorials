@@ -129,3 +129,5 @@ RUN rm -rf notebook
 # Stay root so that we can start system processes in server extensions.
 USER root
 RUN rm -rf extensions setup.py
+RUN apt-get install -yq supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
