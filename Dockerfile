@@ -82,14 +82,12 @@ ENV FS_PORT 27017
 USER root
 
 RUN mkdir /epics && mkdir /epics/iocs
-RUN git clone --single-branch -b docker https://github.com/dchabot/motorsim.git /epics/iocs/motorsim
-RUN cd /epics/iocs/motorsim && make -s all
-
 RUN mkdir /epics/src
 RUN git clone https://github.com/dchabot/areadetector-1-9-1.git /epics/src/areadetector-1-9-1
 RUN cd /epics/src/areadetector-1-9-1 && make -s all
 
-RUN git clone --single-branch -b docker https://github.com/dchabot/adsim.git /epics/iocs/adsim
+RUN git clone https://github.com/dchabot/simioc.git /epics/iocs/simioc
+RUN cd /epics/iocs/simioc && make -s all
 
 # Install Jupyter server extensions.
 USER jovyan
