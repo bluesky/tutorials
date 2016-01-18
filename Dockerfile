@@ -5,10 +5,6 @@ MAINTAINER NSLS-II <https://nsls-ii.github.io>
 
 USER root
 
-# NOTE: proxy settings required from bnl campus
-ENV http_proxy="http://192.168.1.130:3128"
-ENV https_proxy="http://192.168.1.130:3128"
-
 # Install and start mongo
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 7F0CEB10
 
@@ -17,7 +13,7 @@ RUN apt-get update
 RUN apt-get install -y mongodb-org
 RUN mkdir -p /data/db
 # Install the EPICS stack
-RUN apt-get install -yq wget
+#RUN apt-get install -yq wget
 RUN wget --quiet http://epics.nsls2.bnl.gov/debian/repo-key.pub -O - | apt-key add -
 RUN echo "deb http://epics.nsls2.bnl.gov/debian/ jessie/staging main contrib" | tee /etc/apt/sources.list.d/nsls2.list
 RUN apt-get update
