@@ -64,5 +64,5 @@ ifeq (cpnbs,$(firstword $(MAKECMDGOALS)))
 endif
 
 cpnbs:
-	docker cp $(CPNBS_ARGS):/home/jovyan/work/notebooks .
+	docker cp $(CPNBS_ARGS):/home/jovyan/work/tutorial .
 	docker cp $(CPNBS_ARGS):"/home/jovyan/work/Welcome to the NSLS-II Data Acquisition and Analysis Sandbox.ipynb" notebooks
