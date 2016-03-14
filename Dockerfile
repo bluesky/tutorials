@@ -43,28 +43,23 @@ RUN conda install --yes \
     'numba=0.23*' \
     'bokeh=0.11*' \
     'h5py=2.5*' \
+    'pymongo' \
+    'cytoolz' \
     && conda clean -yt
 
-RUN conda install -c lightsource2 --yes \
-    'metadatastore' \
-    'databroker' \
-    && conda clean -yt
 
 # pip install things not yet on lightsource2 channel.
 RUN conda install --yes pip
-RUN pip install https://github.com/Nikea/history/zipball/master#egg=history
+RUN pip install boltons tzlocal
+RUN pip install https://github.com/Nikea/historydict/zipball/master#egg=historydict
 RUN pip install https://github.com/NSLS-II/bluesky/zipball/master#egg=bluesky
+RUN pip install https://github.com/NSLS-II/doct/zipball/master#egg=doct
+RUN pip install https://github.com/NSLS-II/metadatastore/zipball/master#egg=metadatastore
+RUN pip install https://github.com/NSLS-II/filestore/zipball/master#egg=filestore
 RUN pip install https://github.com/soft-matter/pims/zipball/master#egg=pims
 RUN pip install https://github.com/nsls-ii/pyepics/zipball/master#egg=pyepics
-# TODO: figure out what to do with pcaspy
-#RUN pip install https://github.com/nsls-ii/pcaspy/zipball/master#egg=pcaspy
 RUN pip install https://github.com/nsls-ii/ophyd/zipball/master#egg=ophyd
-
-# mpl release candidate
-RUN conda install -c conda-forge --yes \
-    'matplotlib' \
-    'numpy < 1.10' \
-    && conda clean -yt
+RUN pip install https://github.com/NSLS-II/databroker/zipball/master#egg=databroker
 
 # fix for 'missing PC' symbol, readline bug
 RUN conda install -c lightsource2 --yes readline && conda clean -yt
@@ -113,15 +108,15 @@ RUN mongod --smallfiles --fork --logpath /dev/null && /opt/conda/bin/python .dat
 
 # Copy content
 COPY matplotlibrc /opt/conda/lib/python3.4/site-packages/matplotlib/mpl-data/
-RUN mkdir notebooks
-COPY notebooks notebooks
-RUN mv notebooks/Welcome* .
-RUN mkdir datasets
-COPY datasets datasets
+RUN mkdir tutorial
+COPY tutorial tutorial
+RUN mv tutorial/Welcome* .
+# RUN mkdir datasets
+# COPY datasets datasets
 RUN mkdir .data-cache
 COPY .data-cache .data-cache
 RUN git clone https://github.com/jupyter/notebook
-RUN mv notebook/docs/source/examples/Notebook jupyter-examples
+RUN mv notebook/docs/source/examples/Notebook jupyter-tutorial
 RUN rm -rf notebook
 
 # Stay root so that we can start system processes in server extensions.
