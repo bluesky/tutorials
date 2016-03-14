@@ -66,6 +66,9 @@ RUN conda install -c conda-forge --yes \
     'numpy < 1.10' \
     && conda clean -yt
 
+# fix for 'missing PC' symbol, readline bug
+RUN conda install -c lightsource2 --yes readline && conda clean -yt
+
 # Configure MDS and FS connection parameters.
 ENV MDS_HOST 127.0.0.1
 ENV MDS_DATABASE demo-mds
