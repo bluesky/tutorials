@@ -13,4 +13,4 @@ gs.RE.md['beamline_id'] = 'demo'
 
 
 scan = AbsScanPlan([det], motor, 1, 5, 5)
-gs.RE(scan, mood='optimisitc')
+gs.RE(scan, mood='optimistic')
