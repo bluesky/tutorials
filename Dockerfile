@@ -50,9 +50,8 @@ RUN conda install --yes \
 
 # pip install things not yet on lightsource2 channel.
 RUN conda install --yes pip
-RUN pip install boltons tzlocal
+RUN pip install boltons tzlocal humanize prettytable
 # dependency dragged in from (at least) ophyd.commands
-RUN pip install prettytable
 RUN pip install https://github.com/Nikea/historydict/zipball/master#egg=historydict
 RUN pip install https://github.com/NSLS-II/bluesky/zipball/master#egg=bluesky
 RUN pip install https://github.com/NSLS-II/doct/zipball/master#egg=doct
