@@ -1,0 +1,41 @@
+name: tutorial
+channels:
+- defaults
+- conda-forge
+dependencies:
+  - python=3.5*
+  - ipywidgets
+  - pandas
+  - matplotlib
+  - scipy
+  - scikit-learn
+  - scikit-image
+  - sympy
+  - cython
+  - cloudpickle
+  - dill
+  - numba
+  - h5py
+  - dask
+  - pymongo
+  - cytoolz
+  - tifffile
+  - pip:
+    - pyepics
+    - mongoquery
+    - mongoquery
+    - requests
+    - boltons
+    - tzlocal
+    - pims
+    - git+https://github.com/Nikea/historydict#egg=historydict
+    - git+https://github.com/NSLS-II/event-model#egg=event_model
+    - git+https://github.com/NSLS-II/portable-mds#egg=portable_mds
+    - git+https://github.com/NSLS-II/portable-fs#egg=portable_fs
+    - git+https://github.com/NSLS-II/databroker#egg=databroker
+    - git+https://github.com/NSLS-II/bluesky#egg=bluesky
+    - git+https://github.com/NSLS-II/doct#egg=doct
+    - git+https://github.com/NSLS-II/metadatastore#egg=metadatastore
+    - git+https://github.com/NSLS-II/filestore#egg=filestore
+    - git+https://github.com/NSLS-II/ophyd#egg=ophyd
+    - git+https://github.com/NSLS-II/filestore#egg=filestore
