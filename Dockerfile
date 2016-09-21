@@ -10,7 +10,7 @@ COPY environment.yml .
 RUN conda env create -n $ENV_NAME -f environment.yml && conda clean -yt
 RUN rm environment.yml
 
-COPY matplotlibrc $CONDA_DIR/envs/$ENV_NAME/lib/python3.4/site-packages/matplotlib/mpl-data/
+COPY matplotlibrc $CONDA_DIR/envs/$ENV_NAME/lib/python3.5/site-packages/matplotlib/mpl-data/
 
 # Copy NSLS-II tutorial notebooks.
 COPY tutorial/* ./
