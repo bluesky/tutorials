@@ -39,3 +39,4 @@ dependencies:
     - git+https://github.com/NSLS-II/filestore#egg=filestore
     - git+https://github.com/NSLS-II/ophyd#egg=ophyd
     - git+https://github.com/NSLS-II/filestore#egg=filestore
+    - git+https://github.com/NSLS-II/amostra#egg=amostra
