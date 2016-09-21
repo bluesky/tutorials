@@ -45,3 +45,8 @@ USER $NB_USER
 # Create an IPython profile and a file to startup.
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/ipython profile create $PROFILE_NAME
 COPY startup/* /home/$NB_USER/.ipython/profile_$PROFILE_NAME/startup/
+
+# Ensure $NB_USER has ownership of all files in home dir.
+USER root
+RUN chown -R $NB_USER /home/$NB_USER/
+USER $NB_USER
