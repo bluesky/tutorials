@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('qt4agg')
 import os
 import tzlocal
 from bluesky import RunEngine

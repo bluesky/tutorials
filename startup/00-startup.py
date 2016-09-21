@@ -1,3 +1,9 @@
+# Set up %matplotlib notebook.
+from IPython import get_ipython
+ip = get_ipython()
+ip.enable_matplotlib('notebook')
+del get_ipython, ip
+
 # Set up a databroker aimed at the hidden directory ~/.data-cache.
 import os
 import tzlocal
@@ -12,9 +18,11 @@ fs = FileStore({'dbpath': os.path.join(dirname, 'filestore.db')})
 db = Broker(mds, fs)
 del dirname, mds, fs, MDS, FileStore, Broker, tzlocal  # clean up namespace
 
+from bluesky.global_state import gs
+RE = gs.RE  # alias for convenience
+
 # Subscribe metadatastore to documents.
 # If this is removed, data is not saved to metadatastore.
-from bluesky.global_state import gs
 gs.RE.subscribe('all', db.mds.insert)
 
 # Import matplotlib and put it in interactive mode.

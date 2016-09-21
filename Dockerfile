@@ -21,8 +21,7 @@ COPY notebook/docs/source/examples/Notebook/* jupyter-notebook-tutorial/
 # Copy scripts and create a hidden directory to hold sample data.
 RUN mkdir ~/.data-cache
 RUN mkdir ~/scripts
-COPY generate_sample_data.py scripts/
-COPY make_broker.py scripts/
+COPY scripts/* scripts/
 
 # Add shortcuts to distinguish pip for python2 and python3 envs
 RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
