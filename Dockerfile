@@ -10,11 +10,14 @@ RUN rm environment.yml
 
 COPY matplotlibrc $CONDA_DIR/envs/$ENV_NAME/lib/python3.4/site-packages/matplotlib/mpl-data/
 
+# Copy NSLS-II tutorial notebooks.
 COPY tutorial/* ./
-RUN git clone https://github.com/jupyter/notebook
-RUN mv notebook/docs/source/examples/Notebook jupyter-notebook-tutorial
-RUN rm -rf notebook
 
+# Copy upstream Jupyter's tutorials on using the notebook.
+RUN mkdir jupyter-notebook-tutorial
+COPY notebook/docs/source/examples/Notebook/* jupyter-notebook-tutorial/
+
+# Copy scripts and create a hidden directory to hold sample data.
 RUN mkdir ~/.data-cache
 RUN mkdir ~/scripts
 COPY generate_sample_data.py scripts/
