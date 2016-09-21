@@ -3,6 +3,7 @@ MAINTAINER NSLS-II <https://nsls-ii.github.io>
 USER $NB_USER
 
 ENV ENV_NAME tutorial
+ENV PROFILE_NAME tutorial
 
 COPY environment.yml .
 RUN conda env create -n $ENV_NAME -f environment.yml && conda clean -yt
@@ -31,10 +32,14 @@ RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/python -c "import matplotlib.pyplot"
 
-USER root
-
 # Install kernel spec globally to avoid permission problems when NB_UID
 # switching at runtime.
+USER root
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/python -m ipykernel install
-
+# Overwrite kernel.json with hand-rolled file that includes IPython profile.
+COPY kernel.json /usr/local/share/jupyter/kernels/python3/kernel.json
 USER $NB_USER
+
+# Create an IPython profile and a file to startup.
+RUN $CONDA_DIR/envs/$ENV_NAME/bin/ipython profile create $PROFILE_NAME
+COPY startup/* /home/$NB_USER/.ipython/profile_$PROFILE_NAME/startup/
