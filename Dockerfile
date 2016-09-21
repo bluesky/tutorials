@@ -19,9 +19,9 @@ RUN mkdir jupyter-notebook-tutorial
 COPY notebook/docs/source/examples/Notebook/* jupyter-notebook-tutorial/
 
 # Copy scripts and create a hidden directory to hold sample data.
-RUN mkdir ~/.data-cache
-RUN mkdir ~/scripts
-COPY scripts/* scripts/
+RUN mkdir /home/$NB_USER/.data-cache
+RUN mkdir /home/$NB_USER/scripts
+COPY scripts/* /home/$NB_USER/scripts/
 
 # Add shortcuts to distinguish pip for python2 and python3 envs
 RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
@@ -30,6 +30,9 @@ RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
 # Import matplotlib the first time to build the font cache.
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/python -c "import matplotlib.pyplot"
+
+# Generate sample data.
+RUN $CONDA_DIR/envs/$ENV_NAME/bin/python /home/$NB_USER/scripts/generate_sample_data.py
 
 # Install kernel spec globally to avoid permission problems when NB_UID
 # switching at runtime.
