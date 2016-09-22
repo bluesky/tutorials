@@ -6,6 +6,7 @@ dependencies:
   - python=3.5*
   - ipywidgets
   - pandas
+  - bokeh
   - matplotlib
   - scipy
   - scikit-learn
