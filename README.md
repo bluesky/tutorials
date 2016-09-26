@@ -19,8 +19,9 @@ make open
 ## What it Gives You
 
 * Jupyter Notebook server (v4.0.x or v3.2.x, see tag)
-* Conda Python 3.4.x and Python 2.7.x environments
-* pandas, matplotlib, scipy, seaborn, scikit-learn, scikit-image, sympy, cython, patsy, statsmodel, cloudpickle, dill, numba, bokeh pre-installed
+* Conda Python 3.5.x environment
+* Latest stable release of scientific Python packages and the bleeding-edge
+  master of NSLS-II data collection and analysis packages
 * Unprivileged user `jovyan` (uid=1000, configurable, see options) in group `users` (gid=100) with ownership over `/home/jovyan` and `/opt/conda`
 * **(v4.0.x)** [tini](https://github.com/krallin/tini) as the container entrypoint and [start-notebook.sh](../minimal-notebook/start-notebook.sh) as the default command
 * Options for HTTPS, password auth, and passwordless `sudo`
@@ -30,7 +31,7 @@ make open
 The following command starts a container with the Notebook server listening for HTTP connections on port 8888 without authentication configured.
 
 ```
-docker run -d -p 8888:8888 jupyter/scipy-notebook
+docker run -d -p 8888:8888 jupyter/nsls2-tutorial
 ```
 
 ## Docker Options

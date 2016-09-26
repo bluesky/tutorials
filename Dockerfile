@@ -21,6 +21,7 @@ COPY notebook/docs/source/examples/Notebook/* jupyter-notebook-tutorial/
 
 # Copy scripts and create a hidden directory to hold sample data.
 RUN mkdir /home/$NB_USER/.data-cache
+RUN mkdir /home/$NB_USER/.amostra_files
 RUN mkdir /home/$NB_USER/scripts
 COPY scripts/* /home/$NB_USER/scripts/
 
