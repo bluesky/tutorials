@@ -6,7 +6,7 @@ ENV ENV_NAME tutorial
 ENV PROFILE_NAME tutorial
 
 RUN conda update conda
-COPY environment.yml .
+COPY environment.yml ./
 RUN conda env create -n $ENV_NAME -f environment.yml && conda clean -yt
 RUN rm environment.yml
 
