@@ -1,8 +1,6 @@
 # Configuration parameters
-CULL_PERIOD ?= 30
-CULL_TIMEOUT ?= 60
 LOGGING ?= debug
-POOL_SIZE ?= 5
+POOL_SIZE ?= 30
 
 tmpnb-image: Dockerfile
 	docker pull jupyter/tmpnb
@@ -28,9 +26,8 @@ tmpnb: tutorial-image
 	docker run --net=host -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
 		--name=tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
-		--image=nsls2/tutorial --cull_timeout=$(CULL_TIMEOUT) --cull_period=$(CULL_PERIOD) \
-		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) \
-		--command="ipython notebook --NotebookApp.base_url={base_path} --ip=0.0.0.0 --port {port} --NotebookApp.server_extensions=\"['extensions.start_supervisord']\""
+		--image=nsls2/tutorial \
+		--logging=$(LOGGING) --pool_size=$(POOL_SIZE)
 
 
 dev: cleanup proxy tmpnb open
