@@ -21,6 +21,7 @@ dependencies:
   - pymongo
   - cytoolz
   - tifffile
+  - lmfit
   - pip:
     - pyepics
     - mongoquery
