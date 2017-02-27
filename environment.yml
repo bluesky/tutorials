@@ -29,6 +29,7 @@ dependencies:
     - requests
     - boltons
     - tzlocal
+    - jupyter-emacskeys
     - pims
     - git+https://github.com/Nikea/historydict#egg=historydict
     - git+https://github.com/NSLS-II/event-model#egg=event_model
