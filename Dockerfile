@@ -13,7 +13,7 @@ RUN rm environment.yml
 COPY matplotlibrc $CONDA_DIR/envs/$ENV_NAME/lib/python3.5/site-packages/matplotlib/mpl-data/
 
 # Copy NSLS-II tutorial notebooks.
-COPY tutorial/* ./
+COPY tutorial/ ./
 
 # Copy upstream Jupyter's tutorials on using the notebook.
 RUN mkdir jupyter-notebook-tutorial
