@@ -26,6 +26,7 @@ dependencies:
     - pyepics
     - mongoquery
     - attrs
+    - ipympl
     - requests
     - boltons
     - tzlocal
