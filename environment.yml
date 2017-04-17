@@ -32,6 +32,7 @@ dependencies:
     - tzlocal
     - jupyter-emacskeys
     - pims
+    - rise
     - git+https://github.com/Nikea/historydict#egg=historydict
     - git+https://github.com/NSLS-II/event-model#egg=event_model
     - git+https://github.com/NSLS-II/portable-mds#egg=portable_mds
