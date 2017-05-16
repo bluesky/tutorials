@@ -52,3 +52,4 @@ COPY startup/* /home/$NB_USER/.ipython/profile_$PROFILE_NAME/startup/
 USER root
 RUN chown -R $NB_USER /home/$NB_USER/
 USER $NB_USER
+ENV PATH $CONDA_DIR/envs/$ENV_NAME/bin:$PATH
