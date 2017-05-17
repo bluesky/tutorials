@@ -22,6 +22,7 @@ dependencies:
   - cytoolz
   - tifffile
   - lmfit
+  - openpyxl
   - pip:
     - pyepics
     - mongoquery
