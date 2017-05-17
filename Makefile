@@ -1,6 +1,6 @@
 # Configuration parameters
 LOGGING ?= debug
-POOL_SIZE ?= 30
+POOL_SIZE ?= 5
 
 tmpnb-image: Dockerfile
 	docker pull jupyter/tmpnb
