@@ -27,7 +27,9 @@ tmpnb: tutorial-image
 		--name=tmpnb \
 		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
 		--image=nsls2/tutorial \
-		--logging=$(LOGGING) --pool_size=$(POOL_SIZE)
+		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) \
+		python orchestrate.py --container-user=jovyan \
+		--command='jupyter notebook --no-browser --port {port} --ip=0.0.0.0 --NotebookApp.base_url=/{base_path} --NotebookApp.port_retries=0 --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True'
 
 
 dev: cleanup proxy tmpnb open
