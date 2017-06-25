@@ -53,3 +53,4 @@ USER root
 RUN chown -R $NB_USER /home/$NB_USER/
 USER $NB_USER
 ENV PATH $CONDA_DIR/envs/$ENV_NAME/bin:$PATH
+# ENV PASSWORD meeting  # Uncomment to turn on password for use during events. Also see Dockerfile.

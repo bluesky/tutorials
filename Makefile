@@ -25,9 +25,13 @@ proxy:
 tmpnb: tutorial-image
 	docker run --net=host -d -e CONFIGPROXY_AUTH_TOKEN=devtoken \
 		--name=tmpnb \
-		-v /var/run/docker.sock:/docker.sock jupyter/tmpnb python orchestrate.py \
+		-v /var/run/docker.sock:/docker.sock \
+		jupyter/tmpnb \
+		python orchestrate.py \
+		--container-user=jovyan \
 		--image=nsls2/tutorial \
-		--logging=$(LOGGING) --pool_size=$(POOL_SIZE)
+		--logging=$(LOGGING) --pool_size=$(POOL_SIZE) \
+		--command='jupyter notebook --no-browser --port {port} --ip=0.0.0.0 --NotebookApp.base_url=/{base_path} --NotebookApp.port_retries=0 --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True'  # Remove this line to turn on auth. Also see Dockerfile.
 
 
 dev: cleanup proxy tmpnb open
