@@ -33,9 +33,6 @@ RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
 ENV XDG_CACHE_HOME /home/$NB_USER/.cache/
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/python -c "import matplotlib.pyplot"
 
-# Generate sample data.
-RUN $CONDA_DIR/envs/$ENV_NAME/bin/python /home/$NB_USER/scripts/generate_sample_data.py
-
 # Install kernel spec globally to avoid permission problems when NB_UID
 # switching at runtime.
 USER root
@@ -46,7 +43,6 @@ USER $NB_USER
 
 # Create an IPython profile and a file to startup.
 RUN $CONDA_DIR/envs/$ENV_NAME/bin/ipython profile create $PROFILE_NAME
-COPY startup/* /home/$NB_USER/.ipython/profile_$PROFILE_NAME/startup/
 
 # Ensure $NB_USER has ownership of all files in home dir.
 USER root
