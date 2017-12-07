@@ -38,4 +38,5 @@ dependencies:
     - bluesky
     - ophyd
     - databroker
+    - oscars
     - git+https://github.com/NSLS-II/amostra#egg=amostra
