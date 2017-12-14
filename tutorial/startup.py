@@ -7,9 +7,29 @@ from bluesky import RunEngine
 from bluesky.utils import get_history
 RE = RunEngine(get_history())
 
-# Set up a Broker.
-from databroker import Broker, temp_config
-db = Broker.from_config(temp_config())
+# Set up a Broker backed by a temporary directory.
+# In production, a Broker is usually backed by a Mongo database.
+import os
+import tempfile
+tempdir = tempfile.mkdtemp()
+config = {
+    'description': 'temporary',
+    'metadatastore': {
+        'module': 'databroker.headersource.mongoquery',
+        'class': 'MDS',
+        'config': {
+            'directory': tempdir,
+            'timezone': 'US/Eastern'}
+    },
+    'assets': {
+        'module': 'databroker.assets.sqlite',
+        'class': 'Registry',
+        'config': {
+            'dbpath': os.path.join(tempdir, 'assets.sqlite')}
+    }
+}
+from databroker import Broker
+db = Broker.from_config(config)
 
 # Subscribe metadatastore to documents.
 # If this is removed, data is not saved to metadatastore.
