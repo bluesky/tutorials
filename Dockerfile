@@ -1,5 +1,10 @@
 FROM jupyter/minimal-notebook
 MAINTAINER NSLS-II <https://nsls-ii.github.io>
+
+USER root
+RUN apt update
+RUN apt-get install --yes libgl1-mesa-glx
+
 USER $NB_USER
 
 ENV ENV_NAME tutorial
