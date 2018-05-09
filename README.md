@@ -15,7 +15,6 @@ Jupyter to deploy their try.jupyter.org service.
 service nginx start
 ```
 
-
 Use ``make`` to build the docker and start a pool of
 instances ready to receive users. You can adjust the pool size, timeout, and
 other parameters in the Makefile.
@@ -25,4 +24,12 @@ git clone https://github.com/NSLS-II/tutorial-docker
 cd tutorial-docker
 make proxy
 make tmpnb
+```
+
+## Deploying updates to tutorial content
+
+```bash
+cd tutorial-docker
+git pull origin master
+make cleanup && make proxy && make tmpnb
 ```
