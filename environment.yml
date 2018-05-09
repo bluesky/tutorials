@@ -4,6 +4,7 @@ channels:
 - conda-forge
 dependencies:
   - python
+  - tornado==4.5.3
   - ipywidgets
   - pandas
   - bokeh
