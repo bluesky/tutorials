@@ -1,0 +1,3 @@
+#!/bin/bash
+
+MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
