@@ -5,11 +5,13 @@ databroker
 distributed
 ipympl
 ipywidgets
-jupyterhub==0.8.*
 matplotlib
 nslsii
 ophyd
 pandas
 pyepics
 tornado<5
+
+# Careful: Changing these could break the cluster.
+jupyterhub==0.8.*
 git+https://github.com/data-8/nbgitpuller
