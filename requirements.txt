@@ -5,7 +5,7 @@ databroker
 distributed
 ipympl
 ipywidgets
-jupyterhub==0.8.1
+jupyterhub==0.8.*
 matplotlib
 nslsii
 ophyd
