@@ -3,9 +3,11 @@ caproto
 dask
 databroker
 distributed
+ipympl
 ipywidgets
 jupyterhub==0.8.1
 matplotlib
+nslsii
 ophyd
 pandas
 pyepics
