@@ -12,3 +12,4 @@ ophyd
 pandas
 pyepics
 tornado<5
+git+https://github.com/data-8/nbgitpuller
