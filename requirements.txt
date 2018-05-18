@@ -4,6 +4,7 @@ dask
 databroker
 distributed
 ipywidgets
+jupyterhub==0.8.1
 matplotlib
 ophyd
 pandas
