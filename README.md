@@ -40,7 +40,21 @@ pip install nbstripout
 This git repository is configured to use nbstripout to automatically scrub the
 outputs from the notebooks when they are committed so that users see a clean
 notebook with no stale outputs. This also keeps the repository smaller and the
-versioning cleaner.
+versioning cleaner. Do not be surprised when some git commands are sluggish, as
+output-scrubbing is being performed automatically in the background.
+
+Set EPICS-related environment variables, necessary for some examples involving
+pyepics or caproto.
+
+```
+source .env
+```
+
+Start Jupyter and edit away!
+
+```
+jupyter notebook
+```
 
 ### Publishing Updates
 
