@@ -13,7 +13,17 @@ password, use any username and leave the password blank.
 * Backup: [Binder deployment](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
 * Backup to the Backup: [Old BNL deployment](https://try.nsls2.bnl.gov)
 
-## Making Changes
+## References
+
+* [NSLS-II Software Documentation Landing Page](https://nsls-ii.github.io)
+* [Bluesky Documentation](https://nsls-ii.github.io/bluesky)
+* [Ophyd Documentation](https://nsls-ii.github.io/ophyd)
+* [Databroker Documentation](https://nsls-ii.github.io/databroker)
+
+
+## Contributing to this Tutorial
+
+### Making Changes
 
 Install the software requirements.
 
@@ -32,14 +42,14 @@ outputs from the notebooks when they are committed so that users see a clean
 notebook with no stale outputs. This also keeps the repository smaller and the
 versioning cleaner.
 
-## Publishing Updates
+### Publishing Updates
 
-### Binder deployment
+#### Binder deployment
 
 The Binder deployment will update automatically the first time someone requests
 a session.
 
-### BNL JupyterHub deployment on AWS
+#### BNL JupyterHub deployment on AWS
 
 The BNL JupyterHub deployment will automatically pull fresh copies of the
 *content* but if the software requirements change, the Docker image must be
@@ -64,3 +74,8 @@ Then in the CI host on AWS, update the tag in the JupyterHub helm configuration,
 helm list  # Find <DEPLOYMENT_NAME>.
 helm upgrade <DEPLOYMENT_NAME> jupyterhub/jupyterhub --version=v0.6 -f config.yaml
 ```
+
+#### Old BNL deployment
+
+This deployment uses tmpnb, which has been deprecated by Jupyter and will likely
+soon to be taken offline.
