@@ -13,6 +13,25 @@ password, use any username and leave the password blank.
 * Backup: [Binder deployment](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
 * Backup to the Backup: [Old BNL deployment](https://try.nsls2.bnl.gov)
 
+## Making Changes
+
+Install the software requirements.
+
+```
+pip install -r requirements.txt
+```
+
+Additionally, install ``nbstripout``.
+
+```
+pip install nbstripout
+```
+
+This git repository is configured to use nbstripout to automatically scrub the
+outputs from the notebooks when they are committed so that users see a clean
+notebook with no stale outputs. This also keeps the repository smaller and the
+versioning cleaner.
+
 ## Publishing Updates
 
 ### Binder deployment
