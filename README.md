@@ -22,7 +22,9 @@ a session.
 
 ### BNL JupyterHub deployment on AWS
 
-The BNL JupyterHub deployment must be manually updated.
+The BNL JupyterHub deployment will automatically pull fresh copies of the
+*content* but if the software requirements change, the Docker image must be
+manually updated.
 
 To build an publish an updated version of the Docker image:
 
