@@ -7,7 +7,7 @@ ipympl
 ipywidgets
 matplotlib
 nslsii
-ophyd
+ophyd>=1.2.0a2
 pandas
 pyepics
 tornado<5
