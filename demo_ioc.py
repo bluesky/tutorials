@@ -124,7 +124,7 @@ class MovingDot(PVGroup):
         X /= self.sigmax
         Y /= self.sigmay
 
-        dot = np.exp(-(X**2 + Y**2)/2)
+        dot = np.exp(-(X**2 + Y**2)/2) * np.exp(- (x**2 + y**2) / 100**2)
 
         I = self.parent.current.value
         e = self.exp.value
@@ -175,6 +175,7 @@ class JitterRead(PVGroup):
     slit = SubGroup(Slit)
 
     dot = SubGroup(MovingDot)
+
 
 if __name__ == '__main__':
     # usage: jitter_read.py [PREFIX]
