@@ -4,6 +4,3 @@ MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
 # Enable Jupyter extension(s):
 jupyter serverextension enable --py nbgitpuller --sys-prefix
-
-# Set environment variables.
-source .env
