@@ -9,9 +9,11 @@ the links below to jump in.
 This is free and open to the public. If you are prompted for a username and
 password, use any username and leave the password blank.
 
+**We recommend using Google Chrome for best results, but any modern browser
+is supported.**
+
 * [BNL deployment](http://a80ccdb475acc11e88b00021c84f1ed3-649460689.us-east-1.elb.amazonaws.com/)
 * Backup: [Binder deployment](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
-* Backup to the Backup: [Old BNL deployment](https://try.nsls2.bnl.gov)
 
 ## References
 
