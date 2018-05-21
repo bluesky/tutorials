@@ -92,6 +92,7 @@ class Spot(Device):
     img = Component(ArraySignal, ':det')
     roi = Component(EpicsSignal, ':img_sum', kind='hinted')
     exp = Component(EpicsSignal, ':exp', kind='config')
+    shutter_open = Component(EpicsSignal, ':shutter_open', kind='config')
 
     def collect_asset_docs(self):
         yield from self.img.collect_asset_docs()
