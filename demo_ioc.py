@@ -112,6 +112,7 @@ class MovingDot(PVGroup):
         M = self.M
         back = np.random.poisson(self.background, (N, M))
         if not self.shutter_open.value:
+            await self.img_sum.write([back.sum()])
             return back.ravel()
         x = self.mtrx.value[0]
         y = self.mtry.value[0]
@@ -129,12 +130,14 @@ class MovingDot(PVGroup):
         I = self.parent.current.value
         e = self.exp.value
         measured = (self.parent.N_per_I_per_s * dot * e * I)
-
-        return (back + np.random.poisson(measured)).ravel()
+        ret = (back + np.random.poisson(measured))
+        await self.img_sum.write([ret.sum()])
+        return ret.ravel()
 
     det = pvproperty(get=read, value=[0]*N*M,
                      dtype=float,
                      read_only=True)
+    img_sum = pvproperty(value=[0], read_only=True, dtype=float)
     mtrx = pvproperty(value=[0], dtype=float)
     mtry = pvproperty(value=[0], dtype=float)
 

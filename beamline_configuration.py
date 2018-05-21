@@ -90,6 +90,7 @@ class ArraySignal(EpicsSignalBase):
 
 class Spot(Device):
     img = Component(ArraySignal, ':det')
+    roi = Component(EpicsSignal, ':img_sum', kind='hinted')
     exp = Component(EpicsSignal, ':exp', kind='config')
 
     def collect_asset_docs(self):
@@ -97,6 +98,7 @@ class Spot(Device):
 
     def trigger(self):
         return self.img.trigger()
+
 
 ph = Det('jitter_read:ph', name='ph')
 edge = Det('jitter_read:edge', name='edge')
