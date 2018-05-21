@@ -88,7 +88,7 @@ class ArraySignal(EpicsSignalBase):
             yield item
 
 
-class Dot(Device):
+class Spot(Device):
     img = Component(ArraySignal, ':det')
     exp = Component(EpicsSignal, ':exp', kind='config')
 
@@ -109,10 +109,10 @@ motor_edge = EpicsSignal('jitter_read:edge:mtr',
 motor_slit = EpicsSignal('jitter_read:slit:mtr',
                          name='motor_slit')
 
-dot = Dot('jitter_read:dot', name='dot')
-mtr_dotx = EpicsSignal('jitter_read:dot:mtrx',
-                       name='motor_dotx')
-mtr_doty = EpicsSignal('jitter_read:dot:mtry',
-                       name='motor_doty')
+spot = Spot('jitter_read:dot', name='spot')
+mtr_spotx = EpicsSignal('jitter_read:dot:mtrx',
+                        name='motor_spotx')
+mtr_spoty = EpicsSignal('jitter_read:dot:mtry',
+                        name='motor_spoty')
 
 I = EpicsSignal('jitter_read:current', name='I')
