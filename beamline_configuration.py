@@ -23,7 +23,7 @@ try:
     del RE
 except NameError:
     pass
-nslsii.configure_base(get_ipython().user_ns, 'temp')
+nslsii.configure_base(get_ipython().user_ns, 'temp', epics_context=False)
 
 
 
