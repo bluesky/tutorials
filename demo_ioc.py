@@ -168,7 +168,7 @@ class JitterRead(PVGroup):
         while True:
             t = time.monotonic()
             await instance.write(value=[500 + 25*np.sin(t * f)])
-            await async_lib.library.sleep(.05)
+            await async_lib.library.sleep(.1)
 
     ph = SubGroup(PinHole)
     edge = SubGroup(Edge)
