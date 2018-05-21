@@ -10,14 +10,14 @@ import matplotlib
 matplotlib.use('nbAgg')  # i.e. %matplotlib notebook
 
 import nslsii
-import ophyd
 from ophyd import Device, Component, EpicsSignal
 from ophyd.signal import EpicsSignalBase
 from ophyd.areadetector.filestore_mixins import resource_factory
 import uuid
 import os
-
-ophyd.set_cl('caproto')
+from pathlib import Path
+import numpy as np
+from IPython import get_ipython
 
 try:
     del RE
@@ -26,13 +26,13 @@ except NameError:
 nslsii.configure_base(get_ipython().user_ns, 'temp', epics_context=False)
 
 
-
 class Det(Device):
     det = Component(EpicsSignal, ':det', kind='hinted')
     exp = Component(EpicsSignal, ':exp', kind='config')
 
 # here there be 🐉🐉🐉🐉🐉🐉
-    
+
+
 class ArraySignal(EpicsSignalBase):
     def __init__(self, read_pv, **kwargs):
         super().__init__(read_pv, **kwargs)
@@ -43,13 +43,13 @@ class ArraySignal(EpicsSignalBase):
 
         self._last_ret = None
         self._asset_docs_cache = []
-        
+
     def trigger(self):
         os.makedirs('/tmp/demo', exist_ok=True)
         st = super().trigger()
         ret = super().read()
         val = ret[self.name]['value'].reshape(self._size_pv.get())
-        
+
         resource, datum_factory = resource_factory(
             spec='npy',
             root='/tmp',
@@ -58,10 +58,10 @@ class ArraySignal(EpicsSignalBase):
             path_semantics='posix')
         datum = datum_factory({})
         self._asset_docs_cache.append(('resource', resource))
-        self._asset_docs_cache.append(('datum', datum))        
+        self._asset_docs_cache.append(('datum', datum))
         fpath = Path(resource['root']) / resource['resource_path']
-        np.save(fpath, val)                
-        
+        np.save(fpath, val)
+
         ret[self.name]['value'] = datum['datum_id']
         self._last_ret = ret
         return st
@@ -72,22 +72,26 @@ class ArraySignal(EpicsSignalBase):
                                    for k in
                                    self._size_pv.get()]
         ret[self.name]['external'] = 'FILESTORE:'
+        del ret[self.name]['upper_ctrl_limit']
+        del ret[self.name]['lower_ctrl_limit']
         return ret
 
     def read(self):
         if self._last_ret is None:
             raise Exception('read before being triggered')
         return self._last_ret
-            
+
     def collect_asset_docs(self):
         items = list(self._asset_docs_cache)
         self._asset_docs_cache.clear()
         for item in items:
             yield item
-    
+
+
 class Dot(Device):
     img = Component(ArraySignal, ':det')
     exp = Component(EpicsSignal, ':exp', kind='config')
+
     def collect_asset_docs(self):
         yield from self.img.collect_asset_docs()
 
@@ -108,7 +112,7 @@ motor_slit = EpicsSignal('jitter_read:slit:mtr',
 dot = Dot('jitter_read:dot', name='dot')
 mtr_dotx = EpicsSignal('jitter_read:dot:mtrx',
                        name='motor_dotx')
-mtr_doty = EpicsSignal('jitter_read:dot:mtrx',
+mtr_doty = EpicsSignal('jitter_read:dot:mtry',
                        name='motor_doty')
 
 I = EpicsSignal('jitter_read:current', name='I')
