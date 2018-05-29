@@ -21,6 +21,9 @@ is supported.**
 * [Bluesky Documentation](https://nsls-ii.github.io/bluesky)
 * [Ophyd Documentation](https://nsls-ii.github.io/ophyd)
 * [Databroker Documentation](https://nsls-ii.github.io/databroker)
+* [Our Gitter Chat Channel](https://gitter.im/NSLS-II/DAMA) (come here for questions)
+
+
 
 
 ## Contributing to this Tutorial
