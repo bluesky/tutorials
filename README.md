@@ -15,6 +15,11 @@ is supported.**
 * [BNL deployment](http://a80ccdb475acc11e88b00021c84f1ed3-649460689.us-east-1.elb.amazonaws.com/)
 * Backup: [Binder deployment](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
 
+## Survey
+Took our tutorial? Let us know how you thought of it so we can better improve
+it!
+[Survey](https://goo.gl/forms/WAWhkAIvEGVzIUdf2)
+
 ## References
 
 * [NSLS-II Software Documentation Landing Page](https://nsls-ii.github.io)
