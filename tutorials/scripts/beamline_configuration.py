@@ -153,21 +153,21 @@ class Spot(Device):
         return self.img.trigger()
 
 
-ph = Det('jitter_read:ph', name='ph')
-edge = Det('jitter_read:edge', name='edge')
-slit = Det('jitter_read:slit', name='slit')
+ph = Det('mini:ph', name='ph')
+edge = Det('mini:edge', name='edge')
+slit = Det('mini:slit', name='slit')
 
-motor_ph = EpicsSignal('jitter_read:ph:mtr',
+motor_ph = EpicsSignal('mini:ph:mtr',
                        name='motor_ph')
-motor_edge = EpicsSignal('jitter_read:edge:mtr',
+motor_edge = EpicsSignal('mini:edge:mtr',
                          name='motor_edge')
-motor_slit = EpicsSignal('jitter_read:slit:mtr',
+motor_slit = EpicsSignal('mini:slit:mtr',
                          name='motor_slit')
 
-spot = Spot('jitter_read:dot', name='spot')
-mtr_spotx = EpicsSignal('jitter_read:dot:mtrx',
+spot = Spot('mini:dot', name='spot')
+mtr_spotx = EpicsSignal('mini:dot:mtrx',
                         name='motor_spotx')
-mtr_spoty = EpicsSignal('jitter_read:dot:mtry',
+mtr_spoty = EpicsSignal('mini:dot:mtry',
                         name='motor_spoty')
 
-I = EpicsSignal('jitter_read:current', name='I')
+I = EpicsSignal('mini:current', name='I')
