@@ -6,7 +6,6 @@ distributed
 ipympl
 ipywidgets
 matplotlib
-nslsii
 ophyd>=1.2.0a2
 pandas
 pyepics
