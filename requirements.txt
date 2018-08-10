@@ -1,22 +1,16 @@
 bluesky
-caproto
+caproto[complete]
 dask
 databroker
 distributed
 ipympl
 ipywidgets
 matplotlib
-ophyd>=1.2.0a2
+ophyd
 pandas
 pyepics
 tornado<5
 
-# optional caproto deps -- will not be needed once caproto packaging is better
-curio
-netifaces
-asks
-
 # Careful: Changing these could break the cluster.
 jupyterhub==0.8.*
-git+https://github.com/data-8/nbgitpuller
-
+nbgitpuller
