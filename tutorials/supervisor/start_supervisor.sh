@@ -4,6 +4,7 @@
 # start time (i.e. ENTRYPOINT) then we can run this that way and
 # no action will be required by the user.
 
-DIR=`dirname \$(readlink -f "\$0")`
+DIR=`dirname "\$0"`
 
 [ ! -e /tmp/supervisor.sock ] && supervisord -c $DIR/supervisord.conf
+supervisorctl -c $DIR/supervisord.conf status
