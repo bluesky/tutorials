@@ -1,3 +1,0 @@
-[submodule "notebook"]
-	path = jupyter-tutorials
-	url = https://github.com/jupyter/notebook

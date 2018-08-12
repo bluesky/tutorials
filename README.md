@@ -6,14 +6,13 @@ This is a collection of tutorials on data acquisition and analysis with bluesky.
 It can be used in an Internet browser with no software installation. Click one
 the links below to jump in.
 
-This is free and open to the public. If you are prompted for a username and
-password, use any username and leave the password blank.
+This is free and open to the public. Incidental visitors should
+[start here](https://mybinder.org/v2/gh/NSLS-II/tutorial/master).
+If you are doing this tutorial as part of a workshop or special event,
+[start here](https://a1b555ba89cad11e8a8c4021c84f1ed3-2068931781.us-east-1.elb.amazonaws.com)
 
 **We recommend using Google Chrome for best results, but any modern browser
 is supported.**
-
-* [BNL deployment](http://a80ccdb475acc11e88b00021c84f1ed3-649460689.us-east-1.elb.amazonaws.com/)
-* Backup: [Binder deployment](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
 
 ## Survey
 Took our tutorial? Let us know how you thought of it so we can better improve
@@ -39,18 +38,6 @@ Install the software requirements.
 ```
 pip install -r requirements.txt
 ```
-
-Additionally, install ``nbstripout``.
-
-```
-pip install nbstripout
-```
-
-This git repository is configured to use nbstripout to automatically scrub the
-outputs from the notebooks when they are committed so that users see a clean
-notebook with no stale outputs. This also keeps the repository smaller and the
-versioning cleaner. Do not be surprised when some git commands are sluggish, as
-output-scrubbing is being performed automatically in the background.
 
 Set EPICS-related environment variables, necessary for some examples involving
 pyepics or caproto.
@@ -97,8 +84,3 @@ Then in the CI host on AWS, update the tag in the JupyterHub helm configuration,
 helm list  # Find <DEPLOYMENT_NAME>.
 helm upgrade <DEPLOYMENT_NAME> jupyterhub/jupyterhub --version=v0.6 -f config.yaml
 ```
-
-#### Old BNL deployment
-
-This deployment uses tmpnb, which has been deprecated by Jupyter and will likely
-soon to be taken offline.

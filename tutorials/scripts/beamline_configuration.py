@@ -9,7 +9,6 @@ os.environ['EPICS_CA_ADDR_LIST'] = '0.0.0.0'
 import matplotlib
 matplotlib.use('nbAgg')  # i.e. %matplotlib notebook
 
-import nslsii
 from ophyd import Device, Component, EpicsSignal
 from ophyd.signal import EpicsSignalBase
 from ophyd.areadetector.filestore_mixins import resource_factory
@@ -19,11 +18,64 @@ from pathlib import Path
 import numpy as np
 from IPython import get_ipython
 
-try:
-    del RE
-except NameError:
-    pass
-nslsii.configure_base(get_ipython().user_ns, 'temp', epics_context=False)
+# Set up a RunEngine and use metadata backed by a sqlite file.
+from bluesky import RunEngine
+from bluesky.utils import get_history
+RE = RunEngine(get_history())
+
+# Set up SupplementalData.
+from bluesky import SupplementalData
+sd = SupplementalData()
+RE.preprocessors.append(sd)
+
+# Set up a Broker.
+from databroker import Broker
+db = Broker.named('temp')
+
+# and subscribe it to the RunEngine
+RE.subscribe(db.insert)
+
+# Add a progress bar.
+from bluesky.utils import ProgressBarManager
+pbar_manager = ProgressBarManager()
+RE.waiting_hook = pbar_manager
+
+# Register bluesky IPython magics.
+from bluesky.magics import BlueskyMagics
+get_ipython().register_magics(BlueskyMagics)
+
+# Set up the BestEffortCallback.
+from bluesky.callbacks.best_effort import BestEffortCallback
+bec = BestEffortCallback()
+RE.subscribe(bec)
+peaks = bec.peaks
+
+# Import matplotlib and put it in interactive mode.
+import matplotlib.pyplot as plt
+plt.ion()
+
+# Make plots update live while scans run.
+from bluesky.utils import install_kicker
+install_kicker()
+
+# convenience imports
+# some of the * imports are for 'back-compatibility' of a sort -- we have
+# taught BL staff to expect LiveTable and LivePlot etc. to be in their
+# namespace
+import numpy as np
+
+import bluesky.callbacks
+from bluesky.callbacks import *
+
+import bluesky.plans
+from bluesky.plans import *
+
+import bluesky.plan_stubs
+from bluesky.plan_stubs import *
+
+import bluesky.preprocessors
+import bluesky.simulators
+from bluesky.simulators import *
 
 
 class Det(Device):
@@ -101,21 +153,21 @@ class Spot(Device):
         return self.img.trigger()
 
 
-ph = Det('jitter_read:ph', name='ph')
-edge = Det('jitter_read:edge', name='edge')
-slit = Det('jitter_read:slit', name='slit')
+ph = Det('mini:ph', name='ph')
+edge = Det('mini:edge', name='edge')
+slit = Det('mini:slit', name='slit')
 
-motor_ph = EpicsSignal('jitter_read:ph:mtr',
+motor_ph = EpicsSignal('mini:ph:mtr',
                        name='motor_ph')
-motor_edge = EpicsSignal('jitter_read:edge:mtr',
+motor_edge = EpicsSignal('mini:edge:mtr',
                          name='motor_edge')
-motor_slit = EpicsSignal('jitter_read:slit:mtr',
+motor_slit = EpicsSignal('mini:slit:mtr',
                          name='motor_slit')
 
-spot = Spot('jitter_read:dot', name='spot')
-mtr_spotx = EpicsSignal('jitter_read:dot:mtrx',
+spot = Spot('mini:dot', name='spot')
+mtr_spotx = EpicsSignal('mini:dot:mtrx',
                         name='motor_spotx')
-mtr_spoty = EpicsSignal('jitter_read:dot:mtry',
+mtr_spoty = EpicsSignal('mini:dot:mtry',
                         name='motor_spoty')
 
-I = EpicsSignal('jitter_read:current', name='I')
+I = EpicsSignal('mini:current', name='I')
