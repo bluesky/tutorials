@@ -1,5 +1,5 @@
 bluesky
-caproto[complete]
+caproto[complete] !=0.2.3
 dask
 databroker
 distributed
