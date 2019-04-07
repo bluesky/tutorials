@@ -4,3 +4,6 @@ MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
 # Enable Jupyter extension(s):
 jupyter serverextension enable --py nbgitpuller --sys-prefix
+
+# Create symlink to caproto-repeater to eliminate caReapter message
+ln -s /srv/conda/bin/caproto-repeater /srv/conda/bin/caRepeater
