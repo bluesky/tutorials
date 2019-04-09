@@ -7,6 +7,3 @@ jupyter serverextension enable --py nbgitpuller --sys-prefix
 
 # Create symlink to caproto-repeater to eliminate caReapter message
 ln -s caproto-repeater /srv/conda/bin/caRepeater
-
-# alias using -q to compress unnecessary logging of caproto
-alias caRepeater="caRepeater -q"
