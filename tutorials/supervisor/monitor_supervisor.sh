@@ -1,6 +1,6 @@
 # Monitor supervisord if it was started already
 
-# Jupyter-repo2docker supports a running a script at container
+# jupyter-repo2docker supports running a script at container
 # start time (i.e. ENTRYPOINT). If supervisord has been run, this could be used
 # to monitor it status and no action will be required by the user.
 
