@@ -39,13 +39,6 @@ Install the software requirements.
 pip install -r requirements.txt
 ```
 
-Set EPICS-related environment variables, necessary for some examples involving
-pyepics or caproto.
-
-```
-source .env
-```
-
 Start Jupyter and edit away!
 
 ```

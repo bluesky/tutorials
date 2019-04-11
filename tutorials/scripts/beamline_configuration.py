@@ -1,11 +1,4 @@
 import os
-
-# Set some enviornment variables before importing pyepics.
-os.environ['EPICS_CAS_AUTO_BEACON_ADDR_LIST'] = 'no'
-os.environ['EPICS_CA_AUTO_ADDR_LIST'] = 'no'
-os.environ['EPICS_CAS_BEACON_ADDR_LIST'] = '127.0.0.1'
-os.environ['EPICS_CA_ADDR_LIST'] = '127.0.0.1'
-
 import matplotlib
 
 matplotlib.use('nbAgg')  # i.e. %matplotlib notebook
