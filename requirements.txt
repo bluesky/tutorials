@@ -5,6 +5,7 @@ databroker
 distributed
 ipympl
 ipywidgets
+jupyterlab
 matplotlib
 ophyd
 pandas
