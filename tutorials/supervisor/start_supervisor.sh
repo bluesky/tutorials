@@ -4,7 +4,7 @@
 # start time (i.e. ENTRYPOINT) then we can run this that way and
 # no action will be required by the user.
 
-DIR=`dirname "\$0"`
+DIR=$( cd "$(dirname "$0")" ; pwd -P )
 
 [ ! -e /tmp/supervisor.sock ] && supervisord -c $DIR/supervisord.conf
 supervisorctl -c $DIR/supervisord.conf status
