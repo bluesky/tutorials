@@ -4,6 +4,6 @@
 # start time (i.e. ENTRYPOINT). If supervisord has been run, this could be used
 # to monitor its status and no action will be required by the user.
 
-DIR=`dirname "\$0"`
+DIR=$( cd "$(dirname "$0")" ; pwd -P )
 
 supervisorctl -c $DIR/supervisord.conf status
