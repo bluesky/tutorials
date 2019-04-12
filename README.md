@@ -1,15 +1,11 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab)
 
 # Bluesky Tutorial
 
 This is a collection of tutorials on data acquisition and analysis with bluesky.
-It can be used in an Internet browser with no software installation. Click one
-the links below to jump in.
+It can be used in an Internet browser with no software installation.
 
-This is free and open to the public. Incidental visitors should
-[start here](https://mybinder.org/v2/gh/NSLS-II/tutorial/master).
-If you are doing this tutorial as part of a workshop or special event,
-[start here](https://a1b555ba89cad11e8a8c4021c84f1ed3-2068931781.us-east-1.elb.amazonaws.com)
+[**Start here**](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab).
 
 **We recommend using Google Chrome for best results, but any modern browser
 is supported.**
