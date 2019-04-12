@@ -1,5 +1,5 @@
 bluesky
-caproto[complete] >=0.3.3
+git+https://github.com/NSLS-II/caproto@ophyd-tutorial  # TEMP BRANCH
 dask
 databroker
 distributed
