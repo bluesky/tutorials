@@ -8,6 +8,9 @@
 
 if [[ -z "${JUPYTERHUB_USER}" ]]; then
     # We are running in a stand-alone server (e.g. local development).
+    # KNOWN ISSUE: This codepath is the one that jupyter-repo2docker hits, but
+    # this does not work in repo2docker. It does however work in local
+    # development, as documented in the README.
     sed -e "s|WORKSPACE_ID|/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
     jupyter lab workspaces import binder/jupyterlab-workspace.json \
       --NotebookApp.base_url=/
