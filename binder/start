@@ -1,6 +1,21 @@
 #!/bin/bash
-DIR=$( cd "$(dirname "$0")" ; pwd -P )
 
-[ ! -e /tmp/supervisor.sock ] && supervisord -c $DIR/../tutorials/supervisor/supervisord.conf
+[ ! -e /tmp/supervisor.sock ] && supervisord -c supervisor/supervisord.conf
+
+# Customize the default "workspace" (layout of panes/tabs).
+# See https://github.com/ian-r-rose/binder-workspace-demo/
+# and https://github.com/dask/dask-examples/blob/master/binder/start
+
+if [[ -z "${JUPYTERHUB_USER}" ]]; then
+    # We are running in a stand-alone server (e.g. local development).
+    sed -e "s|WORKSPACE_ID|/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
+    jupyter lab workspaces import binder/jupyterlab-workspace.json \
+      --NotebookApp.base_url=/
+else
+    # We are running in JupyterHub (e.g. Binder).
+    sed -e "s|WORKSPACE_ID|/user/${JUPYTERHUB_USER}/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
+    jupyter lab workspaces import binder/jupyterlab-workspace.json \
+      --NotebookApp.base_url=user/${JUPYTERHUB_USER}
+fi
 
 exec "$@"
