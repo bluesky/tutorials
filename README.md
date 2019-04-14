@@ -24,22 +24,34 @@ it!
 * [Our Gitter Chat Channel](https://gitter.im/NSLS-II/DAMA) (come here for questions)
 * [Python Help](https://www.oreilly.com/programming/free/files/python-for-scientists.pdf) : A collection of Python tutorials geared towards scientific data analysis.
 
-
 ## Contributing to this Tutorial
 
 ### Making Changes
 
-Install the software requirements.
+* Install [supervisor](http://supervisord.org) using system package manager---
+apt, Homebrew, etc. It is pip-installable but currently not in Python 3, so it
+cannot be simply installed in the same environment with ``requirements.txt.)
 
-```
-pip install -r requirements.txt
-```
+* Install the Python requirements.
 
-Start Jupyter and edit away!
+  ```
+  pip install -r requirements.txt
+  ```
 
-```
-jupyter notebook
-```
+* Install the JupyterLab extensions and re-build JupyterLab.
+
+  ```
+  jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+  jupyter labextension install --no-build jupyter-matplotlib
+  jupyter lab build
+  ```
+
+* Start JupyterLab using the ``binder/start`` executable, which also ensures
+  that supervisor is running and imports the tutorial JupyterLab workspace.
+
+  ```
+  binder/start jupyter lab
+  ```
 
 ### Publishing Updates
 
