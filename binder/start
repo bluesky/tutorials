@@ -18,4 +18,9 @@ else
       --NotebookApp.base_url=user/${JUPYTERHUB_USER}
 fi
 
+# This seems to be necessary to get things working on mybinder.org.
+# It is not yet clear why.
+export EPICS_CA_AUTO_ADDR_LIST=no
+export EPICS_CA_ADDR_LIST=255.255.255.255 
+
 exec "$@"
