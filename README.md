@@ -30,12 +30,12 @@ it!
 
 * Install [supervisor](http://supervisord.org) using system package manager---
 apt, Homebrew, etc. It is pip-installable but currently not in Python 3, so it
-cannot be simply installed in the same environment with ``requirements.txt.)
+cannot be installed in the same environment with ``requirements.txt`` below.
 
 * Install the Python requirements.
 
   ```
-  pip install -r requirements.txt
+  pip install -r binder/requirements.txt
   ```
 
 * Install the JupyterLab extensions and re-build JupyterLab.
@@ -47,7 +47,7 @@ cannot be simply installed in the same environment with ``requirements.txt.)
   ```
 
 * Start JupyterLab using the ``binder/start`` executable, which also ensures
-  that supervisor is running and imports the tutorial JupyterLab workspace.
+  that supervisor is running and imports the tutorial's JupyterLab workspace.
 
   ```
   binder/start jupyter lab
