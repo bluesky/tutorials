@@ -1,10 +1,11 @@
 bluesky
-caproto[complete] !=0.2.3
+git+https://github.com/NSLS-II/caproto@ophyd-tutorial  # TEMP BRANCH
 dask
 databroker
 distributed
 ipympl
 ipywidgets
+jupyterlab
 matplotlib
 ophyd
 pandas

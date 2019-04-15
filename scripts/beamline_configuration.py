@@ -1,16 +1,8 @@
 import os
-
-# Set some enviornment variables before importing pyepics.
-os.environ['EPICS_CAS_AUTO_BEACON_ADDR_LIST'] = 'no'
-os.environ['EPICS_CA_AUTO_ADDR_LIST'] = 'no'
-os.environ['EPICS_CAS_BEACON_ADDR_LIST'] = '127.0.0.1'
-os.environ['EPICS_CA_ADDR_LIST'] = '127.0.0.1'
-
 import matplotlib
 
-matplotlib.use('nbAgg')  # i.e. %matplotlib notebook
+get_ipython().run_line_magic('matplotlib', 'widget')  # i.e. %matplotlib widget
 import matplotlib.pyplot
-matplotlib.use('nbAgg', force=True)  # i.e. %matplotlib notebook
 
 from ophyd import Device, Component, EpicsSignal
 from ophyd.signal import EpicsSignalBase
@@ -58,8 +50,8 @@ import matplotlib.pyplot as plt
 plt.ion()
 
 # Make plots update live while scans run.
-from bluesky.utils import install_kicker
-install_kicker()
+from bluesky.utils import install_nb_kicker
+install_nb_kicker()
 
 # convenience imports
 # some of the * imports are for 'back-compatibility' of a sort -- we have

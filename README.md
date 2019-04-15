@@ -1,15 +1,11 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/NSLS-II/tutorial/master)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab)
 
 # Bluesky Tutorial
 
 This is a collection of tutorials on data acquisition and analysis with bluesky.
-It can be used in an Internet browser with no software installation. Click one
-the links below to jump in.
+It can be used in an Internet browser with no software installation.
 
-This is free and open to the public. Incidental visitors should
-[start here](https://mybinder.org/v2/gh/NSLS-II/tutorial/master).
-If you are doing this tutorial as part of a workshop or special event,
-[start here](https://a1b555ba89cad11e8a8c4021c84f1ed3-2068931781.us-east-1.elb.amazonaws.com)
+[**Start here**](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab).
 
 **We recommend using Google Chrome for best results, but any modern browser
 is supported.**
@@ -28,29 +24,34 @@ it!
 * [Our Gitter Chat Channel](https://gitter.im/NSLS-II/DAMA) (come here for questions)
 * [Python Help](https://www.oreilly.com/programming/free/files/python-for-scientists.pdf) : A collection of Python tutorials geared towards scientific data analysis.
 
-
 ## Contributing to this Tutorial
 
 ### Making Changes
 
-Install the software requirements.
+* Install [supervisor](http://supervisord.org) using system package manager---
+apt, Homebrew, etc. It is pip-installable but currently not in Python 3, so it
+cannot be installed in the same environment with ``requirements.txt`` below.
 
-```
-pip install -r requirements.txt
-```
+* Install the Python requirements.
 
-Set EPICS-related environment variables, necessary for some examples involving
-pyepics or caproto.
+  ```
+  pip install -r binder/requirements.txt
+  ```
 
-```
-source .env
-```
+* Install the JupyterLab extensions and re-build JupyterLab.
 
-Start Jupyter and edit away!
+  ```
+  jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+  jupyter labextension install --no-build jupyter-matplotlib
+  jupyter lab build
+  ```
 
-```
-jupyter notebook
-```
+* Start JupyterLab using the ``binder/start`` executable, which also ensures
+  that supervisor is running and imports the tutorial's JupyterLab workspace.
+
+  ```
+  binder/start jupyter lab
+  ```
 
 ### Publishing Updates
 

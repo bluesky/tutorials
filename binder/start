@@ -1,0 +1,29 @@
+#!/bin/bash
+
+[ ! -e /tmp/supervisor.sock ] && supervisord -c supervisor/supervisord.conf
+
+# Customize the default "workspace" (layout of panes/tabs).
+# See https://github.com/ian-r-rose/binder-workspace-demo/
+# and https://github.com/dask/dask-examples/blob/master/binder/start
+
+if [[ -z "${JUPYTERHUB_USER}" ]]; then
+    # We are running in a stand-alone server (e.g. local development).
+    # KNOWN ISSUE: This codepath is the one that jupyter-repo2docker hits, but
+    # this does not work in repo2docker. It does however work in local
+    # development, as documented in the README.
+    sed -e "s|WORKSPACE_ID|/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
+    jupyter lab workspaces import binder/jupyterlab-workspace.json \
+      --NotebookApp.base_url=/
+else
+    # We are running in JupyterHub (e.g. Binder).
+    sed -e "s|WORKSPACE_ID|/user/${JUPYTERHUB_USER}/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
+    jupyter lab workspaces import binder/jupyterlab-workspace.json \
+      --NotebookApp.base_url=user/${JUPYTERHUB_USER}
+fi
+
+# This seems to be necessary to get things working on mybinder.org.
+# It is not yet clear why.
+export EPICS_CA_AUTO_ADDR_LIST=no
+export EPICS_CA_ADDR_LIST=255.255.255.255
+
+exec "$@"
