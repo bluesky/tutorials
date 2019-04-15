@@ -1,1 +1,1 @@
-random_walks.b.dt.set(3)
+random_walks.horiz.dt.set(3)
