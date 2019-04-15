@@ -14,6 +14,8 @@ if [[ -z "${JUPYTERHUB_USER}" ]]; then
     sed -e "s|WORKSPACE_ID|/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
     jupyter lab workspaces import binder/jupyterlab-workspace.json \
       --NotebookApp.base_url=/
+    # Use the .ipython/ directory in this repo not the default at ~/.ipython.
+    export IPYTHONDIR=.ipython/
 else
     # We are running in JupyterHub (e.g. Binder).
     sed -e "s|WORKSPACE_ID|/user/${JUPYTERHUB_USER}/lab|g" binder/jupyterlab-workspace.template.json > binder/jupyterlab-workspace.json
