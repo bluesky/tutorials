@@ -2,3 +2,4 @@
 user-meeting-2018/summary.txt
 binder/jupyterlab-workspace.json
 *.swp
+.ipython/profile_default/
