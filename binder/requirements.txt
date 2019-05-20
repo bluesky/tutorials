@@ -6,6 +6,7 @@ distributed
 ipympl
 ipywidgets
 jupyterlab
+lmfit
 matplotlib
 ophyd
 pandas
