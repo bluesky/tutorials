@@ -10,6 +10,10 @@ matplotlib
 ophyd
 pandas
 pyepics
+suitcase-csv
+suitcase-jsonl
+suitcase-msgpack
+suitcase-tiff
 tornado<5
 pip<19
 
