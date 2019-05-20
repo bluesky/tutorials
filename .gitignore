@@ -3,3 +3,4 @@ summary.txt
 binder/jupyterlab-workspace.json
 *.swp
 .ipython/profile_default/
+my_exported_files/
