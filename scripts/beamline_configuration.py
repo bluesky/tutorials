@@ -166,3 +166,5 @@ mtr_spoty = EpicsSignal('mini:dot:mtry',
                         name='motor_spoty')
 
 I = EpicsSignal('mini:current', name='I')
+
+random_walk = EpicsSignal('random_walk:x', name='random_walk')
