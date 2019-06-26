@@ -1,11 +1,11 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bluesky/tutorial/master?urlpath=lab)
 
 # Bluesky Tutorial
 
 This is a collection of tutorials on data acquisition and analysis with bluesky.
 It can be used in an Internet browser with no software installation.
 
-[**Start here**](https://mybinder.org/v2/gh/NSLS-II/tutorial/master?urlpath=lab).
+[**Start here**](https://mybinder.org/v2/gh/bluesky/tutorial/master?urlpath=lab).
 
 **We recommend using Google Chrome for best results, but any modern browser
 is supported.**
@@ -17,10 +17,10 @@ it!
 
 ## References
 
-* [NSLS-II Software Documentation Landing Page](https://nsls-ii.github.io)
-* [Bluesky Documentation](https://nsls-ii.github.io/bluesky)
-* [Ophyd Documentation](https://nsls-ii.github.io/ophyd)
-* [Databroker Documentation](https://nsls-ii.github.io/databroker)
+* [Bluesky Software Documentation Landing Page](https://blueskyproject.io)
+* [Bluesky Documentation](https://blueskyproject.io/bluesky)
+* [Ophyd Documentation](https://blueskyproject.io/ophyd)
+* [Databroker Documentation](https://blueskyproject.io/databroker)
 * [Our Gitter Chat Channel](https://gitter.im/NSLS-II/DAMA) (come here for questions)
 * [Python Help](https://www.oreilly.com/programming/free/files/python-for-scientists.pdf) : A collection of Python tutorials geared towards scientific data analysis.
 

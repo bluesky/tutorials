@@ -15,9 +15,9 @@ Learn More
 
 Links are available within each notebook for additional documentation on that topic.
 
-For more information about the Bluesky Project in general please visit [nsls-ii.github.io](https://nsls-ii.github.io).
+For more information about the Bluesky Project in general please visit [blueskyproject.io](https://blueskyproject.io).
 
-For more information about this tutorial please visit [github.com/NSLS-II/tutorial](https://github.com/NSLS-II/tutorial)
+For more information about this tutorial please visit [github.com/bluesky/tutorial](https://github.com/bluesky/tutorial)
 
 
 Where is this running?
