@@ -15,8 +15,9 @@ from IPython import get_ipython
 
 # Set up a RunEngine and use metadata backed by a sqlite file.
 from bluesky import RunEngine
-from bluesky.utils import get_history
-RE = RunEngine(get_history())
+from bluesky.utils import PersistentDict
+RE = RunEngine({})
+RE.md = PersistentDict(str(Path('~/.bluesky_history').expanduser()))
 
 # Set up SupplementalData.
 from bluesky import SupplementalData

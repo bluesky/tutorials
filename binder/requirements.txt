@@ -1,7 +1,7 @@
-bluesky
+git+https://github.com/bluesky/bluesky  # use the latest fixes for storing metadata
 git+https://github.com/caproto/caproto@ophyd-tutorial  # TEMP BRANCH
 dask
-databroker
+databroker >=0.13.2
 distributed
 ipympl
 ipywidgets
@@ -15,8 +15,6 @@ suitcase-csv
 suitcase-jsonl
 suitcase-msgpack
 suitcase-tiff >=0.1.3
-tornado<5
-pip<19
 
 # Careful: Changing these could break the cluster.
 jupyterhub>=0.9.6
