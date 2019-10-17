@@ -5,7 +5,7 @@ databroker >=0.13.2
 distributed
 ipympl
 ipywidgets
-jupyterlab
+jupyterlab >=1.0
 lmfit
 matplotlib
 ophyd
