@@ -1,4 +1,4 @@
-git+https://github.com/bluesky/bluesky  # use the latest fixes for storing metadata
+bluesky >=1.6.0rc2
 git+https://github.com/caproto/caproto@ophyd-tutorial  # TEMP BRANCH
 dask
 databroker >=0.13.2
