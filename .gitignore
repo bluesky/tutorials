@@ -4,3 +4,11 @@ binder/jupyterlab-workspace.json
 *.swp
 .ipython/profile_default/
 my_exported_files/
+docs/build
+
+# Ignore content copied from repo route into docs/source by docs/Makefile.
+docs/source/*.ipynb
+docs/source/scripts
+docs/source/solutions
+docs/source/solutions
+docs/source/static

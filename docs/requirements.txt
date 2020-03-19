@@ -1,0 +1,4 @@
+ipykernel
+jupyter_client
+sphinx
+nbsphinx
