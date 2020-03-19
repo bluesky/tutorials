@@ -1,8 +1,8 @@
 bluesky
+git+https://github.com/caproto/caproto@ophyd-tutorial  # TEMP BRANCH
 dask
 databroker
 distributed
-git+https://github.com/caproto/caproto@ophyd-tutorial  # TEMP BRANCH
 ipympl
 ipywidgets
 jupyterlab
