@@ -8,6 +8,7 @@ ipywidgets
 jupyterlab
 lmfit
 matplotlib
+nbgitpuller
 ophyd
 pandas
 pyepics
@@ -15,7 +16,3 @@ suitcase-csv
 suitcase-jsonl
 suitcase-msgpack
 suitcase-tiff
-
-# Careful: Changing these could break the cluster.
-jupyterhub>=0.9.6
-nbgitpuller
