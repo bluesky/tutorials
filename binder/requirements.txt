@@ -5,7 +5,7 @@ databroker
 distributed
 ipympl
 ipywidgets
-jupyterlab
+jupyterlab <2
 lmfit
 matplotlib
 nbgitpuller
