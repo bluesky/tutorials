@@ -16,3 +16,4 @@ suitcase-csv
 suitcase-jsonl
 suitcase-msgpack
 suitcase-tiff
+supervisor
