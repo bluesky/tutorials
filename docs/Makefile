@@ -17,8 +17,9 @@ help:
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
-	cp "$(SOURCEDIR)"/../../*.ipynb "$(SOURCEDIR)"
-	cp -r "$(SOURCEDIR)"/../../scripts "$(SOURCEDIR)"/scripts
-	cp -r "$(SOURCEDIR)"/../../solutions "$(SOURCEDIR)"/solutions
-	cp -r "$(SOURCEDIR)"/../../static "$(SOURCEDIR)"/static
+	cp "$(SOURCEDIR)/../../Hello Bluesky.ipynb" "$(SOURCEDIR)"
+	cp -r "$(SOURCEDIR)/../../scripts" "$(SOURCEDIR)"/scripts
+	cp -r "$(SOURCEDIR)/../../solutions" "$(SOURCEDIR)"/solutions
+	cp -r "$(SOURCEDIR)/../../static" "$(SOURCEDIR)"/static
+	cp -r "$(SOURCEDIR)/../../supervisor" "$(SOURCEDIR)"/supervisor
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
