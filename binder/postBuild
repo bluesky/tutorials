@@ -12,4 +12,4 @@ jupyter lab build
 jupyter serverextension enable --py nbgitpuller --sys-prefix
 
 # Create symlink to caproto-repeater so that libca finds a caRepeater executable.
-ln -s caproto-repeater /srv/conda/bin/caRepeater
+ln -s caproto-repeater `python -c "import os, sys; print(os.path.dirname(sys.executable))"`/caRepeater
