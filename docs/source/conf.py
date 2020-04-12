@@ -33,7 +33,15 @@ extensions = [
     'sphinx.ext.mathjax',
 ]
 
-nbsphinx_timeout = 600
+# This is the time limit per *cell*. The timeout may be extended on a
+# per-notebook basis by adding
+#
+# "nbsphinx": {
+#   "timeout": 60
+# },
+#
+# to the notebook metadata.
+nbsphinx_timeout = 60
 nbsphinx_execute = "always"
 
 nbsphinx_prolog = """
