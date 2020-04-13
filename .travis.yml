@@ -18,7 +18,6 @@ install:
 script:
   - set -e
   - supervisord -c supervisor/supervisord.conf
-  - supervisorctl start all
   - sleep 10  # Wait for IOCs to start.
   - make -C docs html
   - pip install doctr
