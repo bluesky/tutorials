@@ -17,6 +17,9 @@ install:
 
 script:
   - set -e
+  - supervisord -c supervisor/supervisord.conf
+  - supervisorctl start all
+  - sleep 10  # Wait for IOCs to start.
   - make -C docs html
   - pip install doctr
   - doctr deploy --built-docs docs/build/html --deploy-repo bluesky/bluesky.github.io --deploy-branch-name master tutorials
