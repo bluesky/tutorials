@@ -23,6 +23,7 @@ help:
 	mkdir -p "$(SOURCEDIR)/supervisor"
 	cp "$(SOURCEDIR)/../../Hello Bluesky.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Hello Python and Jupyter.ipynb" "$(SOURCEDIR)"
+	cp "$(SOURCEDIR)/../../Process Tabular Data with Pandas.ipynb" "$(SOURCEDIR)"
 	cp -r "$(SOURCEDIR)/../../scripts/." "$(SOURCEDIR)"/scripts
 	cp -r "$(SOURCEDIR)/../../solutions/." "$(SOURCEDIR)"/solutions
 	cp -r "$(SOURCEDIR)/../../static/." "$(SOURCEDIR)"/static

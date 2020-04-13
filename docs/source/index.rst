@@ -18,3 +18,4 @@ You can run these examples in a live session here: |Binder|
 
    Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb
+   Process Tabular Data with Pandas.ipynb
