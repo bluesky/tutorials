@@ -53,13 +53,23 @@ it!
 
 For testing the notebooks and publishing static renderings of them, we execute
 them with [nbsphinx](https://nbsphinx.readthedocs.io/). It will execute each
-notebook top to bottom and fail it any of the cells raise exceptions or take
+notebook top to bottom and fail if any of the cells raise exceptions or take
 longer than ``nbsphinx_timeout`` (configured to 60 seconds in
 ``docs/source/conf.py``) to execute. Special cases can be allowed by editing
 cell or notebook metadata. These should be used sparingly.
 
 * **Allow a cell to raise an exception.** Add the cell tag ``raises-exception``.
-* **Manually execute a notebook.** Add the notebook metadata
+* **Hide a cell from the static view.** This is appropriate for cells that
+  (only) display an interactive matplotlib canvas. Add the cell metadata:
+
+  ```json
+  {
+    "nbsphinx": "hidden"
+  }
+  ```
+
+  The cell will be executed, but the neither input nor output will be shown.
+* **Manually execute a notebook.** Add the notebook metadata:
 
   ```json
   {
