@@ -16,4 +16,5 @@ You can run these examples in a live session here: |Binder|
    :maxdepth: 1
    :caption: Basic Examples
 
+   Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb

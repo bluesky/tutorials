@@ -26,6 +26,8 @@ it!
 
 ## Contributing to this Tutorial
 
+### Local Installation
+
 * Install the requirements.
 
   ```
@@ -46,3 +48,31 @@ it!
   ```
   ./binder/start jupyter lab
   ```
+
+### Controlling Execution
+
+For testing the notebooks and publishing static renderings of them, we execute
+them with [nbsphinx](https://nbsphinx.readthedocs.io/). It will execute each
+notebook top to bottom and fail it any of the cells raise exceptions or take
+longer than ``nbsphinx_timeout`` (configured to 60 seconds in
+``docs/source/conf.py``) to execute. Special cases can be allowed by editing
+cell or notebook metadata. These should be used sparingly.
+
+* **Allow a cell to raise an exception.** Add the cell tag ``raises-exception``.
+* **Manually execute a notebook.** Add the notebook metadata
+
+  ```json
+  {
+    "keep_output": true,
+  }
+  ```
+
+  This setting affects [nbstripout](https://github.com/kynan/nbstripout).
+  Normally, nbstripout will remove the outputs from every cell when a notebook is
+  committed. This will leave all the cells' outputs intact. When nbsphinx runs it
+  will skip execution and render the existing outputs. This is useful for
+  notebooks that have a very long execution time, contain client-specific outputs,
+  like the output from ``bluesky.plans.count?`` in JupyterLab, or require
+  user-initiated interruption, like RunEngine pause/resume. While `nbstripout`
+  supports applying this at the level of specific cells, it must be applied to
+  the whole notebook to play well with nbsphinx.
