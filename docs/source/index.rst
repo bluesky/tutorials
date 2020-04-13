@@ -18,4 +18,16 @@ You can run these examples in a live session here: |Binder|
 
    Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb
+
+.. toctree::
+   :maxdepth: 1
+   :caption: For Controls Engineers
+
+   Epics Signal.ipynb
+   Device.ipynb
+
+.. toctree::
+   :maxdepth: 1
+   :caption: For Scientists
+
    Process Tabular Data with Pandas.ipynb
