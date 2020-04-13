@@ -49,11 +49,12 @@ nbsphinx_prolog = """
 
 .. important::
 
-   You can run this notebook in a `live session
-   <https://mybinder.org/v2/gh/bluesky/tutorial/master?urlpath=lab/tree/{{ docname | urlencode }}>`_ |Binder| or view it `on nbviewer <https://nbviewer.jupyter.org/github/bluesky/tutorial/blob/master/{{ docname | urlencode}}>`_.
+   You can run this notebook in a `live session <https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab/tree/{{ docname | urlencode }}>`_ |Binder|
+   or view it `on nbviewer <https://nbviewer.jupyter.org/github/bluesky/tutorials/blob/master/{{ docname | urlencode }}>`_
+   or `GitHub <https://github.com/bluesky/tutorials/blob/master/{{ docname | urlencode }}>`_.
 
 .. |Binder| image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/bluesky/tutorial/master?urlpath=lab/tree/{{ docname | urlencode }}
+   :target: https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab/tree/{{ docname | urlencode }}
 """
 
 nbsphinx_execute_arguments = [
