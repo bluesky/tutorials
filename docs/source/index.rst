@@ -1,5 +1,5 @@
-Bluesky Examples
-================
+Bluesky Tutorials
+=================
 
 These examples address a wide range of questions, such as:
 
@@ -14,7 +14,7 @@ You can run these examples in a live session here: |Binder|
 
 .. toctree::
    :maxdepth: 1
-   :caption: Basic Examples
+   :caption: Basic Usage
 
    Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb

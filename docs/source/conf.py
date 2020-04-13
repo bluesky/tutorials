@@ -18,7 +18,7 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'Bluesky Examples'
+project = 'Bluesky Tutorials'
 copyright = '2020, Bluesky Contributors'
 author = 'Bluesky Contributors'
 
