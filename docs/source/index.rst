@@ -10,7 +10,7 @@ These examples address a wide range of questions, such as:
 You can run these examples in a live session here: |Binder|
 
 .. |Binder| image:: https://mybinder.org/badge.svg
-   :target: https://mybinder.org/v2/gh/bluesky/tutorial/master?urlpath=lab
+   :target: https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab
 
 .. toctree::
    :maxdepth: 1
