@@ -1,0 +1,6 @@
+sources:
+  bmm:
+    driver: bluesky-msgpack-catalog
+    args:
+      paths:
+        - .data_cache/*.msgpack
