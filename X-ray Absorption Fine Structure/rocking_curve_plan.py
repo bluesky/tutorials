@@ -19,11 +19,14 @@ class BlueskyRunFromList(BlueskyRunFromGenerator):
             yield from documents
         
         def get_filler(*args, **kwargs):
+            kwargs.setdefault("inplace", False)
             from event_model import Filler
             return Filler({}, *args, **kwargs)
         
+        # We have to mock up an Entry.
+        # Can we avoid this?
         from types import SimpleNamespace
-        entry = SimpleNamespace(name='whatever man')
+        entry = SimpleNamespace(name=documents[0][1]["uid"])
          
         super().__init__(gen_func, (), {}, get_filler=get_filler, transforms=parse_transforms(None), entry=entry)
 
@@ -98,13 +101,11 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
             position = peak(signal)
             top = t[pitch.name][position]
 
-        yield from sleep(3)
-        yield from abs_set(pitch.kill_cmd, 1, wait=True)
-
         print(
             "rocking curve scan: %s\tuid = %s, scan_id = %d"
-            % (line1, uid, run.start["scan_id"])
+            % (line1, uid, run.metadata["start"]["scan_id"])
         )
+        print(f"Found peak at {top:.3} via method {choice}")
         yield from mv(pitch, top)
 
     yield from scan_dcmpitch()
