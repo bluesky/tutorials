@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pip install ../bluesky-tutorial-utils
+
 MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
 # Install extension that supports '%matplotlib widget'.
