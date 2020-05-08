@@ -1,6 +1,7 @@
 from bluesky.plan_stubs import abs_set, mv, sleep, subscribe, unsubscribe
 from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
+from bluesky.callbacks.mpl_plotting import LivePlot
 import intake
 from lmfit.models import SkewedGaussianModel
 import pandas
@@ -57,48 +58,51 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     measurement at BMM.  The line shape is a bit skewed due to the
     convolution with the slightly misaligned entrance slits.
     """
-    func = lambda doc: (doc["data"][pitch.name], doc["data"]["I0"])
 
     title = "I0 signal vs. DCM 2nd crystal pitch"
-    line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
-        pitch.name,
-        "I0",
-        start,
-        stop,
-        nsteps,
-        pitch.readback.get(),
-    )
-    documents = []  # (name, doc) pairs, to be precise
+    @subs_decorator(LivePlot("I0", pitch.name))
+    def scan_dcm_pitch():
+        line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
+            pitch.name,
+            "I0",
+            start,
+            stop,
+            nsteps,
+            pitch.readback.get(),
+        )
+        documents = []  # (name, doc) pairs, to be precise
 
-    def collector(name, doc):
-        documents.append((name, doc))
+        def collector(name, doc):
+            documents.append((name, doc))
 
-    token = yield from subscribe('all', collector)
-    uid = yield from rel_scan([I0], pitch, start, stop, nsteps)
-    yield from unsubscribe(token)
+        token = yield from subscribe('all', collector)
+        uid = yield from rel_scan([I0], pitch, start, stop, nsteps)
+        yield from unsubscribe(token)
 
-    run = BlueskyRunFromList(documents)
+        run = BlueskyRunFromList(documents)
 
-    t = run.primary.read().to_dataframe()
-    signal = t["I0"]
-    if choice.lower() == "com":
-        position = com(signal)
-        top = t["pitch"][position]
-    elif choice.lower() == "fit":
-        pitch_ = t["pitch"]
-        mod = SkewedGaussianModel()
-        pars = mod.guess(signal, x=pitch_)
-        out = mod.fit(signal, pars, x=pitch_)
-        print(out.fit_report(min_correl=0))
-        out.plot()
-        top = out.params["center"].value
-    else:
-        position = peak(signal)
-        top = t[pitch.name][position]
+        t = run.primary.read().to_dataframe()
+        signal = t["I0"]
+        if choice.lower() == "com":
+            position = com(signal)
+            top = t["pitch"][position]
+        elif choice.lower() == "fit":
+            pitch_ = t["pitch"]
+            mod = SkewedGaussianModel()
+            pars = mod.guess(signal, x=pitch_)
+            out = mod.fit(signal, pars, x=pitch_)
+            print(out.fit_report(min_correl=0))
+            out.plot()
+            top = out.params["center"].value
+        else:
+            position = peak(signal)
+            top = t[pitch.name][position]
 
-    print(
-        "rocking curve scan: %s\tuid = %s, scan_id = %d"
-        % (line1, uid, run.metadata["start"]["scan_id"])
-    )
-    print(f"Found peak at {top:.3} via method {choice}")
-    yield from mv(pitch, top)
+        print(
+            "rocking curve scan: %s\tuid = %s, scan_id = %d"
+            % (line1, uid, run.metadata["start"]["scan_id"])
+        )
+        print(f"Found peak at {top:.3} via method {choice}")
+        yield from mv(pitch, top)
+    
+    yield from scan_dcm_pitch()
