@@ -167,3 +167,15 @@ mtr_spoty = EpicsSignal('mini:dot:mtry',
                         name='motor_spoty')
 
 I = EpicsSignal('mini:current', name='I')
+
+# Once https://github.com/bluesky/ophyd/pull/863 is released
+# this can be done more succinctly.
+ph.wait_for_connection()
+edge.wait_for_connection()
+slit.wait_for_connection()
+motor_ph.wait_for_connection()
+motor_edge.wait_for_connection()
+spot.wait_for_connection()
+mtr_spotx.wait_for_connection()
+mtr_spoty.wait_for_connection()
+I.wait_for_connection()

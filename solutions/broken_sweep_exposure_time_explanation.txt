@@ -1,0 +1,4 @@
+# The code runs, but no hardware is moved and no measurements are taken.
+# The code is missing ``yield from`` from ``mv`` and ``scan``.
+# Read "yield from" as meaning "consume instructions from".
+# Don't forget to type yield from!
