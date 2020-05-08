@@ -14,11 +14,22 @@ def setup_data_saving(RE):
     implementation detail subject to change.
     """
     directory = appdirs.user_data_dir("bluesky", "tutorial_utils")
+    driver = intake.registry["bluesky-msgpack-catalog"]
+    catalog = driver(str(Path(directory, "*.msgpack")))
+
+
+    class PatchedSerializer(Serializer):
+        """
+        Work around https://github.com/bluesky/databroker/pull/559
+        """
+        def stop(self, doc):
+            super().stop(doc)
+            catalog.force_reload()
+
 
     def factory(name, start):
-        return [Serializer(directory)], []
+        return [PatchedSerializer(directory)], []
 
     rr = RunRouter([factory])
     RE.subscribe(rr)
-    driver = intake.registry["bluesky-msgpack-catalog"]
-    return driver(str(Path(directory, "*.msgpack")))
+    return catalog
