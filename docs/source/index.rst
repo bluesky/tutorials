@@ -30,3 +30,9 @@ You can run these examples in a live session here: |Binder|
    :caption: For Scientists
 
    Process Tabular Data with Pandas.ipynb
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Applied Examples
+
+   X-ray Absorption Fine Structure/index
