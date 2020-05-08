@@ -32,21 +32,40 @@ it!
 
   ```
   pip install -r binder/requirements.txt
+  pip install -r docs/requirements.txt
+  pip install bluesky-tutorial-utils
   ```
 
 * Install the JupyterLab extensions and re-build JupyterLab.
 
   ```
-  jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
-  jupyter labextension install --no-build jupyter-matplotlib
-  jupyter lab build
+  jupyter labextension install @jupyter-widgets/jupyterlab-manager
+  jupyter labextension install jupyter-matplotlib
   ```
 
-* Start JupyterLab using the ``binder/start`` executable, which also ensures
-  that supervisor is running and imports the tutorial's JupyterLab workspace.
+* Start the IOCs.
 
+  supervisord -c supervisor/supervisord.conf
+
+  You can check their status at any time using
+
+  ```sh
+  supervisorctl -c supervisor/supervisord.conf status
   ```
-  ./binder/start jupyter lab
+
+* Start Jupyter.
+
+  ```sh
+  jupyter lab
+  ```
+
+### Building the documentation
+
+This command copies (select) notebooks into ``docs/source/``, converts them
+to ``.rst``, and builds static HTML documentation at ``docs/build/html/``.
+
+  ```sh
+  make -C docs html
   ```
 
 ### Controlling Execution
