@@ -17,6 +17,7 @@ install:
   - wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb && sudo dpkg -i pandoc-2.7-1-amd64.deb
   - pip install -r binder/requirements.txt
   - pip install -r docs/requirements.txt
+  - pip install ./bluesky-tutorial-utils
 
 script:
   - set -e
