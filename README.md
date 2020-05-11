@@ -40,7 +40,7 @@ it!
   ```
   pip install -r binder/requirements.txt
   pip install -r docs/requirements.txt
-  pip install bluesky-tutorial-utils
+  pip install ./bluesky-tutorial-utils
   ```
 
 * Install the JupyterLab extensions and re-build JupyterLab.
