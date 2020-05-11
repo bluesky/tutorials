@@ -28,6 +28,13 @@ it!
 
 ### Local Installation
 
+* Ensure pip, setuptools, and numpy are up to date. This helps avoid some
+  pitfalls in the steps to follow.
+
+  ```
+  pip install --upgrade pip setuptools numpy
+  ```
+
 * Install the requirements.
 
   ```
