@@ -2,6 +2,8 @@ from bluesky.plan_stubs import abs_set, mv, sleep, subscribe, unsubscribe
 from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
 from bluesky.callbacks.mpl_plotting import LivePlot
+import matplotlib.pyplot as plt
+
 import intake
 from lmfit.models import SkewedGaussianModel
 import pandas
@@ -14,18 +16,19 @@ from simulated_hardware import pitch, I0
 
 class BlueskyRunFromList(BlueskyRunFromGenerator):
     def __init__(self, documents):
-        
         def gen_func():
             yield from documents
-        
+
         def get_filler(*args, **kwargs):
             kwargs.setdefault("inplace", False)
             from event_model import Filler
+
             return Filler({}, *args, **kwargs)
-        
+
         # We have to mock up an Entry.
         # Can we avoid this?
         from types import SimpleNamespace
+
         entry = SimpleNamespace(name=documents[0][1]["uid"])
          
         super().__init__(gen_func, (), {}, get_filler=get_filler, transforms=parse_transforms(None), entry=entry)
@@ -60,7 +63,10 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     """
 
     title = "I0 signal vs. DCM 2nd crystal pitch"
-    @subs_decorator(LivePlot("I0", pitch.name))
+
+    fig, ax = plt.subplots(num=title)
+
+    @subs_decorator(LivePlot("I0", pitch.name, ax=ax))
     def scan_dcm_pitch():
         line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
             pitch.name,
@@ -104,5 +110,5 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
         )
         print(f"Found peak at {top:.3} via method {choice}")
         yield from mv(pitch, top)
-    
+
     yield from scan_dcm_pitch()
