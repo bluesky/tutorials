@@ -33,13 +33,13 @@ class BlueskyRunFromList(BlueskyRunFromGenerator):
 
 def com(signal):
     """Return the center of mass of a 1D array. This is used to find the
-    center of rocking curve and slit height scans."""
+    center of rocking curve scans."""
     return int(center_of_mass(signal)[0])
 
 
 def peak(signal):
     """Return the index of the maximum of a 1D array. This is used to find the
-    center of rocking curve and slit height scans."""
+    peak position of rocking curve scans."""
     return pandas.Series.idxmax(signal)
 
 
@@ -102,7 +102,7 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
             "rocking curve scan: %s\tuid = %s, scan_id = %d"
             % (line1, uid, run.metadata["start"]["scan_id"])
         )
-        print(f"Found peak at {top:.3} via method {choice}")
+        print(f"Found and moved to peak at {top:.3} via method {choice}")
         yield from mv(pitch, top)
     
     yield from scan_dcm_pitch()
