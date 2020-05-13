@@ -3,6 +3,7 @@ caproto >=0.5.0
 dask
 databroker >=1.0.3
 distributed
+h5py
 ipympl
 ipywidgets
 jupyterlab <2
