@@ -1,8 +1,7 @@
-from bluesky.plan_stubs import abs_set, mv, sleep, subscribe, unsubscribe
+from bluesky.plan_stubs import mv, subscribe, unsubscribe
 from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
 from bluesky.callbacks.mpl_plotting import LivePlot
-import intake
 from lmfit.models import SkewedGaussianModel
 import pandas
 from scipy.ndimage import center_of_mass
@@ -60,7 +59,6 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     convolution with the slightly misaligned entrance slits.
     """
 
-    title = "I0 signal vs. DCM 2nd crystal pitch"
     @subs_decorator(LivePlot("I0", pitch.name, ax=plt.gca()))
     def scan_dcm_pitch():
         line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
