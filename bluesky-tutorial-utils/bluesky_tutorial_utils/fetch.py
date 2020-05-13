@@ -16,7 +16,9 @@ def rsoxs_simulation_data(dest="rsoxs_simulation_data"):
     # https://www.dropbox.com/home/DAMA/Conferences%20%26%20Meetings/FY2020/NSLS-II%20%26%20CFN%20Users'%20meeting%20(May%202020)/200513_xArray/nxs
     print("Downloading...", file=sys.stderr)
     URL = "https://www.dropbox.com/sh/lkypngc3aokxx05/AAClQpX5IH3z3wWRj93iCOola?dl=0"
-    subprocess.run(["wget", URL, "-O", "rsoxs_simulation_data.zip"])
+    process = subprocess.run(["wget", URL, "-O", "rsoxs_simulation_data.zip"])
+    process.check_returncode()
     print("Extracting...", file=sys.stderr)
-    subprocess.run(["unzip", "rsoxs_simulation_data.zip", "-d", dest])
+    process = subprocess.run(["unzip", "rsoxs_simulation_data.zip", "-d", dest])
+    process.check_returncode()
     return True
