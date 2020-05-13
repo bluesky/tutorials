@@ -1,8 +1,7 @@
-from bluesky.plan_stubs import abs_set, mv, sleep, subscribe, unsubscribe
+from bluesky.plan_stubs import mv, subscribe, unsubscribe
 from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
 from bluesky.callbacks.mpl_plotting import LivePlot
-import intake
 from lmfit.models import SkewedGaussianModel
 import pandas
 from scipy.ndimage import center_of_mass
@@ -34,13 +33,13 @@ class BlueskyRunFromList(BlueskyRunFromGenerator):
 
 def com(signal):
     """Return the center of mass of a 1D array. This is used to find the
-    center of rocking curve and slit height scans."""
+    center of rocking curve scans."""
     return int(center_of_mass(signal)[0])
 
 
 def peak(signal):
     """Return the index of the maximum of a 1D array. This is used to find the
-    center of rocking curve and slit height scans."""
+    peak position of rocking curve scans."""
     return pandas.Series.idxmax(signal)
 
 
@@ -60,7 +59,6 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     convolution with the slightly misaligned entrance slits.
     """
 
-    title = "I0 signal vs. DCM 2nd crystal pitch"
     @subs_decorator(LivePlot("I0", pitch.name, ax=plt.gca()))
     def scan_dcm_pitch():
         line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
@@ -103,7 +101,7 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
             "rocking curve scan: %s\tuid = %s, scan_id = %d"
             % (line1, uid, run.metadata["start"]["scan_id"])
         )
-        print(f"Found peak at {top:.3} via method {choice}")
+        print(f"Found and moved to peak at {top:.3} via method {choice}")
         yield from mv(pitch, top)
     
     yield from scan_dcm_pitch()
