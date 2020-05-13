@@ -6,6 +6,7 @@ import intake
 from lmfit.models import SkewedGaussianModel
 import pandas
 from scipy.ndimage import center_of_mass
+import matplotlib.pyplot as plt
 
 from databroker.core import BlueskyRunFromGenerator, parse_transforms
 
@@ -60,7 +61,7 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     """
 
     title = "I0 signal vs. DCM 2nd crystal pitch"
-    @subs_decorator(LivePlot("I0", pitch.name))
+    @subs_decorator(LivePlot("I0", pitch.name, ax=plt.gca()))
     def scan_dcm_pitch():
         line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
             pitch.name,
