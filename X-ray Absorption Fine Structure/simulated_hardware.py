@@ -19,5 +19,5 @@ def compute_I0():
 
 pitch = SynAxis(name="pitch")
 pitch.set(4).wait()  # initialize at a reasonable value
-# pitch.delay = 0.05  # to simulate movement time
+pitch.delay = 0.05  # to simulate movement time
 I0 = SynSignal(name="I0", func=compute_I0)
