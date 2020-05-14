@@ -25,7 +25,8 @@ script:
   - set -e
   - supervisord -c supervisor/supervisord.conf
   - sleep 10  # Wait for IOCs to start.
-  - bash .stay_alive &  # Generate output periodically.
+  - bash .stay_alive.sh &  # Generate output periodically.
+  - ls -R docs/source/
   - caproto-put mini:ph:vel 50
   - caproto-put mini:edge:vel 50
   - caproto-put mini:slit:vel 50
