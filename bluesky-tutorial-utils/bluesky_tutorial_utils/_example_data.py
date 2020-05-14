@@ -48,4 +48,13 @@ class RewriteTimes(event_model.SingleRunDocumentRouter):
 def generate_example_data(callback):
     RE = RunEngine()
     RE.md["operator"] = "Dmitri"
-    RE(count([det], 5, delay=0.1), RewriteTimes("2020-01-01", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:00", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:05", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:07", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 9:00", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 9:05", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 13:00", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:00", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:05", callback))
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:07", callback), operator="Michael")
+    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:08", callback), operator="Michael")
