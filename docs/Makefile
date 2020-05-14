@@ -21,6 +21,7 @@ help:
 	mkdir -p "$(SOURCEDIR)/solutions"
 	mkdir -p "$(SOURCEDIR)/static"
 	mkdir -p "$(SOURCEDIR)/supervisor"
+	rm -rf $(SOURCEDIR)/my_exported_files/
 	cp "$(SOURCEDIR)/../../Hello Bluesky.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Hello Python and Jupyter.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Process Tabular Data with Pandas.ipynb" "$(SOURCEDIR)"
