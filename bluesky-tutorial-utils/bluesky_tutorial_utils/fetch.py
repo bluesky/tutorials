@@ -23,6 +23,9 @@ def _download_file(url, local_filename=None):
     """
     if local_filename is None:
         local_filename = url.split("/")[-1]
+    local_filename = pathlib.Path(local_filename)
+    if local_filename.exists():
+        return local_filename
     with requests.get(url, stream=True) as r:
         with open(local_filename, "wb") as f:
             shutil.copyfileobj(r.raw, f)
@@ -36,7 +39,9 @@ def _unpack_zip(file, dir_to_extract_to):
     return files
 
 
-def rsoxs_simulation_data(dest="rsoxs_simulation_data", *, path=None):
+def rsoxs_simulation_data(
+    dest="rsoxs_simulation_data", *, path=None, cache_path=None
+):
     """
     Download and decompress dataset unless destination already exists.
 
@@ -46,7 +51,8 @@ def rsoxs_simulation_data(dest="rsoxs_simulation_data", *, path=None):
     if path is None:
         path = pathlib.Path.cwd()
     else:
-        path = pathlib.Path(path)
+        path = pathlib.Path(path).expanduser()
+
     dest = path / dest
     if dest.exists():
         return []
@@ -56,7 +62,15 @@ def rsoxs_simulation_data(dest="rsoxs_simulation_data", *, path=None):
 
     # Download a zip-archive with the *.nxs data files.
     print("Downloading...", file=sys.stderr)
-    rsoxs_zip = _download_file(URL, local_filename="rsoxs_simulation_data.zip")
+    if cache_path is None:
+        cache_path = pathlib.Path.pwd()
+    else:
+        cache_path = pathlib.Path(cache_path).expanduser()
+
+    cache_path.mkdir(exist_ok=True)
+    rsoxs_zip = _download_file(
+        URL, local_filename=cache_path / "rsoxs_simulation_data.zip"
+    )
 
     # Unpack it.
     print("Extracting...", file=sys.stderr)
