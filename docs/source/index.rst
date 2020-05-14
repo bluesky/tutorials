@@ -40,3 +40,4 @@ You can run these examples in a live session here: |Binder|
    :caption: Applied Examples
 
    X-ray Absorption Fine Structure/index
+   Powder Diffraction/index
