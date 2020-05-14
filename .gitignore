@@ -96,3 +96,7 @@ docs/source/solutions
 docs/source/static
 docs/source/supervisor
 docs/source/X-ray Absorption Fine Structure
+
+# downloaded data
+*.nxs
+*.zip
