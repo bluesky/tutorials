@@ -24,6 +24,7 @@ script:
   - set -e
   - supervisord -c supervisor/supervisord.conf
   - sleep 10  # Wait for IOCs to start.
+  - bash .stay_alive &  # Generate output periodically.
   - make -C docs html O=-j3
   - pip install doctr
   - doctr deploy --built-docs docs/build/html --deploy-repo bluesky/bluesky.github.io --deploy-branch-name master tutorials
