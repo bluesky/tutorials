@@ -26,6 +26,9 @@ script:
   - supervisord -c supervisor/supervisord.conf
   - sleep 10  # Wait for IOCs to start.
   - bash .stay_alive &  # Generate output periodically.
+  - caproto-put mini:ph:vel 50
+  - caproto-put mini:edge:vel 50
+  - caproto-put mini:slit:vel 50
   - make -C docs html
   - pip install doctr
   - doctr deploy --built-docs docs/build/html --deploy-repo bluesky/bluesky.github.io --deploy-branch-name master tutorials
