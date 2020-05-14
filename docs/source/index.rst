@@ -30,6 +30,7 @@ You can run these examples in a live session here: |Binder|
    :caption: For Scientists
 
    Process Tabular Data with Pandas.ipynb
+   Export data to files with Suitcase.ipynb
 
 .. toctree::
    :maxdepth: 2
