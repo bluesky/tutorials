@@ -21,12 +21,14 @@ sample_selector = Signal(name="sample_selector", value=0)
 
 # Map samples to patterns.
 SHAPE = (512, 512)
-PATTERNS = {}
+patterns = {}
 x = numpy.linspace(0, 30, num=3001)
+intensities = {}
 for i in range(5):
     intensity = make_random_peaks(x)
     image = generate_image(x, intensity, SHAPE)
-    PATTERNS[i] = image
+    intensities[i] = intensity
+    patterns[i] = image
 
 
 class TimerStatus(DeviceStatus):
@@ -48,7 +50,7 @@ class DiffractionDetector(Device):
         arr = generate_flat_field(SHAPE) * t
         if _shutter_state["state"] == "open":
             current_sample = sample_selector.get()
-            pattern = PATTERNS[current_sample]
+            pattern = patterns[current_sample]
             # Scale it by the exposure time.
             scaled_pattern = pattern * t
             arr += scaled_pattern

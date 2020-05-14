@@ -40,18 +40,18 @@ def gaussian(x, c=0, sig=1, amp=None):
 
 def generate_flat_field(shape):
     num_bands = shape[0] // 20 + 1
-    values = (np.random.RandomState(0).randint(0, 2 ** 16, num_bands) * 0.2).astype("uint16")
+    values = np.random.RandomState(0).random(num_bands) * 10
     # Tile values into bands.
-    return np.broadcast_to(np.repeat(values, 20)[:shape[0]], shape).copy()
+    return np.broadcast_to(np.repeat(values, 20)[: shape[0]], shape).copy()
 
 
-def generate_image(x, I, shape):
+def generate_image(x, intensity, shape):
     """
-    Given a 1D array of peaks I, generate a 2D diffraction image.
+    Given a 1D array of intensity, generate a 2D diffraction image.
     """
     xL, yL = shape[0] // 2, shape[1] // 2  # half-lengths of each dimension
     x_, y_ = np.mgrid[-xL:xL, -yL:yL]
     ordinal_r = np.hypot(x_, y_)
     unit_r = ordinal_r / ordinal_r.max()
     r = unit_r * x.max()
-    return 1000 * np.interp(r, x, I).astype("uint16")
+    return np.interp(r, x, intensity)
