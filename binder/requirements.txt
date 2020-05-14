@@ -1,7 +1,7 @@
 bluesky
-git+https://github.com/caproto/caproto@ophyd-tutorial  # TEMP BRANCH
+caproto >=0.5.0
 dask
-databroker
+databroker >=1.0.3
 distributed
 ipympl
 ipywidgets
@@ -9,7 +9,7 @@ jupyterlab <2
 lmfit
 matplotlib
 nbgitpuller
-ophyd
+ophyd >=1.5.1b1
 pandas
 pyepics
 suitcase-csv

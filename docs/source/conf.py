@@ -41,7 +41,7 @@ extensions = [
 # },
 #
 # to the notebook metadata.
-nbsphinx_timeout = 60
+nbsphinx_timeout = 6000
 nbsphinx_execute = "always"
 
 nbsphinx_prolog = """
