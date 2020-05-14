@@ -2,13 +2,14 @@
 
 # Bluesky Tutorial
 
-This is a collection of tutorials on data acquisition and analysis with bluesky.
-It can be used in an Internet browser with no software installation.
+This is a collection of tutorials on data acquisition and analysis using bluesky
+and scientific Python generally. There are a couple ways to use it.
 
-[**Start here**](https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab).
-
-**We recommend using Google Chrome for best results, but any modern browser
-is supported.**
+* Try it in the interactive sandbox in the cloud at
+  https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab.
+* Browse the content non-interactively at https://blueskyproject.io/tutorials.
+* Download this content and run it on your local machine. This is not
+  recommended for novices. See further instructions below.
 
 ## Survey
 Took our tutorial? Let us know how you thought of it so we can better improve
@@ -24,9 +25,16 @@ it!
 * [Our Gitter Chat Channel](https://gitter.im/NSLS-II/DAMA) (come here for questions)
 * [Python Help](https://www.oreilly.com/programming/free/files/python-for-scientists.pdf) : A collection of Python tutorials geared towards scientific data analysis.
 
-## Contributing to this Tutorial
 
 ### Local Installation
+
+* We strongly recommend creating a fresh software environment. For example,
+  using [conda](https://docs.conda.io/en/latest/miniconda.html):
+
+  ```
+  conda create -n bluesky-tutorials python=3.7
+  conda activate bluesky-tutorials
+  ```
 
 * Ensure pip, setuptools, and numpy are up to date. This helps avoid some
   pitfalls in the steps to follow.
@@ -35,22 +43,30 @@ it!
   pip install --upgrade pip setuptools numpy
   ```
 
+* Clone this repository.
+
+  ```
+  git clone https://github.com/bluesky/tutorials
+  cd tutorials
+  ```
+
 * Install the requirements.
 
   ```
   pip install -r binder/requirements.txt
-  pip install -r docs/requirements.txt
   pip install ./bluesky-tutorial-utils
   ```
 
-* Install the JupyterLab extensions and re-build JupyterLab.
+* Install the JupyterLab extensions.
 
   ```
+  # Install extension that supports '%matplotlib widget'.
   jupyter labextension install @jupyter-widgets/jupyterlab-manager
   jupyter labextension install jupyter-matplotlib
   ```
 
-* Start the IOCs.
+* Start the simulated hardware. On Linux and OSX this can be done in one line
+  using supervisor:
 
   supervisord -c supervisor/supervisord.conf
 
@@ -60,10 +76,31 @@ it!
   supervisorctl -c supervisor/supervisord.conf status
   ```
 
+  On Windows it must be done manually:
+
+  ```sh
+  python3 -m caproto.ioc_examples.decay
+  python3 -m caproto.ioc_examples.mini_beamline
+  python3 -m caproto.ioc_examples.random_walk
+  python3 -m caproto.ioc_examples.random_walk --prefix="random_walk:horiz-"
+  python3 -m caproto.ioc_examples.random_walk --prefix="random_walk:vert-"
+  python3 -m caproto.ioc_examples.simple
+  python3 -m caproto.ioc_examples.thermo_sim
+  python3 -m caproto.ioc_examples.trigger_with_pc
+  ```
+
 * Start Jupyter.
 
   ```sh
   jupyter lab
+  ```
+
+## Contributing to this tutorial
+
+Install the docs requirements.
+
+  ```
+  pip install -r docs/requirements.txt
   ```
 
 ### Building the documentation
@@ -80,21 +117,11 @@ to ``.rst``, and builds static HTML documentation at ``docs/build/html/``.
 For testing the notebooks and publishing static renderings of them, we execute
 them with [nbsphinx](https://nbsphinx.readthedocs.io/). It will execute each
 notebook top to bottom and fail if any of the cells raise exceptions or take
-longer than ``nbsphinx_timeout`` (configured to 60 seconds in
+longer than ``nbsphinx_timeout`` (configured to 600 seconds in
 ``docs/source/conf.py``) to execute. Special cases can be allowed by editing
 cell or notebook metadata. These should be used sparingly.
 
 * **Allow a cell to raise an exception.** Add the cell tag ``raises-exception``.
-* **Hide a cell from the static view.** This is appropriate for cells that
-  (only) display an interactive matplotlib canvas. Add the cell metadata:
-
-  ```json
-  {
-    "nbsphinx": "hidden"
-  }
-  ```
-
-  The cell will be executed, but the neither input nor output will be shown.
 * **Manually execute a notebook.** Add the notebook metadata:
 
   ```json
@@ -112,3 +139,5 @@ cell or notebook metadata. These should be used sparingly.
   user-initiated interruption, like RunEngine pause/resume. While `nbstripout`
   supports applying this at the level of specific cells, it must be applied to
   the whole notebook to play well with nbsphinx.
+
+For more see https://nbsphinx.readthedocs.io/en/0.7.0/executing-notebooks.html.
