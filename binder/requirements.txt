@@ -1,4 +1,5 @@
 bluesky
+bluesky-darkframes
 caproto >=0.5.1b1
 dask
 databroker >=1.0.3
