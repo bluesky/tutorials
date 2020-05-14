@@ -68,8 +68,10 @@ it!
 * Start the simulated hardware. On Linux and OSX this can be done in one line
   using supervisor:
 
+  ```sh
   supervisord -c supervisor/supervisord.conf
-
+  ```
+  
   You can check their status at any time using
 
   ```sh
