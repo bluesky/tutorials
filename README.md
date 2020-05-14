@@ -36,6 +36,12 @@ it!
   conda activate bluesky-tutorials
   ```
 
+* You will need ``git``. You can install that using ``conda``, for example.
+
+  ```
+  conda install git
+  ```
+
 * Ensure pip, setuptools, and numpy are up to date. This helps avoid some
   pitfalls in the steps to follow.
 
