@@ -12,7 +12,7 @@ env:
     - secure: "WYLYwuZJWLMRPku85RlhmV4VEcRTFzKsEO1/6znPvT1PlkImam2t4krrtQe+IUCNBpvKta0rA06SHI9wr1DeW2rtlSurB/pcDvb7uAJLBMyBXJs0eEUzTpjbEyskYIjrFnrvIyiueaQE9up2ExO9Q7OYC0obYx9UFcMCiFWVG5IKcAM7j8IYW2pEveEBy3p6/HgFh0lugQfHW3ym5VkH7xXhetnZqyenJyUcyDjgUoAut8oxrSMef4Am1d7vsT2CmgdT049YfpYzfuEGqGnVu9SL+WnhV8eMY7Sd+9bgYmqFmgvux9p377p95u7aExZg4cQ9rv2PVrIS0Bpzt0dRL4qaHhjGHZ20WyAC/WDlLOsWqyYy0pdlyqBeOi+5JH5hzN3gnXRGxvhH3UQ6H7YGE5GqLzSFaziZQ41Ah5xXpbSIOKA87tqECrhtouobMwM1ZKbLQfhH9dPPyZbFVWhuWAvIlKETWx+fFL3ZdyyoJYxpnZC6JNCxry83dn2C/h6wwHBlyq5NkrkzEmx+FPqeS6ws+e2yDy5P9NxeBUISSItXtna7pRW8lHQvuY23ttLCGpCtMvy60Ri131KCeV4HJ1TFqqWKOrxv2YBnkF/GSl9zb6WjxaQZ/QqAOx9QwKhyps2PTwTeu2ZcXaV+siQBv12TSzBC7KK5N4U+lQil7Ys="
 
 install:
-  - pip install --upgrade pip numpy
+  - pip install --upgrade pip numpy setuptools
   # nbconvert needs pandoc. See https://pandoc.org/installing.html
   - wget https://github.com/jgm/pandoc/releases/download/2.7/pandoc-2.7-1-amd64.deb && sudo dpkg -i pandoc-2.7-1-amd64.deb
   - pip install -r binder/requirements.txt
@@ -24,6 +24,6 @@ script:
   - set -e
   - supervisord -c supervisor/supervisord.conf
   - sleep 10  # Wait for IOCs to start.
-  - make -C docs html
+  - make -C docs html O=-j3
   - pip install doctr
   - doctr deploy --built-docs docs/build/html --deploy-repo bluesky/bluesky.github.io --deploy-branch-name master tutorials
