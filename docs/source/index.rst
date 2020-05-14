@@ -66,3 +66,4 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    :caption: Applied Examples
 
    X-ray Absorption Fine Structure/index
+   Powder Diffraction/index
