@@ -56,6 +56,9 @@ class DiffractionDetector(Device):
             arr += scaled_pattern
         self.image.set(arr)
         return TimerStatus(self, t)
+    
+    def collect_asset_docs(self):
+        yield from []
 
 
 detector = DiffractionDetector(name="detector")
