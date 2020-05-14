@@ -8,8 +8,5 @@ MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-matplotlib
 
-# Enable Jupyter extension(s):
-jupyter serverextension enable --py nbgitpuller --sys-prefix
-
 # Create symlink to caproto-repeater so that libca finds a caRepeater executable.
 ln -s caproto-repeater `python -c "import os, sys; print(os.path.dirname(sys.executable))"`/caRepeater
