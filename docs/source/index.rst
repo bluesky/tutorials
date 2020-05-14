@@ -31,6 +31,9 @@ You can run these examples in a live session here: |Binder|
 
    Process Tabular Data with Pandas.ipynb
    Export data to files with Suitcase.ipynb
+   Higher Dimensional Data.ipynb
+   Multi-dimensional Coordinates.ipynb
+   Slice and Interpolate Image Data.ipynb
 
 .. toctree::
    :maxdepth: 2
