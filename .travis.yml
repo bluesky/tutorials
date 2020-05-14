@@ -18,6 +18,7 @@ install:
   - pip install -r binder/requirements.txt
   - pip install -r docs/requirements.txt
   - pip install ./bluesky-tutorial-utils
+  - python -c "from bluesky_tutorial_utils import fetch; fetch.rsoxs_simulation_data(path='docs/source/')"
 
 script:
   - set -e

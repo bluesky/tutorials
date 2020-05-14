@@ -36,13 +36,19 @@ def _unpack_zip(file, dir_to_extract_to):
     return files
 
 
-def rsoxs_simulation_data(dest="rsoxs_simulation_data"):
+def rsoxs_simulation_data(dest="rsoxs_simulation_data", *, path=None):
     """
     Download and decompress dataset unless destination already exists.
 
     Return False if destination exists and there is nothing to do, True otherwise.
     """
-    if pathlib.Path(dest).exists():
+
+    if path is None:
+        path = pathlib.Path.cwd()
+    else:
+        path = pathlib.Path(path)
+    dest = path / dest
+    if dest.exists():
         return []
     # URL is a world-viewable link to
     # https://www.dropbox.com/home/DAMA/Conferences%20%26%20Meetings/FY2020/NSLS-II%20%26%20CFN%20Users'%20meeting%20(May%202020)/200513_xArray/nxs
