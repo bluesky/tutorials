@@ -63,7 +63,7 @@ def rsoxs_simulation_data(
     # Download a zip-archive with the *.nxs data files.
     print("Downloading...", file=sys.stderr)
     if cache_path is None:
-        cache_path = pathlib.Path.pwd()
+        cache_path = pathlib.Path.cwd()
     else:
         cache_path = pathlib.Path(cache_path).expanduser()
 
