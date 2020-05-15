@@ -1,4 +1,4 @@
-from bluesky.plan_stubs import mv, subscribe, unsubscribe
+from bluesky.plan_stubs import mv
 from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
 from bluesky.callbacks.mpl_plotting import LivePlot
@@ -57,7 +57,9 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
         )
         uid = yield from rel_scan([I0], pitch, start, stop, nsteps)
 
-        # Access the data that we just collected.
+        # The data that we just acquired has been cached in memory by src.
+        # Access it as a pandas DataFrame so that we can conveniently do some
+        # math on it.
         run = src.retrieve()
         t = run.primary.read().to_dataframe()
         signal = t["I0"]
@@ -82,5 +84,5 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
         )
         print(f"Found and moved to peak at {top:.3} via method {choice}")
         yield from mv(pitch, top)
-    
+
     yield from scan_dcm_pitch()
