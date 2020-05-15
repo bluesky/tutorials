@@ -50,6 +50,14 @@ class NewtonHandler:
 
     def __call__(self, gap):
         """
+        Get the data.
+
+        Normally this code would be responsible for reading the data from
+        disk and absorbing whatever details are required.
+
+        For simplicity, here we simulate the ideal interference
+        pattern and return it.
+
         Parameters
         ----------
         gap : float
