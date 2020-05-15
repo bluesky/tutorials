@@ -58,3 +58,26 @@ def generate_example_data(callback):
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:05", callback))
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:07", callback), operator="Michael")
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:08", callback), operator="Michael")
+
+
+directory = here / "example_data"
+
+
+def save_example_data():
+    """
+    Run this from repo root to re-generate data.
+
+    python -c "import bluesky_tutorial_utils; bluesky_tutorial_utils.save_example_data()"
+    """
+    import suitcase.jsonl
+
+    def factory(name, doc):
+        return [suitcase.jsonl.Serializer(str(directory))], []
+
+    rr = event_model.RunRouter([factory])
+    generate_example_data(rr)
+
+
+def get_example_catalog():
+    from databroker._drivers.jsonl import BlueskyJSONLCatalog
+    return BlueskyJSONLCatalog(str(directory / "*.jsonl"))

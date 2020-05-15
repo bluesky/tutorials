@@ -12,4 +12,11 @@ setup(
             "newton = bluesky_tutorial_utils._newton:NewtonHandler",
         ]
     },
+    include_package_data=True,
+    zip_safe=False,
+    package_data={
+    'bluesky_tutorial_utils': [
+        'example_data/*.jsonl',
+        ]
+    },
 )
