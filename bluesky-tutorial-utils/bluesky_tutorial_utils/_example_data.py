@@ -4,6 +4,7 @@ import numpy as np
 
 from bluesky import RunEngine
 from bluesky.plans import count
+from bluesky.preprocessors import SupplementalData
 import bluesky.plans as bp
 from databroker.utils import normalize_human_friendly_time
 import event_model
@@ -54,9 +55,15 @@ class RewriteTimes(event_model.SingleRunDocumentRouter):
 
 
 def generate_example_data(callback):
-    from ophyd.sim import det
+    from ophyd.sim import det, motor1, motor2, motor3
+    motor1.set(3.1).wait()
+    motor2.set(-1000.02).wait()
+    motor3.set(5.01).wait()
 
     RE = RunEngine()
+    sd = SupplementalData(baseline=[motor1, motor2, motor3])
+    RE.preprocessors.append(sd)
+
     RE.md["operator"] = "Dmitri"
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:00", callback))
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:05", callback))
