@@ -7,28 +7,9 @@ import pandas
 from scipy.ndimage import center_of_mass
 import matplotlib.pyplot as plt
 
-from databroker.core import BlueskyRunFromGenerator, parse_transforms
+from databroker.core import SingleRunCache, parse_transforms
 
 from simulated_hardware import pitch, I0
-
-
-class BlueskyRunFromList(BlueskyRunFromGenerator):
-    def __init__(self, documents):
-        
-        def gen_func():
-            yield from documents
-        
-        def get_filler(*args, **kwargs):
-            kwargs.setdefault("inplace", False)
-            from event_model import Filler
-            return Filler({}, *args, **kwargs)
-        
-        # We have to mock up an Entry.
-        # Can we avoid this?
-        from types import SimpleNamespace
-        entry = SimpleNamespace(name=documents[0][1]["uid"])
-         
-        super().__init__(gen_func, (), {}, get_filler=get_filler, transforms=parse_transforms(None), entry=entry)
 
 
 def com(signal):
@@ -59,7 +40,12 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
     convolution with the slightly misaligned entrance slits.
     """
 
+    # Cache the data here as it is collected so we can examine it here and use
+    # it to make decisions.
+    src = SingleRunCache()
+
     @subs_decorator(LivePlot("I0", pitch.name, ax=plt.gca()))
+    @subs_decorator(src.callback)
     def scan_dcm_pitch():
         line1 = "%s, %s, %.3f, %.3f, %d -- starting at %.3f\n" % (
             pitch.name,
@@ -69,17 +55,10 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
             nsteps,
             pitch.readback.get(),
         )
-        documents = []  # (name, doc) pairs, to be precise
-
-        def collector(name, doc):
-            documents.append((name, doc))
-
-        token = yield from subscribe('all', collector)
         uid = yield from rel_scan([I0], pitch, start, stop, nsteps)
-        yield from unsubscribe(token)
 
-        run = BlueskyRunFromList(documents)
-
+        # Access the data that we just collected.
+        run = src.retrieve()
         t = run.primary.read().to_dataframe()
         signal = t["I0"]
         if choice.lower() == "com":
