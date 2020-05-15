@@ -59,7 +59,7 @@ nbsphinx_prolog = """
 """
 
 nbsphinx_execute_arguments = [
-    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+    "--InlineBackend.figure_formats={'png'}",
     "--InlineBackend.rc={'figure.dpi': 96}",
 ]
 
