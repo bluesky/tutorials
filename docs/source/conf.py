@@ -31,6 +31,7 @@ author = 'Bluesky Contributors'
 extensions = [
     'nbsphinx',
     'sphinx.ext.mathjax',
+    'sphinx_copybutton'
 ]
 
 # This is the time limit per *cell*. The timeout may be extended on a

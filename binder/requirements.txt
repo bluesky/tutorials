@@ -1,8 +1,9 @@
 bluesky
-caproto >=0.5.0
+caproto >=0.5.1b1
 dask
 databroker >=1.0.3
 distributed
+h5py
 ipympl
 ipywidgets
 jupyterlab <2

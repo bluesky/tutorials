@@ -4,3 +4,4 @@ sphinx
 sphinx_rtd_theme
 nbsphinx
 nbstripout
+sphinx-copybutton

@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line, and also
 # from the environment for the first two.
-SPHINXOPTS    ?= "-W"
+SPHINXOPTS    ?= -W --keep-going -vvv
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
@@ -21,9 +21,13 @@ help:
 	mkdir -p "$(SOURCEDIR)/solutions"
 	mkdir -p "$(SOURCEDIR)/static"
 	mkdir -p "$(SOURCEDIR)/supervisor"
+	rm -rf $(SOURCEDIR)/my_exported_files/
 	cp "$(SOURCEDIR)/../../Hello Bluesky.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Hello Python and Jupyter.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Process Tabular Data with Pandas.ipynb" "$(SOURCEDIR)"
+	cp "$(SOURCEDIR)/../../Slice and Interpolate Image Data.ipynb" "$(SOURCEDIR)"
+	cp "$(SOURCEDIR)/../../Higher Dimensional Data.ipynb" "$(SOURCEDIR)"
+	cp "$(SOURCEDIR)/../../Multi-dimensional Coordinates.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Epics Signal.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Export data to files with Suitcase.ipynb" "$(SOURCEDIR)"
 	cp -r "$(SOURCEDIR)/../../X-ray Absorption Fine Structure" "$(SOURCEDIR)"
