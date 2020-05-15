@@ -2,7 +2,7 @@
 
 # Bluesky Tutorial
 
-This is a collection of tutorials on data acquisition and analysis using bluesky
+This is a collection of tutorials on data acquisition and analysis using Bluesky
 and scientific Python generally. There are a couple ways to use it.
 
 * Try it in the interactive sandbox in the cloud at
