@@ -24,6 +24,7 @@ You can run these examples in a live session here: |Binder|
    :caption: For Controls Engineers
 
    Epics Signal.ipynb
+   Flyer Basics.ipynb
 
 .. toctree::
    :maxdepth: 1
