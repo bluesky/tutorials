@@ -7,7 +7,7 @@ import pandas
 from scipy.ndimage import center_of_mass
 import matplotlib.pyplot as plt
 
-from databroker.core import SingleRunCache, parse_transforms
+from databroker.core import SingleRunCache
 
 from simulated_hardware import pitch, I0
 
