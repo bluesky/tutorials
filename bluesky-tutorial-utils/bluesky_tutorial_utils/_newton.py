@@ -84,7 +84,12 @@ class ExternalFileReference(Signal):
     def describe(self):
         res = super().describe()
         res[self.name].update(
-            dict(external="FILESTORE:", dtype="array", shape=self.shape)
+            dict(
+                external="FILESTORE:",
+                dtype="array",
+                shape=self.shape,
+                dims=("x", "y"),
+            )
         )
         return res
 
