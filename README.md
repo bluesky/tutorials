@@ -36,10 +36,18 @@ it!
   conda activate bluesky-tutorials
   ```
 
-* You will need ``git``. You can install that using ``conda``, for example.
+* You will need ``git``. You can install that using ``conda``, for example, or
+  from https://git-scm.com/downloads.
 
   ```
   conda install git
+  ```
+
+* You will also need ``nodejs``. You can install that using ``conda`` as well,
+  or from  https://nodejs.org/en/download/.
+
+  ```
+  conda install nodejs
   ```
 
 * Ensure pip, setuptools, and numpy are up to date. This helps avoid some
