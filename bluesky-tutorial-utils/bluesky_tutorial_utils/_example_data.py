@@ -1,12 +1,15 @@
 from pathlib import Path
 
+import numpy as np
+
 from bluesky import RunEngine
 from bluesky.plans import count
+import bluesky.plans as bp
 from databroker.utils import normalize_human_friendly_time
 import event_model
-from ophyd.sim import det
 import tzlocal
 
+from ._newton import NewtonSimulator
 
 here = Path(__file__).parent
 
@@ -28,6 +31,9 @@ class RewriteTimes(event_model.SingleRunDocumentRouter):
         doc["time"] -= self._delta
         return doc
 
+    def _patch_time_stamps(self, ts_dict):
+        return {k: v - self._delta for k, v in ts_dict.items()}
+
     def start(self, doc):
         self._delta = doc["time"] - self._t0
         return self._patch_time(doc)
@@ -39,13 +45,17 @@ class RewriteTimes(event_model.SingleRunDocumentRouter):
         return self._patch_time(doc)
 
     def event(self, doc):
-        return self._patch_time(doc)
+        doc = self._patch_time(doc)
+        doc["timestamps"] = self._patch_time_stamps(doc["timestamps"])
+        return doc
 
     def event_page(self, doc):
         return self._patch_time(doc)
 
 
 def generate_example_data(callback):
+    from ophyd.sim import det
+
     RE = RunEngine()
     RE.md["operator"] = "Dmitri"
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-01-01 9:00", callback))
@@ -56,8 +66,36 @@ def generate_example_data(callback):
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 13:00", callback))
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:00", callback))
     RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:05", callback))
-    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:07", callback), operator="Michael")
-    RE(count([det], 5, delay=0.05), RewriteTimes("2020-02-01 15:08", callback), operator="Michael")
+    RE(
+        count([det], 5, delay=0.05),
+        RewriteTimes("2020-02-01 15:07", callback),
+        operator="Michael",
+    )
+    RE(
+        count([det], 5, delay=0.05),
+        RewriteTimes("2020-02-01 15:08", callback),
+        operator="Michael",
+    )
+    _generate_newton_data(
+        RE,
+        callback,
+        [
+            "2020-02-02 9:00",
+            "2020-02-02 10:00",
+            "2020-02-02 12:00",
+            "2020-02-02 13:00",
+            "2020-02-02 15:00",
+            "2020-02-02 17:00",
+            "2020-02-02 19:00",
+        ],
+    )
+
+
+def _generate_newton_data(RE, callback, time_vector, **kwargs):
+    ns = NewtonSimulator(50, 2 * np.pi / 0.4, name='ns')
+
+    for ts in time_vector:
+        RE(bp.scan([ns], ns.gap, 0, 4, 25), RewriteTimes(ts, callback), **kwargs)
 
 
 directory = here / "example_data"
@@ -80,4 +118,5 @@ def save_example_data():
 
 def get_example_catalog():
     from databroker._drivers.jsonl import BlueskyJSONLCatalog
+
     return BlueskyJSONLCatalog(str(directory / "*.jsonl"))
