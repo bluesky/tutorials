@@ -8,7 +8,7 @@ ipympl
 ipywidgets
 jupyterlab <2
 lmfit
-matplotlib
+matplotlib >=3.2.1
 nbgitpuller
 ophyd >=1.5.1b1
 pandas

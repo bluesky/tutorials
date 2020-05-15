@@ -1,6 +1,6 @@
 [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab)
 
-# Bluesky Tutorial
+# Bluesky Tutorials
 
 This is a collection of tutorials on data acquisition and analysis using Bluesky
 and scientific Python generally. There are a couple ways to use it.
@@ -36,17 +36,25 @@ it!
   conda activate bluesky-tutorials
   ```
 
-* You will need ``git``. You can install that using ``conda``, for example.
+* You will need ``git``. You can install that using ``conda``, for example, or
+  from https://git-scm.com/downloads.
 
   ```
   conda install git
+  ```
+
+* You will also need ``nodejs``. You can install that using ``conda`` as well,
+  or from  https://nodejs.org/en/download/.
+
+  ```
+  conda install nodejs
   ```
 
 * Ensure pip, setuptools, and numpy are up to date. This helps avoid some
   pitfalls in the steps to follow.
 
   ```
-  pip install --upgrade pip setuptools numpy
+  python -m pip install --upgrade pip setuptools numpy
   ```
 
 * Clone this repository.
@@ -59,8 +67,8 @@ it!
 * Install the requirements.
 
   ```
-  pip install -r binder/requirements.txt
-  pip install ./bluesky-tutorial-utils
+  python -m pip install -r binder/requirements.txt
+  python -m pip install ./bluesky-tutorial-utils
   ```
 
 * Install the JupyterLab extensions.
@@ -108,7 +116,7 @@ it!
 Install the docs requirements.
 
   ```
-  pip install -r docs/requirements.txt
+  python -m pip install -r docs/requirements.txt
   ```
 
 ### Building the documentation
