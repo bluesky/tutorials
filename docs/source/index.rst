@@ -26,6 +26,7 @@ You can run these examples in a live session here: |Binder|
    :caption: For Controls Engineers
 
    Epics Signal.ipynb
+   Anatomy of a Device.ipynb
    Flyer Basics.ipynb
 
 .. toctree::
