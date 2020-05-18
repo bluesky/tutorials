@@ -245,6 +245,76 @@ def read_singleimg_nxs(fname, sasdata="", lazy=False):
         return da
 
 
+class RSOXSNexusHandler:
+    """Class for simulating Newton's Rings on the fly as a handler."""
+
+    specs = {"nist_rsoxs_simulation_v1"}
+
+    def __init__(self, filename, group):
+        """
+        Parameters
+        ----------
+        filename : str
+            Absolute path to file
+
+        """
+        self._fname = filename
+        self._group = group
+        self._h5 = h5py.File(self._fname, 'r')
+
+    def __call__(self, dset, dims):
+        """
+        Get the data.
+
+        Normally this code would be responsible for reading the data from
+        disk and absorbing whatever details are required.
+
+        For simplicity, here we simulate the ideal interference
+        pattern and return it.
+
+        Parameters
+        ----------
+        gap : float
+            The closest distance between the sphere and surface
+
+        """
+        dset_name = dset
+        g = self._h5[self._group]
+        dset = g[dset_name]
+        data = dset[:]
+        if dims is not None:
+            dims_data = [g[d][:] for d in dims]
+            coords = {d: data for d, data in zip(dims, dims_data)}
+        else:
+            coords = None
+
+        da = xr.DataArray(
+            data,
+            # dims=dims,
+            # coords=coords,
+            name=dset_name,
+        )
+
+        return data
+
+    def get_file_list(self, datum_kwarg_gen):
+        """
+        Get the list of files this instance reads.
+
+        This handler has no files :)
+
+        Returns
+        -------
+        empty list
+
+        """
+        return [self._fname]
+
+    def close(self):
+        self._h5.close()
+        self._h5 = None
+
+
 def writeImageEnergySeries(
     fileName,
     da_image_list,

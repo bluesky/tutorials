@@ -3,6 +3,7 @@ import requests
 import shutil
 import sys
 import zipfile
+from ._ingest_rsoxs import ingest_simulations
 
 
 def _download_file(url, local_filename=None):
@@ -77,3 +78,15 @@ def rsoxs_simulation_data(
     files = _unpack_zip(rsoxs_zip, dest)
 
     return files
+
+def rsoxs_catalog(dest="rsoxs_simulation_data"):
+    import databroker
+
+    db = databroker.Broker.named('temp')
+
+    p = pathlib.Path(dest)
+
+    for name, doc in ingest_simulations(p):
+        db.insert(name, doc)
+
+    return db.v2

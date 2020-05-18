@@ -10,6 +10,7 @@ setup(
             "npy = bluesky_tutorial_utils._old_handlers:NpyHandler",
             "npy_FRAMEWISE = bluesky_tutorial_utils._old_handlers:NpyFrameWise",
             "newton = bluesky_tutorial_utils._newton:NewtonHandler",
+            "nist_rsoxs_simulation_v1 = bluesky_tutorial_utils.nexus:RSOXSNexusHandler",
         ]
     },
     include_package_data=True,
