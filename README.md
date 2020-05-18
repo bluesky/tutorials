@@ -56,7 +56,7 @@ it!
   or from  https://nodejs.org/en/download/.
 
   ```
-  conda install nodejs
+  conda install -c conda-forge nodejs
   ```
 
 * Ensure pip, setuptools, and numpy are up to date. This helps avoid some
