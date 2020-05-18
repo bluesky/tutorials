@@ -48,6 +48,7 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    :caption: For Controls Engineers
 
    Epics Signal.ipynb
+   Anatomy of a Device.ipynb
    Flyer Basics.ipynb
 
 .. toctree::
