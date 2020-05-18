@@ -3,7 +3,7 @@ from bluesky.plans import rel_scan
 from bluesky.preprocessors import subs_decorator
 from bluesky.callbacks.mpl_plotting import LivePlot
 from lmfit.models import SkewedGaussianModel
-import pandas
+import pandas, numpy
 from scipy.ndimage import center_of_mass
 import matplotlib.pyplot as plt
 
@@ -15,8 +15,7 @@ from simulated_hardware import pitch, I0
 def com(signal):
     """Return the center of mass of a 1D array. This is used to find the
     center of rocking curve scans."""
-    return int(center_of_mass(signal)[0])
-
+    return int(round(center_of_mass(signal)[0]))
 
 def peak(signal):
     """Return the index of the maximum of a 1D array. This is used to find the
@@ -62,12 +61,13 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
         # math on it.
         run = src.retrieve()
         t = run.primary.read().to_dataframe()
-        signal = t["I0"]
         if choice.lower() == "com":
+            signal = numpy.array(t["I0"])
             position = com(signal)
-            top = t["pitch"][position]
+            top = t['pitch'].iloc[position]
         elif choice.lower() == "fit":
-            pitch_ = t["pitch"]
+            signal = numpy.array(t["I0"])
+            pitch_ = numpy.array(t["pitch"])
             mod = SkewedGaussianModel()
             pars = mod.guess(signal, x=pitch_)
             out = mod.fit(signal, pars, x=pitch_)
@@ -75,6 +75,7 @@ def rocking_curve(start=-0.10, stop=0.10, nsteps=101, choice="peak"):
             out.plot()
             top = out.params["center"].value
         else:
+            signal = t['I0']
             position = peak(signal)
             top = t[pitch.name][position]
 
