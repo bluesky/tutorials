@@ -12,10 +12,11 @@ Bluesky Tutorials
    Agenda:
 
    * :doc:`Access Saved Data`
+   * :doc:`Powder Diffraction/Exposures and Dark Frames`
    * :doc:`Slice and Interpolate Image Data`
+   * :doc:`X-ray Absorption Fine Structure/Monochromator Optimization`
    * :doc:`Higher Dimensional Data`
    * :doc:`Multi-dimensional Coordinates`
-   * :doc:`X-ray Absorption Fine Structure/Monochromator Optimization`
 
 These examples address a wide range of questions, such as:
 
@@ -66,3 +67,4 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    :caption: Applied Examples
 
    X-ray Absorption Fine Structure/index
+   Powder Diffraction/index
