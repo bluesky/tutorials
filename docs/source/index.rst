@@ -9,15 +9,13 @@ Bluesky Tutorials
    <https://gitter.im/NSLS-II/users-meeting-2020>`__ for live support
    and discussion.
 
-   .. toctree::
-      :maxdepth: 1
-      :noindex:
+   Agenda:
 
-      Access Saved Data.ipynb
-      Slice and Interpolate Image Data.ipynb
-      Higher Dimensional Data.ipynb
-      Multi-dimensional Coordinates.ipynb
-      X-ray Absorption Fine Structure/Monochromator Optimization.ipynb
+   * :doc:`Access Saved Data`
+   * :doc:`Slice and Interpolate Image Data`
+   * :doc:`Higher Dimensional Data`
+   * :doc:`Multi-dimensional Coordinates`
+   * :doc:`X-ray Absorption Fine Structure/Monochromator Optimization`
 
 These examples address a wide range of questions, such as:
 
