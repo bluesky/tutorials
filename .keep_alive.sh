@@ -6,7 +6,7 @@
 while true
 do
     sleep 60
-    echo "This line was printed by .stay_alive.sh to keep Travis from giving up due to no output."
+    echo "This line was printed by .keep_alive.sh to keep Travis from giving up due to no output."
     uptime
     free -h
 done
