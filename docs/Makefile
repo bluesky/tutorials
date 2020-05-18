@@ -34,6 +34,7 @@ help:
 	cp "$(SOURCEDIR)/../../Flyer Basics.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Let Us Do the Bookkeeping For You.ipynb" "$(SOURCEDIR)"
 	cp "$(SOURCEDIR)/../../Anatomy of a Device.ipynb" "$(SOURCEDIR)"
+	cp "$(SOURCEDIR)/../../Live Nonlinear Fitting.ipynb" "$(SOURCEDIR)"
 	cp -r "$(SOURCEDIR)/../../Powder Diffraction" "$(SOURCEDIR)"
 	cp -r "$(SOURCEDIR)/../../X-ray Absorption Fine Structure" "$(SOURCEDIR)"
 	# cp "$(SOURCEDIR)/../../Device.ipynb" "$(SOURCEDIR)"
