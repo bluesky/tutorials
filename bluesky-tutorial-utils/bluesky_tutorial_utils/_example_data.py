@@ -126,4 +126,6 @@ def save_example_data():
 def get_example_catalog():
     from databroker._drivers.jsonl import BlueskyJSONLCatalog
 
+    # TODO Use pkg_resources here. This relies on this being an editable
+    # installation.
     return BlueskyJSONLCatalog(str(directory / "*.jsonl"))
