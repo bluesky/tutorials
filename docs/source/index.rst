@@ -9,6 +9,16 @@ Bluesky Tutorials
    <https://gitter.im/NSLS-II/users-meeting-2020>`__ for live support
    and discussion.
 
+   .. toctree::
+      :maxdepth: 1
+      :noindex:
+
+      Access Saved Data.ipynb
+      Slice and Interpolate Image Data.ipynb
+      Higher Dimensional Data.ipynb
+      Multi-dimensional Coordinates.ipynb
+      X-ray Absorption Fine Structure/Monochromator Optimization.ipynb
+
 These examples address a wide range of questions, such as:
 
 * How do I configure bluesky to work with a new piece of hardware?
