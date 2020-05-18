@@ -68,7 +68,7 @@ it!
 
   ```
   python -m pip install -r binder/requirements.txt
-  python -m pip install ./bluesky-tutorial-utils
+  python -m pip install -e ./bluesky-tutorial-utils  # MUST use -e here
   ```
 
 * Install the JupyterLab extensions.
