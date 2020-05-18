@@ -2,8 +2,11 @@
 
 # NSLS-II Users Meeting 2020
 
-[Bluesky Workshop](https://nsls2cfnusersmeeting.bnl.gov/workshops/workshop.aspx?year=2020&id=163) at the NSLS-II Users Meeting 2020 we have 
-[a gitter room](https://gitter.im/NSLS-II/users-meeting-2020) for live support. 
+[Bluesky
+Workshop](https://nsls2cfnusersmeeting.bnl.gov/workshops/workshop.aspx?year=2020&id=163)
+at the NSLS-II Users Meeting 2020 we have [a gitter
+room](https://gitter.im/NSLS-II/users-meeting-2020) for live support
+and discussion.
 
 
 # Bluesky Tutorials
@@ -91,7 +94,7 @@ it!
   ```sh
   supervisord -c supervisor/supervisord.conf
   ```
-  
+
   You can check their status at any time using
 
   ```sh

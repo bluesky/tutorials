@@ -1,6 +1,14 @@
 Bluesky Tutorials
 =================
 
+.. note::
+
+   For the `NSLS-II Users Meeting 2020 Bluesky Workshop
+   <https://nsls2cfnusersmeeting.bnl.gov/workshops/workshop.aspx?year=2020&id=163>`__
+   we have set up `a gitter room
+   <https://gitter.im/NSLS-II/users-meeting-2020>`__ for live support
+   and discussion.
+
 These examples address a wide range of questions, such as:
 
 * How do I configure bluesky to work with a new piece of hardware?
