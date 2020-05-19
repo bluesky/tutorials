@@ -37,12 +37,11 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Basic Usage
+   :caption: Getting Started
 
    Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb
    Access Saved Data.ipynb
-   Let Us Do the Bookkeeping For You.ipynb
 
 .. toctree::
    :maxdepth: 1
@@ -56,11 +55,12 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    :maxdepth: 1
    :caption: For Scientists
 
-   Live Nonlinear Fitting.ipynb
    Process Tabular Data with Pandas.ipynb
    Slice and Interpolate Image Data.ipynb
    Higher Dimensional Data.ipynb
    Multi-dimensional Coordinates.ipynb
+   Live Nonlinear Fitting.ipynb
+   Let Us Do the Bookkeeping For You.ipynb
    Export data to files with Suitcase.ipynb
 
 .. toctree::
