@@ -20,7 +20,7 @@ _history['panel_oset'] = 10
 _history['panel_wid'] = 128 #32
 _history['noise'] = 50
 _history["panel_wl"] = 8000
-_history['action_time'] = 1.0
+_history['action_time'] = 0.5
 _history['perfect_data'] = False
 
 def sim_sleep(t):
@@ -234,7 +234,7 @@ def make_illumination_combinations(
         #print ("total length of combination list is "+str(len(my_list)))
     
     else:
-        print ('something empty')
+        #print ('something empty')
         pass 
     
     def f(t):
