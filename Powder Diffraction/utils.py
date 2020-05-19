@@ -2,7 +2,7 @@ from scipy import ndimage
 import numpy as np
 from simulated_hardware import current_time
 
-def simple_integration(image, num_bins=3001):
+def simple_integration(image, num_bins=301):
     sx, sy = image.shape
     x_, y_ = np.mgrid[-sx // 2 : sx // 2, -sy // 2 : sy // 2]
     r = np.hypot(x_, y_)
@@ -18,6 +18,29 @@ def normalized_residual(data, ideal):
 
 ######################
 
+def dark_light_collection(sample_num, num_lights = 1):
+    uids = []
+    #close shutter if not already closed
+    yield from light(False)
+        
+    #move to desired sample
+    yield from load_sample(sample_num)
+    
+    #take dark image
+    uid = yield from count([detector])
+    uids.append(uid)
+    
+    #open shutter
+    yield from light(True)
+    
+    #take light image
+    for i in range(num_lights):
+        uid = yield from count([detector])
+        uids.append(uid)
+    
+    #close shutter to be nice to detector
+    yield from light(False)
+    return uids
 
 def process_data(pair, num_lights = 1, return_light = False, return_dark = False):
     #assuming pair is tuple
@@ -49,7 +72,7 @@ def process_data(pair, num_lights = 1, return_light = False, return_dark = False
 def make_ideal_data(sample_num):
     _history['perfect_data'] = True
 
-    perfect_pair = RE(dark_light_subtract(sample_num))    
+    perfect_pair = RE(dark_light_collection(sample_num))    
 
     this_light = catalog[perfect_pair[1]].primary.read().detector_image[0]
 
@@ -61,3 +84,24 @@ def make_ideal_data(sample_num):
 
 def retrieve_im(num):
     return catalog[num].primary.read().detector_image[0]
+
+
+#startup things
+
+perfect_int1 = make_ideal_data(1)
+perfect_int2 = make_ideal_data(2)
+perfect_int3 = make_ideal_data(3)
+perfect_int4 = make_ideal_data(4)
+history_reset()
+
+q = np.linspace(.1,25, 301)
+
+d = 2.0*np.pi/q
+
+
+def hard_mode():
+    history_reset()
+    _history['decay_a'] = 50
+    _history['noise'] = 1000
+    #_history['action_time'] = .50 # 1.0
+    _history['panel_wl'] = 400 # 8000

@@ -19,7 +19,7 @@ _history['panel_amp'] = 50
 _history['panel_oset'] = 10
 _history['panel_wid'] = 128 #32
 _history['noise'] = 50
-_history["panel_wl"] = 8000
+_history["panel_wl"] = 80000 #8000
 _history['action_time'] = 0.5
 _history['perfect_data'] = False
 
