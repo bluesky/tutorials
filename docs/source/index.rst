@@ -56,6 +56,7 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    :maxdepth: 1
    :caption: For Scientists
 
+   Live Nonlinear Fitting.ipynb
    Process Tabular Data with Pandas.ipynb
    Slice and Interpolate Image Data.ipynb
    Higher Dimensional Data.ipynb
