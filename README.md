@@ -128,6 +128,25 @@ Install the docs requirements.
   python -m pip install -r docs/requirements.txt
   ```
 
+We use [nbstripout](https://github.com/kynan/nbstripout) to ensure that the
+cell outputs are not committed---only the inputs. (See below for why and how to
+make exceptions to this.) It must be configured like so.
+
+```
+nbstripout --install
+nbstripout --install --attributes .gitattributes
+```
+
+This command reverts both of the above:
+
+```
+nbstripout --uninstall
+```
+
+Be advised that this places an absolute path in a configuration file. If the
+Python environment you are in is later removed or broken, you may need to repeat
+installation.
+
 ### Building the documentation
 
 This command copies (select) notebooks into ``docs/source/``, converts them
