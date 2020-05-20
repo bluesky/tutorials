@@ -7,8 +7,9 @@ from bluesky.plan_stubs import mv
 
 from generate_data import make_random_peaks, generate_flat_field, generate_image
 
-LIMIT = 1_000_000
 LIMIT = 9999.0
+
+big_image_mode = False #use only if running on something that isn't binder machine (otherwise slow)
 
 _time = {"state": 0.0}
 
@@ -17,12 +18,22 @@ _history = {"sample": [], "light": [], "image": []}
 _history['decay_a'] = 1000
 _history['panel_amp'] = 50
 _history['panel_oset'] = 10
-_history['panel_wid'] = 128 #32
+_history['panel_wid'] = 32
 _history['noise'] = 50
-_history["panel_wl"] = 80000 #8000
+_history["panel_wl"] = 80000
+_history["panel_wl_hard"] = 100
 _history['action_time'] = 0.5
 _history['perfect_data'] = False
+_history['integration_bins'] = 101
+SHAPE = (128,128)
 
+
+if big_image_mode:
+    SHAPE = (512, 512)
+    _history['panel_wid'] = 128 
+    _history['integration_bins'] = 301
+    _history['panel_wl_hard'] = 400
+    
 def sim_sleep(t):
     print (f"sleeping for {t}")
     time_travel(current_time()+t)
@@ -70,16 +81,17 @@ shutter = Shutter(name="shutter", value="closed")
 sample_selector = SampleSelector(name="sample_selector", value=0)
 
 
-# Map samples to patterns.
-SHAPE = (512, 512)
-#SHAPE = (128, 128)
 patterns = {}
-x = numpy.linspace(0, 30, num=301)
+x = numpy.linspace(0, 30, num=_history['integration_bins'])
 intensities = {}
 
 
 for i in range(1, 5):
-    intensity = make_random_peaks(x) * 1000.0
+    if big_image_mode:
+        intensity = make_random_peaks(x, peak_chance=0.1) * 1000.0
+    else:
+        intensity = make_random_peaks(x, peak_chance=0.2) * 1000.0
+    
     image = generate_image(x, intensity, SHAPE)
     intensities[i] = intensity
     patterns[i] = image
