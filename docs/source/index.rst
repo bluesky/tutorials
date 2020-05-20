@@ -42,6 +42,7 @@ https://github.com/bluesky/tutorials#bluesky-tutorials.
    Hello Python and Jupyter.ipynb
    Hello Bluesky.ipynb
    Access Saved Data.ipynb
+   Supplemental Data.ipynb
 
 .. toctree::
    :maxdepth: 1
