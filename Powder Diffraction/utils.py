@@ -2,7 +2,7 @@ from scipy import ndimage
 import numpy as np
 from simulated_hardware import current_time
 
-def simple_integration(image, num_bins=301):
+def simple_integration(image, num_bins=_history['integration_bins']):
     sx, sy = image.shape
     x_, y_ = np.mgrid[-sx // 2 : sx // 2, -sy // 2 : sy // 2]
     r = np.hypot(x_, y_)
@@ -47,7 +47,7 @@ def process_data(pair, num_lights = 1, return_light = False, return_dark = False
     my_dark = catalog[pair[0]].primary.read().detector_image[0]
     
     if return_dark:
-        return simple_integration(my_dark, num_bins=301)
+        return simple_integration(my_dark)
     
     dark_subbed_list = []
     
@@ -60,12 +60,12 @@ def process_data(pair, num_lights = 1, return_light = False, return_dark = False
             dark_subbed_list.append(this_light - my_dark)
     
     if num_lights == 1:
-        return simple_integration(dark_subbed_list[0],num_bins=301)
+        return simple_integration(dark_subbed_list[0])
     
     else: # more than one
         int_list = []
         for j in range(len(dark_subbed_list)):
-            int_list.append(simple_integration(dark_subbed_list[j],num_bins=301))
+            int_list.append(simple_integration(dark_subbed_list[j]))
     
         return np.array(int_list).T
 
@@ -76,7 +76,7 @@ def make_ideal_data(sample_num):
 
     this_light = catalog[perfect_pair[1]].primary.read().detector_image[0]
 
-    perfect_int = simple_integration(this_light,num_bins=301)
+    perfect_int = simple_integration(this_light)
 
     _history['perfect_data'] = False
     
@@ -94,7 +94,7 @@ perfect_int3 = make_ideal_data(3)
 perfect_int4 = make_ideal_data(4)
 history_reset()
 
-q = np.linspace(.1,25, 301)
+q = np.linspace(.1,25, _history['integration_bins'])
 
 d = 2.0*np.pi/q
 
@@ -103,5 +103,5 @@ def hard_mode():
     history_reset()
     _history['decay_a'] = 50
     _history['noise'] = 1000
-    #_history['action_time'] = .50 # 1.0
-    _history['panel_wl'] = 400 # 8000
+    _history['panel_wl'] = _history['panel_wl_hard'] 
+    

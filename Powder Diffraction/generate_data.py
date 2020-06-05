@@ -2,8 +2,7 @@ import numpy as np
 
 
 def make_random_peaks(
-    x, xmin=None, xmax=None, peak_chance=0.1, return_pristine_peaks=False
-):
+    x, xmin=None, xmax=None, peak_chance=0.1, return_pristine_peaks=False):
 
     # select boundaries for peaks
     if xmin is None:
