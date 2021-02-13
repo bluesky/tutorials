@@ -104,3 +104,8 @@ docs/source/Powder Diffraction
 
 # jupyter book
 _build/
+
+# jupyter
+.jupyter-server-log.txt
+.jupyter/
+.local/

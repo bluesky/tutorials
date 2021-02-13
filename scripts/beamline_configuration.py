@@ -46,11 +46,13 @@ from bluesky.magics import BlueskyMagics
 get_ipython().register_magics(BlueskyMagics)
 
 # Set up the BestEffortCallback.
-from bluesky.callbacks.best_effort import BestEffortCallback
+from bluesky_widgets.models.auto_plot_builders import AutoLines
+from bluesky_widgets.utils.streaming import stream_documents_into_runs
+from bluesky_widgets.jupyter.figures import JupyterFigures
 
-bec = BestEffortCallback()
-RE.subscribe(bec)
-peaks = bec.peaks
+auto_plot_model = AutoLines(max_runs=10)
+RE.subscribe(stream_documents_into_runs(auto_plot_model.add_run))
+auto_plot_view = JupyterFigures(auto_plot_model.figures)
 
 # Import matplotlib and put it in interactive mode.
 import matplotlib.pyplot as plt
