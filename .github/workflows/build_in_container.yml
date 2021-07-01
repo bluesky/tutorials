@@ -27,4 +27,4 @@ jobs:
       shell: bash -l {0}
       run: |
         set -vxeuo pipefail
-        jupyter-repo2docker . /bin/bash -c "jupyter-book build content/"
+        jupyter-repo2docker . /bin/bash -c "jupyter-book build ."
