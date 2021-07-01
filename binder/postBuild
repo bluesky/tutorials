@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip install -e ./content/bluesky-tutorial-utils
+pip install -e ./bluesky-tutorial-utils
 
 MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
