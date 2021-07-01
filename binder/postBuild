@@ -4,9 +4,5 @@ pip install -e ./bluesky-tutorial-utils
 
 MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
-# Install extension that supports '%matplotlib widget'.
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install jupyter-matplotlib
-
 # Create symlink to caproto-repeater so that libca finds a caRepeater executable.
 ln -s caproto-repeater `python -c "import os, sys; print(os.path.dirname(sys.executable))"`/caRepeater

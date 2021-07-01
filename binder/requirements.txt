@@ -7,7 +7,7 @@ distributed
 h5py
 ipympl
 ipywidgets
-jupyterlab
+jupyterlab >=3
 jupyter-book
 lmfit
 matplotlib
