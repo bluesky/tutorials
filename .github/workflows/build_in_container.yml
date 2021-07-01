@@ -17,13 +17,13 @@ jobs:
       with:
         python-version: '3.x'
 
-     - name: Cache multiple paths
-       uses: actions/cache@v2
-       with:
-         path: |
-           # This cache contains the notebook outputs
-           # See https://jupyterbook.org/content/execute.html#caching-the-notebook-execution
-           _build/.jupyter_cache
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          # This cache contains the notebook outputs
+          # See https://jupyterbook.org/content/execute.html#caching-the-notebook-execution
+          _build/.jupyter_cache
 
     - name: Install jupyter-repo2docker
       shell: bash -l {0}
