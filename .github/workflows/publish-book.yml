@@ -50,7 +50,7 @@ jobs:
       with:
         deploy_key: ${{ secrets.ACTIONS_DOCUMENTATION_DEPLOY_KEY }}
         publish_branch: master
-            publish_dir: ./_build/html/
+        publish_dir: ./_build/html/
         external_repository: bluesky/bluesky.github.io
         destination_dir: tutorials
         force_orphan: false  # Keep git history.
