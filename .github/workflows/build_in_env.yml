@@ -16,6 +16,7 @@ jobs:
       with:
         auto-update-conda: true
         python-version: 3.8
+        activate-environment: test_env
 
     - name: Install pip requirements.
       shell: bash -l {0}
