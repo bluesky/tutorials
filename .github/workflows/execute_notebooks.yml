@@ -17,6 +17,12 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install jupyter-repo2docker
+      shell: bash -l {0}
+      run: |
+        set -vxeuo pipefail
+        python -m pip install jupyter-repo2docker
+
     - name: Execute notebooks with Jupyter Book.
       shell: bash -l {0}
       run: |
