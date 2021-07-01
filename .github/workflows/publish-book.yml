@@ -9,6 +9,7 @@ jobs:
   build:
     if: github.repository_owner == 'bluesky'
     runs-on: ubuntu-latest
+    steps:
 
     - name: Checkout files in repo.
       uses: actions/checkout@main
