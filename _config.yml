@@ -1,0 +1,55 @@
+title                       : Bluesky Tutorial
+author                      : Bluesky Collaboration
+copyright                   : "2021"
+# logo                        : ""  # A path to the book logo
+
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks         : cache
+  timeout                   : 30    # The maximum time (in seconds) each notebook cell is allowed to run.
+only_build_toc_files: true
+
+#######################################################################################
+# Parse and render settings
+parse:
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    # - amsmath
+    - colon_fence
+    # - deflist
+    - dollarmath
+    # - html_admonition
+    # - html_image
+    - linkify
+    # - replacements
+    # - smartquotes
+    - substitution
+
+#######################################################################################
+# HTML-specific settings
+html:
+  use_edit_page_button      : true # Whether to add an "edit this page" button to pages. If `true`, repository information in repository: must be filled in
+  use_repository_button     : true # Whether to add a link to your repository button
+  extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
+  extra_footer              : ""  # Will be displayed underneath the footer.
+  baseurl                   : "https://blueskyproject.io/tutorials"
+
+#######################################################################################
+# Launch button settings
+launch_buttons:
+  notebook_interface        : jupyterlab  # The interface interactive links will activate ["classic", "jupyterlab"]
+  binderhub_url             : https://mybinder.org  # The URL of the BinderHub (e.g., https://mybinder.org)
+  jupyterhub_url            : ""  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
+
+repository:
+  url                       : https://github.com/bluesky/tutorials
+  path_to_book              : ""  # A path to your book's folder, relative to the repository root.
+  branch                    : master  # Which branch of the repository should be used when creating links
+
+#######################################################################################
+# Advanced and power-user settings
+sphinx:
+  extra_extensions          :   # A list of extra extensions to load by Sphinx (added to those already used by JB).
+  local_extensions          :   # A list of local extensions to load by sphinx specified by "name: path" items
+  config                    :   # key-value pairs to directly over-ride the Sphinx configuration
