@@ -103,4 +103,4 @@ docs/source/Powder Diffraction
 *.zip
 
 # jupyter book
-content/_build/
+_build/
