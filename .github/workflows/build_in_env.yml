@@ -24,7 +24,7 @@ jobs:
         python3 -m pip install -r binder/requirements.txt
 
     - name: Run postBuild script.
-      shell: pwsh
+      shell: bash
       run: |
         set -vxeuo pipefail
         ./binder/postBuild
