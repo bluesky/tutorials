@@ -1,0 +1,55 @@
+name: Publish book
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: github.repository_owner == 'bluesky'
+    runs-on: ubuntu-latest
+
+    - name: Checkout files in repo.
+      uses: actions/checkout@main
+
+    - name: Set up Python 3.x.
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Cache multiple paths
+      uses: actions/cache@v2
+      with:
+        path: |
+          # This cache contains the notebook outputs
+          # See https://jupyterbook.org/content/execute.html#caching-the-notebook-execution
+          _build/.jupyter_cache
+        key: ${{ runner.os }}-jupyter_cache
+
+    - name: Install jupyter-repo2docker
+      shell: bash -l {0}
+      run: |
+        set -vxeuo pipefail
+        python -m pip install -r binder/requirements-dev.txt
+
+    - name: Execute notebooks with Jupyter Book.
+      shell: bash -l {0}
+      run: |
+        set -vxeuo pipefail
+        # Use an editable installation so the _build/.jupyter_cache is
+        # mounted in the container and so that the build artifacts persist
+        # to the next step.
+        jupyter-repo2docker --editable . /bin/bash -c "jupyter-book build ."
+
+    - name: Deploy built book to blueskyproject.io.
+      # We pin to the SHA, not the tag, for security reasons.
+      # https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/security-hardening-for-github-actions#using-third-party-actions
+      uses: peaceiris/actions-gh-pages@bbdfb200618d235585ad98e965f4aafc39b4c501  # v3.7.3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DOCUMENTATION_DEPLOY_KEY }}
+        publish_branch: master
+            publish_dir: ./_build/html/
+        external_repository: bluesky/bluesky.github.io
+        destination_dir: tutorials
+        force_orphan: false  # Keep git history.
