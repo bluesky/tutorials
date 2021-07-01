@@ -24,6 +24,7 @@ jobs:
           # This cache contains the notebook outputs
           # See https://jupyterbook.org/content/execute.html#caching-the-notebook-execution
           _build/.jupyter_cache
+        key: ${{ runner.os }}-jupyter_cache
 
     - name: Install jupyter-repo2docker
       shell: bash -l {0}
