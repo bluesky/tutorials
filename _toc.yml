@@ -8,3 +8,4 @@ parts:
   chapters:
   - file: CONTRIBUTING
   - file: INSTALLATION
+  - file: STATUS
