@@ -1,4 +1,4 @@
-name: Execute notebooks top to bottom to ensure no errors.
+name: Build in repo2docker container.
 on:
   push:
   pull_request:
