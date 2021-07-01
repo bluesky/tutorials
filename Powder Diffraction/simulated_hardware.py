@@ -30,10 +30,10 @@ SHAPE = (128,128)
 
 if big_image_mode:
     SHAPE = (512, 512)
-    _history['panel_wid'] = 128 
+    _history['panel_wid'] = 128
     _history['integration_bins'] = 301
     _history['panel_wl_hard'] = 400
-    
+
 def sim_sleep(t):
     print (f"sleeping for {t}")
     time_travel(current_time()+t)
@@ -54,13 +54,13 @@ class Shutter(Signal):
         current_value = self.get()
         if value == "open":
             _history["light"].append((current_time(),))
-            
+
         if value == "closed":
             (opened_time,) = _history["light"].pop()
             _history["light"].append((opened_time, current_time()))
         super().put(value)
 
-        
+
 class SampleSelector(Signal):
     def put(self, value):
         current_value = self.get()
@@ -73,10 +73,10 @@ class SampleSelector(Signal):
                 _history["image"].append(patterns[value])
         #else:
         #    print ('already have sample number '+str(value)+' selected')
-            
+
         super().put(value)
 
-        
+
 shutter = Shutter(name="shutter", value="closed")
 sample_selector = SampleSelector(name="sample_selector", value=0)
 
@@ -91,19 +91,19 @@ for i in range(1, 5):
         intensity = make_random_peaks(x, peak_chance=0.1) * 1000.0
     else:
         intensity = make_random_peaks(x, peak_chance=0.2) * 1000.0
-    
+
     image = generate_image(x, intensity, SHAPE)
     intensities[i] = intensity
     patterns[i] = image
-    
-    
+
+
 def det_panels(shape, oset=1, wid=32, amp=2000):
     det_im = np.zeros(shape)
     #print ('amp '+str(amp))
     for x in range(shape[1]):
         det_im[:int(shape[0]/2),x] = amp*np.mod(x,wid)**.5+oset
         det_im[int(shape[0]/2):,x] = amp*np.mod(shape[1]-x,wid)**.5+oset
-    return det_im    
+    return det_im
 
 def noisy_im(shape,noise=10):
     return np.random.random(shape)*noise
@@ -126,37 +126,37 @@ class DiffractionDetector(Device):
 
     def trigger(self):
         # Start with a flat field.
-        # arr = generate_flat_field(SHAPE)          
-        
+        # arr = generate_flat_field(SHAPE)
+
         f = make_illumination_combinations(
             _history["sample"], _history["image"], _history["light"], _history["decay_a"]
         )
-        
+
         arr = f(current_time())
         #arr = patterns[sample_selector.read()['sample_selector']['value']]
         #self.image.set(arr)
-        
+
         #add panel effect to image
         varying_pan_amp = np.sin(current_time()*(2.0*np.pi/_history["panel_wl"]))+1.0
-        
+
         arr += det_panels(SHAPE,
                           oset=_history["panel_oset"],
                           wid=_history["panel_wid"],
                           amp=varying_pan_amp* _history["panel_amp"])
-        
+
         #add noisy effect to image
         arr += noisy_im(SHAPE,noise=_history["noise"])
-        
+
         if _history["perfect_data"]:
             #wipe out all other effects, just make a perfect iamge from patterns
             arr = patterns[sample_selector.read()['sample_selector']['value']]
-        
+
         self.image.set(arr)
         READOUT_TIME = 0.17
-        
+
         #move time forward
         time_travel(current_time()+_history['action_time'])
-        
+
         return TimerStatus(self, READOUT_TIME)
 
     def collect_asset_docs(self):
@@ -167,7 +167,7 @@ detector = DiffractionDetector(name="detector")
 
 def make_simple_decay_func(I0, a=10, t1=2, t2=10,s=10):
     def decay_func(x):
-        #rise = np.exp((x-t1)*s)/(1+np.exp((x-t1)*s)) * (x>=t1) * (x<=t2)    
+        #rise = np.exp((x-t1)*s)/(1+np.exp((x-t1)*s)) * (x>=t1) * (x<=t2)
         rise = 1.0*(x>=t1) * (x<=t2)
         fall = np.exp(-a*(x-t2)/I0) * (x > t2)
         return I0 * (rise + fall)
@@ -200,7 +200,7 @@ def make_illumination_combinations(
     light_history = light_history.copy()
     decay_func_list = []
     tmax = _time["state"]
-    
+
     #check for empty lists
     if len(sample_history) > 0 and len(light_history) > 0:
         if len(sample_history[-1]) == 1:
@@ -244,11 +244,11 @@ def make_illumination_combinations(
                     make_simple_decay_func(this_im, a=a, t1=my_list[k][0], t2=my_list[k][1], s = 10)
                 )
         #print ("total length of combination list is "+str(len(my_list)))
-    
+
     else:
         #print ('something empty')
-        pass 
-    
+        pass
+
     def f(t):
         return sum(f(t) for f in decay_func_list)
 
@@ -268,22 +268,21 @@ def light(state):
     if shutter.get() == "open" and not state:
         yield from mv(shutter, {True: "open", False: "closed"}[bool(state)])
         time_travel(current_time()+_history['action_time'])
-    
+
     elif shutter.get() == "closed" and state:
         yield from mv(shutter, {True: "open", False: "closed"}[bool(state)])
         time_travel(current_time()+_history['action_time'])
-    
+
     else:
         #print ('shutter already in requested state')
         pass
-    
+
 def history_reset():
     sample_selector.put(0)
     if shutter.get() == 'open': #check if open
         shutter.put('closed') #command to close shutter directly
-    
+
     _history["sample"] = []
     _history["light"] = []
     _history["image"] = []
     time_travel(0)
-

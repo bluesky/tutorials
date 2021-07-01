@@ -3,7 +3,7 @@ def callback(old_value, value, **kwargs):
         print("+")
     else:
         print("-")
-        
+
 
 token = x.subscribe(callback)
 # To turn off:
