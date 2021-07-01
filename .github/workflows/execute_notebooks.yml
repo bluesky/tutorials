@@ -21,7 +21,7 @@ jobs:
       shell: bash -l {0}
       run: |
         set -vxeuo pipefail
-        python -m pip install jupyter-repo2docker
+        python -m pip install -r binder/requirements-dev.txt
 
     - name: Execute notebooks with Jupyter Book.
       shell: bash -l {0}

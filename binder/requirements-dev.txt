@@ -1,0 +1,2 @@
+    juptyer-repo2docker
+    six  # looks like it's an undeclared dependency of docker Python bindings
