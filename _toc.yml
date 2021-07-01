@@ -1,5 +1,10 @@
+format: jb-book
 root: README
-entries:
-- file: Welcome
-- file: Hello Python and Jupyter
-
+parts:
+- caption: Introduction
+  chapters:
+  - file: Hello Python and Jupyter
+- caption: About
+  chapters:
+  - file: CONTRIBUTING
+  - file: INSTALLATION
