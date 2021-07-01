@@ -1,17 +1,18 @@
 bluesky
 bluesky-darkframes
-caproto >=0.5.1b1
+caproto
 dask
-databroker >=1.0.3
+databroker
 distributed
 h5py
 ipympl
 ipywidgets
-jupyterlab <2
+jupyterlab
+jupyter-book
 lmfit
-matplotlib >=3.2.1
+matplotlib
 nbgitpuller
-ophyd >=1.5.1b1
+ophyd
 pandas
 pyepics
 suitcase-csv
