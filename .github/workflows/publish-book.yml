@@ -41,7 +41,7 @@ jobs:
         # Use an editable installation so the _build/.jupyter_cache is
         # mounted in the container and so that the build artifacts persist
         # to the next step.
-        jupyter-repo2docker --editable . /bin/bash -c "jupyter-book build ."
+        jupyter-repo2docker --editable . /bin/bash -c "jupyter-book build -W ."
 
     - name: Deploy built book to blueskyproject.io.
       # We pin to the SHA, not the tag, for security reasons.
