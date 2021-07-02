@@ -4,6 +4,7 @@ parts:
 - caption: Introduction
   chapters:
   - file: Hello Python and Jupyter
+  - file: Hello Bluesky
 - caption: About
   chapters:
   - file: CONTRIBUTING

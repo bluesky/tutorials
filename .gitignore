@@ -108,4 +108,6 @@ _build/
 # jupyter
 .jupyter-server-log.txt
 .jupyter/
+
 .local/
+.bluesky_history/

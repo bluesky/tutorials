@@ -161,11 +161,11 @@ class Spot(Device):
         return self.img.trigger()
 
 
-ph = Det("mini:ph", name="ph")
+det = ph = Det("mini:ph", name="ph")
 edge = Det("mini:edge", name="edge")
 slit = Det("mini:slit", name="slit")
 
-motor_ph = EpicsSignal("mini:ph:mtr", name="motor_ph", put_complete=True)
+motor = motor_ph = EpicsSignal("mini:ph:mtr", name="motor_ph", put_complete=True)
 motor_edge = EpicsSignal("mini:edge:mtr", name="motor_edge", put_complete=True)
 motor_slit = EpicsSignal("mini:slit:mtr", name="motor_slit", put_complete=True)
 
