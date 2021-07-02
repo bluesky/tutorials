@@ -16,6 +16,7 @@ nbgitpuller
 ophyd
 pandas
 pyepics
+scikit-image
 suitcase-csv
 suitcase-jsonl
 suitcase-msgpack
