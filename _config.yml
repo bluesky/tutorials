@@ -7,7 +7,7 @@ copyright                   : "2021"
 # Execution settings
 execute:
   execute_notebooks         : cache
-  timeout                   : 30    # The maximum time (in seconds) each notebook cell is allowed to run.
+  timeout                   : 600    # The maximum time (in seconds) each notebook cell is allowed to run.
 only_build_toc_files: true
 
 #######################################################################################
