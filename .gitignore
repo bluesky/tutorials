@@ -111,3 +111,5 @@ _build/
 
 .local/
 .bluesky_history/
+
+.keras/
