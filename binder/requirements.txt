@@ -1,11 +1,12 @@
-bluesky
+bluesky >=1.7.0b1
 bluesky-darkframes
+bluesky-widgets >=0.0.8
 caproto
 dask
 databroker
 distributed
 h5py
-ipympl
+ipympl >=0.6.3
 ipywidgets
 jupyterlab >=3
 jupyter-book
@@ -15,6 +16,7 @@ nbgitpuller
 ophyd
 pandas
 pyepics
+scikit-image
 suitcase-csv
 suitcase-jsonl
 suitcase-msgpack

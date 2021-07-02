@@ -35,22 +35,33 @@ db = Broker.named("temp")
 RE.subscribe(db.insert)
 
 # Add a progress bar.
-from bluesky.utils import ProgressBarManager
-
-pbar_manager = ProgressBarManager()
-RE.waiting_hook = pbar_manager
+from bluesky.utils.jupyter import pbar_manager_for_notebook
+RE.waiting_hook = pbar_manager_for_notebook()
+# TODO This does not seem to have any effect.
+# Am I using it wrong, or are ophyd's simulated motors
+# not implementing enough of the optional API to engage it?
 
 # Register bluesky IPython magics.
 from bluesky.magics import BlueskyMagics
 
 get_ipython().register_magics(BlueskyMagics)
 
-# Set up the BestEffortCallback.
-from bluesky.callbacks.best_effort import BestEffortCallback
+# Set up plots with bluesky_widgets.
+from bluesky_widgets.models.auto_plot_builders import AutoLines
+from bluesky_widgets.utils.streaming import stream_documents_into_runs
+from bluesky_widgets.jupyter.figures import JupyterFigures
 
+auto_plot_model = AutoLines(max_runs=10)
+RE.subscribe(stream_documents_into_runs(auto_plot_model.add_run))
+auto_plot_view = JupyterFigures(auto_plot_model.figures)
+
+# Use BestEffortCallback just for the table
+# TODO: Retire our use of BestEffortCallback, using a table from
+# bluesky_widgets once one is available.
+from bluesky.callbacks.best_effort import BestEffortCallback
 bec = BestEffortCallback()
+bec.disable_plots()
 RE.subscribe(bec)
-peaks = bec.peaks
 
 # Import matplotlib and put it in interactive mode.
 import matplotlib.pyplot as plt
@@ -159,11 +170,11 @@ class Spot(Device):
         return self.img.trigger()
 
 
-ph = Det("mini:ph", name="ph")
+det = ph = Det("mini:ph", name="ph")
 edge = Det("mini:edge", name="edge")
 slit = Det("mini:slit", name="slit")
 
-motor_ph = EpicsSignal("mini:ph:mtr", name="motor_ph", put_complete=True)
+motor = motor_ph = EpicsSignal("mini:ph:mtr", name="motor_ph", put_complete=True)
 motor_edge = EpicsSignal("mini:edge:mtr", name="motor_edge", put_complete=True)
 motor_slit = EpicsSignal("mini:slit:mtr", name="motor_slit", put_complete=True)
 
