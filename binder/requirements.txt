@@ -1,4 +1,4 @@
-bluesky
+bluesky >=1.7.0b1
 bluesky-darkframes
 bluesky-widgets >=0.0.8
 caproto

@@ -35,10 +35,11 @@ db = Broker.named("temp")
 RE.subscribe(db.insert)
 
 # Add a progress bar.
-from bluesky.utils import ProgressBarManager
-
-pbar_manager = ProgressBarManager()
-RE.waiting_hook = pbar_manager
+from bluesky.utils.jupyter import pbar_manager_for_notebook
+RE.waiting_hook = pbar_manager_for_notebook()
+# TODO This does not seem to have any effect.
+# Am I using it wrong, or are ophyd's simulated motors
+# not implementing enough of the optional API to engage it?
 
 # Register bluesky IPython magics.
 from bluesky.magics import BlueskyMagics
