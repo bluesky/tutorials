@@ -1,6 +1,6 @@
 bluesky >=1.7.0b1
 bluesky-darkframes
-bluesky-widgets >=0.0.8
+bluesky-widgets[jupyter]
 caproto
 dask
 databroker
@@ -8,11 +8,13 @@ distributed
 h5py
 ipympl >=0.6.3
 ipywidgets
-jupyterlab >=3
 jupyter-book
+jupyterlab >=3
 lmfit
 matplotlib
 nbgitpuller
+nbgitpuller
+numpy==1.19.1
 ophyd
 pandas
 pyepics
@@ -22,3 +24,8 @@ suitcase-jsonl
 suitcase-msgpack
 suitcase-tiff
 supervisor
+tensorboard==2.2.1
+tensorflow==2.2.0
+tensorforce==0.5.5
+toolz==0.10.0
+bluesky-adaptive >=0.2.0

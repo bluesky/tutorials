@@ -1,0 +1,1 @@
+{"states": {"type": "float", "shape": [2]}, "actions": {"type": "int", "num_values": 2}, "internals": {}, "initial_internals": {}}
