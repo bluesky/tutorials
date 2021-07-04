@@ -7,6 +7,9 @@ parts:
   - file: Hello Bluesky
   - file: Single PVs
   - file: Group Signals into Devices
+- caption: Applications
+  chapters:
+  - file: Adaptive RL Sampling/Adaptive Sampling
 - caption: About
   chapters:
   - file: CONTRIBUTING
