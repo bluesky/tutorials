@@ -5,6 +5,8 @@ parts:
   chapters:
   - file: Hello Python and Jupyter
   - file: Hello Bluesky
+  - file: Single PVs
+  - file: Group Signals into Devices
 - caption: About
   chapters:
   - file: CONTRIBUTING
