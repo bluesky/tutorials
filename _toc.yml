@@ -6,10 +6,11 @@ parts:
   - file: Hello Python and Jupyter
   - file: Hello Bluesky
   - file: Single PVs
-  - file: Group Signals into Devices
+  - file: Ophyd/01 - Group Signals into Devices
 - caption: Intermediate Tutorials
   chapters:
-  - file: Array Detector (non-EPICS)
+  - file: Ophyd/02 - Complex Behaviors (Set and Multiple PVs)
+  - file: Ophyd/04 - Array Detector
 - caption: Applications
   chapters:
   - file: Adaptive RL Sampling/Adaptive Sampling
