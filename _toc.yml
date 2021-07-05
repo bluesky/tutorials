@@ -1,12 +1,15 @@
 format: jb-book
 root: README
 parts:
-- caption: Introduction
+- caption: Introductory Tutorials
   chapters:
   - file: Hello Python and Jupyter
   - file: Hello Bluesky
   - file: Single PVs
   - file: Group Signals into Devices
+- caption: Intermediate Tutorials
+  chapters:
+  - file: Array Detector (non-EPICS)
 - caption: Applications
   chapters:
   - file: Adaptive RL Sampling/Adaptive Sampling

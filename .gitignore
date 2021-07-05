@@ -113,3 +113,10 @@ _build/
 .bluesky_history/
 
 .keras/
+
+# artifacts from "Array Detector (non-EPICS) tutorial
+test.jpg
+external_data/
+
+# artifacts from JupyterLab Terminal
+.bash_history
