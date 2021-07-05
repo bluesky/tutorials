@@ -1,3 +1,4 @@
+area-detector-handlers
 bluesky >=1.7.0b1
 bluesky-adaptive >=0.2.0
 bluesky-darkframes
