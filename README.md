@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/bluesky/tutorials/main)
 
 # Bluesky Tutorials
 
@@ -6,10 +6,11 @@ This is a collection of tutorials on data acquisition and analysis using Bluesky
 and scientific Python generally. There are a couple ways to use it.
 
 * Try it in the interactive sandbox in the cloud at
-  https://mybinder.org/v2/gh/bluesky/tutorials/master?urlpath=lab.
+  https://mybinder.org/v2/gh/bluesky/tutorials/main (**recommended**).
 * Browse the content non-interactively at https://blueskyproject.io/tutorials.
+* Use Docker, running `docker run -p 8888:8888 nsls2/tutorials:latest`.
 * Download this content and run it on your local machine. This is not
-  recommended for novices. See further instructions below.
+  recommended for novices. See {doc}`INSTALLATION`.
 
 ## Survey
 Took our tutorial? Let us know how you thought of it so we can better improve
