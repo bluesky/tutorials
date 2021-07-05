@@ -2,9 +2,14 @@
 
 ## Alternatives
 
-These tutorials are usually run in a web browser using a cloud-based
-installation. This is the easiest way to quickly get started, with no need to
-install anything.
+These tutorials can be run:
+
+* In a web browser using a cloud-based service. This the easiest way to get
+  started because you do not need to install anything. Visit
+  https://mybinder.org/v2/gh/bluesky/tutorials/main.
+* Using Docker, run as `docker run -p 8888:8888 nsls2/tutorials:latest`.
+
+However, if you prefer a direct local installation, instructions follow.
 
 ## Instructions
 
