@@ -14,6 +14,7 @@ parts:
 - caption: Applications
   chapters:
   - file: Adaptive RL Sampling/Adaptive Sampling
+  - file: X-ray Absorption Fine Structure/Monochromator Optimization
 - caption: About
   chapters:
   - file: CONTRIBUTING
