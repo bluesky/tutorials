@@ -120,3 +120,5 @@ external_data/
 
 # artifacts from JupyterLab Terminal
 .bash_history
+
+.conda/

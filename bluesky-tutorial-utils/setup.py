@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="bluesky-tutorial-utils",
     packages=find_packages(),
-    install_requires=["appdirs", "ophyd", "numpy", "event-model"],
+    install_requires=["appdirs", "ophyd", "numpy", "event-model", "requests"],
     entry_points={
         "databroker.handlers": [
             "npy = bluesky_tutorial_utils._old_handlers:NpyHandler",

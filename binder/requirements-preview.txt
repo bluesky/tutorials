@@ -1,0 +1,8 @@
+bluesky
+databroker[complete]>=2.0.0a5
+ipykernel
+ipympl
+matplotlib
+ophyd
+suitcase-mongo
+tiled[complete]
