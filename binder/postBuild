@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip install -e ./bluesky-tutorial-utils
+pip install ./bluesky-tutorial-utils
 
 MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 
@@ -11,4 +11,4 @@ ln -s caproto-repeater `python -c "import os, sys; print(os.path.dirname(sys.exe
 conda create --yes -n preview python=3.7
 /srv/conda/envs/preview/bin/python -m pip install -r binder/requirements-preview.txt
 /srv/conda/envs/preview/bin/python -m ipykernel install --user --name preview --display-name "Python 3 (preview)"
-/srv/conda/envs/preview/bin/python -m pip install -e ./bluesky-tutorial-utils
+/srv/conda/envs/preview/bin/python -m pip install ./bluesky-tutorial-utils
