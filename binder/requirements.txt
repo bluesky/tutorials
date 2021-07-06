@@ -14,7 +14,7 @@ lmfit
 matplotlib
 nbgitpuller
 nbgitpuller
-numpy==1.19.1
+numpy~=1.19.2
 ophyd
 pandas
 pyepics
@@ -24,7 +24,7 @@ suitcase-jsonl
 suitcase-msgpack
 suitcase-tiff
 supervisor
-tensorboard==2.2.1
+tensorboard
 tensorflow==2.4.2
 tensorforce==0.5.5
 toolz==0.10.0
