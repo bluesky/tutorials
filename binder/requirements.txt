@@ -15,7 +15,7 @@ jupyterlab >=3
 lmfit
 matplotlib
 nbgitpuller
-numpy==1.19.1
+numpy==1.22.0
 ophyd
 pandas
 pyepics
