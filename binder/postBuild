@@ -8,7 +8,7 @@ MPLBACKEND=Agg python -c "import matplotlib.pyplot"  # Build font cache.
 ln -s caproto-repeater `python -c "import os, sys; print(os.path.dirname(sys.executable))"`/caRepeater
 
 # Install a second Python kernel with a preview of databroker 2.0.0 (prelease).
-conda create --yes -n preview python=3.7
+conda create --yes -n preview python=3.9
 /srv/conda/envs/preview/bin/python -m pip install -r binder/requirements-preview.txt
 /srv/conda/envs/preview/bin/python -m ipykernel install --user --name preview --display-name "Python 3 (preview)"
 /srv/conda/envs/preview/bin/python -m pip install ./bluesky-tutorial-utils
