@@ -1,4 +1,7 @@
+--prefer-binary
+Markdown <2.7
 area-detector-handlers
+bluesky
 bluesky >=1.7.0b1
 bluesky-adaptive >=0.2.0
 bluesky-darkframes
@@ -8,20 +11,24 @@ dask
 databroker
 distributed
 h5py
+ipykernel
 ipympl >=0.6.3
-ipywidgets
+ipywidgets <7.7
 jupyter-book
 jupyterlab >=3
+kiwisolver <1.2
 lmfit
-matplotlib
+matplotlib >=3.4
 nbgitpuller
-numpy==1.19.1
+numpy <1.20
+ophyd
 ophyd
 pandas
 pyepics
 scikit-image
 suitcase-csv
 suitcase-jsonl
+suitcase-mongo
 suitcase-msgpack
 suitcase-tiff
 supervisor

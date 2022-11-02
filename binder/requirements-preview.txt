@@ -1,8 +1,9 @@
+--prefer-binary
 bluesky
-databroker[complete]>=2.0.0a5
+databroker[complete]>=2.0.0b11
 ipykernel
 ipympl
-matplotlib
+matplotlib>=3.6.0
 ophyd
 suitcase-mongo
-tiled[complete]
+tiled[complete]>=0.1.0a70
