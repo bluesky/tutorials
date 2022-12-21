@@ -26,6 +26,7 @@ ophyd
 pandas
 pyepics
 scikit-image
+sklearn
 suitcase-csv
 suitcase-jsonl
 suitcase-mongo
