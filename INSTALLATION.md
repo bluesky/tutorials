@@ -54,3 +54,9 @@ However, if you prefer a direct local installation, instructions follow.
   ```sh
   jupyter lab
   ```
+  
+  **NOTE**: If your installation is on macOS you may need to run the following command before starting Jupyter.
+  
+  ```sh
+  cat supervisor/conf.d/*.conf | grep -oEi '\-\-interfaces=[0-9\.]+' | sed 's/.*\=//' | xargs -L1 sudo ifconfig lo0 alias
+  ```
