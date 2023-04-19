@@ -1,14 +1,13 @@
 from collections import Counter
 
-from bluesky_adaptive.recommendations import NoRecommendation
-from bluesky_adaptive.per_start import adaptive_plan
-from bluesky_adaptive.on_stop import recommender_factory
-
-from bluesky_widgets.utils.streaming import stream_documents_into_runs
 import matplotlib.pyplot as plt
 import numpy as np
+from bluesky_adaptive.on_stop import recommender_factory
+from bluesky_adaptive.per_start import adaptive_plan
+from bluesky_adaptive.recommendations import NoRecommendation
+from bluesky_widgets.utils.streaming import stream_documents_into_runs
 
-from .simulated_hardware import detector, sample_selector, SHAPE
+from .simulated_hardware import SHAPE, detector, sample_selector
 from .visualization import stream_to_figures
 
 
@@ -96,6 +95,22 @@ class CheatingAgent:
             return (x + 1) % self.num_samples
 
 
+class MCMC:
+    """Half baked MCMC agent to replace RL agent"""
+
+    def act(self, state, independent):
+        bad = bool(state[0])
+        badness = state[1]
+        if not bad:
+            return 1
+        else:
+            prby = badness / 10.0  # 0 when good, so must move
+            if np.random.rand() > prby:
+                return 1
+            else:
+                return 0
+
+
 class RLAgent:
     def __init__(self, num_samples, path):
         """
@@ -107,12 +122,16 @@ class RLAgent:
         path : Path, str
             Output path of agent to load from
         """
-        from .tf_agent import load_agent
-        import tensorflow as tf
-        tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+
+        # This is how we would do it, but remove for lightweight compatability issues.
+        # If curious please take a look at `tf_agent.py`
+        # from .tf_agent import load_agent
+        # import tensorflow as tf
+        # tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+        # self.agent = load_agent(path)
 
         self.num_samples = num_samples
-        self.agent = load_agent(path)
+        self.agent = MCMC()
 
     def useful_counts_remaining(self, y):
         """
@@ -136,9 +155,7 @@ class RLAgent:
 
         """
         badness = self.useful_counts_remaining(y)
-        change = self.agent.act(
-            [float(bool(badness)), float(badness)], independent=True
-        )
+        change = self.agent.act([float(bool(badness)), float(badness)], independent=True)
         return (x + change) % self.num_samples
 
 
