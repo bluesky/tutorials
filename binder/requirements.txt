@@ -15,6 +15,7 @@ ipykernel
 ipympl >=0.6.3
 ipywidgets <7.7
 jupyter-book
+jupyter-cache < 0.5
 jupyterlab >=3
 kiwisolver <1.2
 lmfit
