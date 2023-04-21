@@ -294,7 +294,6 @@ dependencies:
   - jsonpatch=1.32=pyhd8ed1ab_0
   - jsonpointer=2.0=py_0
   - jsonschema=4.17.3=pyhd8ed1ab_0
-  - jupyter-book=0.15.1=pyhd8ed1ab_0
   - jupyter=1.0.0=py310hff52083_8
   - jupyter_client=8.2.0=pyhd8ed1ab_0
   - jupyter_console=6.6.3=pyhd8ed1ab_0
@@ -846,4 +845,6 @@ dependencies:
   - zope.interface=6.0=py310h1fa729e_0
   - zstandard=0.19.0=py310hdeb6495_1
   - zstd=1.5.2=h3eb15da_6
+  - pip:
+    - jupyter-book
 prefix: /opt/conda/envs/2023-2.0-py310-tiled
