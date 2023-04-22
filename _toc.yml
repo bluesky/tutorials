@@ -10,7 +10,6 @@ parts:
 - caption: Intermediate Tutorials
   chapters:
   - file: Ophyd/02 - Complex Behaviors (Set and Multiple PVs)
-  - file: Ophyd/04 - Array Detector
 - caption: Applications
   chapters:
   - file: Adaptive RL Sampling/Adaptive Sampling
