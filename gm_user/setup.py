@@ -1,0 +1,22 @@
+from setuptools import setup, find_packages
+
+
+setup(
+    name="user_profile",
+    packages=find_packages(),
+    # install_requires=["appdirs", "ophyd", "numpy", "event-model", "requests"],
+    # entry_points={
+    #     "databroker.handlers": [
+    #         "npy = bluesky_tutorial_utils._old_handlers:NpyHandler",
+    #         "npy_FRAMEWISE = bluesky_tutorial_utils._old_handlers:NpyFrameWise",
+    #         "newton = bluesky_tutorial_utils._newton:NewtonHandler",
+    #     ]
+    # },
+    # include_package_data=True,
+    # zip_safe=False,
+    # package_data={
+    # 'bluesky_tutorial_utils': [
+    #     'example_data/*.jsonl',
+    #     ]
+    # },
+)
