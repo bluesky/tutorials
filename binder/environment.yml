@@ -847,4 +847,5 @@ dependencies:
   - zstd=1.5.2=h3eb15da_6
   - pip:
     - jupyter-book
+    - jupyter-cache<0.5
 prefix: /opt/conda/envs/2023-2.0-py310-tiled
