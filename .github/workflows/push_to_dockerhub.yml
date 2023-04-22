@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@main
 
     - name: update jupyter dependencies with repo2docker
-      uses: jupyterhub/repo2docker-action@6a93d1bf173f32cfd859130d5851aa8a7aad07cd  # master as of 2020-10-20
+      uses: jupyterhub/repo2docker-action@a15b6fb431d99a2b1c496af5de1c8a6eabf783d4  # master as of 2023-01-18
       with:
         # Proactively build on mybinder.org for faster startup.
         MYBINDERORG_TAG: ${{ github.event.ref }}

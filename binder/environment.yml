@@ -849,5 +849,6 @@ dependencies:
     - bluesky-adaptive>=0.2.1
     - jupyter-book
     - jupyter-cache<0.5
+    - nbgitpuller
     - supervisor
 prefix: /opt/conda/envs/2023-2.0-py310-tiled
