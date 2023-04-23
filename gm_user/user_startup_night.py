@@ -33,5 +33,6 @@ def my_experiment(myT_list):
         
         
 
-from ophyd.sim import motor1, motor2        
-my_dets = [det, noisy_det, temperature, motor1.readback, motor2.readback]
+from ophyd.sim import motor1, motor2, det2       
+my_dets = [det, noisy_det, temperature, motor1.readback, det2]
+

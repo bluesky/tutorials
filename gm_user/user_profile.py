@@ -59,7 +59,8 @@ import bluesky.preprocessors as bpp
 # import bluesky.simulators
 # from bluesky.simulators import *
 
-from bluesky.simulators import summarize_plan, check_limits
+from bluesky.simulators import summarize_plan, check_limits, plot_raster_path
+#from bluesky.plan_tools import plot_raster_path
 
 from ophyd.sim import det, motor, noisy_det
 
