@@ -19,7 +19,7 @@ def align_peak():
         
 def one_temperature():
     yield from align_peak()
-    yield from count([noisy_det], 5)
+    yield from count([noisy_det], 5, md={'purpose':'analyze'})
     
 def my_experiment(myT_list):
     for myT in myT_list:
@@ -27,3 +27,12 @@ def my_experiment(myT_list):
         yield from mv(temperature, myT)
         yield from one_temperature()
         print(f'\tFinished scans for temperature {myT}')
+        
+        
+
+        
+        
+
+from ophyd.sim import motor1, motor2, det2       
+my_dets = [det, noisy_det, temperature, motor1.readback, det2]
+
