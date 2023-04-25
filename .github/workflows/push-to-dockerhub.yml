@@ -1,0 +1,23 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout files in repo
+        uses: actions/checkout@v3
+
+      - name: update jupyter dependencies with repo2docker
+        uses: jupyterhub/repo2docker-action@f0ac144fa16ee216e8dfb202ea697eff110feb36  # master as of 2023-04-24
+        with:
+          # Proactively build on mybinder.org for faster startup.
+          MYBINDERORG_TAG: ${{ github.event.ref }}
+          # Also push built image to DockerHub for use by our JupyterHub deployments.
+          DOCKER_USERNAME: nsls2damaservice
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+          IMAGE_NAME: "nsls2/tutorials"
